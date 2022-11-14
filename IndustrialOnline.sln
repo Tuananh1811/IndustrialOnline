@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CNCIndustrial.Data", "CNCIndustrial.Data\CNCIndustrial.Data.csproj", "{29E42B25-A182-41B8-8730-5133FD89FF50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CNCIndustrial.Application", "CNCIndustrial.Application\CNCIndustrial.Application.csproj", "{202A04DE-D705-47AF-B212-A54EFDA31368}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{8387DF28-F113-435E-8229-5E78A02AD7EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8387DF28-F113-435E-8229-5E78A02AD7EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8387DF28-F113-435E-8229-5E78A02AD7EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29E42B25-A182-41B8-8730-5133FD89FF50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29E42B25-A182-41B8-8730-5133FD89FF50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29E42B25-A182-41B8-8730-5133FD89FF50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29E42B25-A182-41B8-8730-5133FD89FF50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{202A04DE-D705-47AF-B212-A54EFDA31368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{202A04DE-D705-47AF-B212-A54EFDA31368}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{202A04DE-D705-47AF-B212-A54EFDA31368}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{202A04DE-D705-47AF-B212-A54EFDA31368}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
