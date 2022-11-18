@@ -1,7 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CNCIndustrial.Data\CNCIndustrial.Data.csproj" />
+    <ProjectReference Include="..\CncIndustrial.Utilities\CncIndustrial.Utilities.csproj" />
+    <ProjectReference Include="..\CncIndustrial.ViewModels\CncIndustrial.ViewModels.csproj" />
+  </ItemGroup>
 
 </Project>
