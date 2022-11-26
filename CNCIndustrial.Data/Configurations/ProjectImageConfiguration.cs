@@ -20,8 +20,7 @@ namespace CNCIndustrial.Data.Configurations
             builder.Property(x => x.Caption).HasMaxLength(200);
 
             builder.HasOne(x => x.Project).WithMany(x => x.ProjectImages).HasForeignKey(x => x.ProjectId);
-            builder.HasOne(x => x.News).WithMany(x => x.NewsImages).HasForeignKey(x => x.ProjectId);
-            builder.HasOne(x => x.AboutUs).WithMany(x => x.AboutImages).HasForeignKey(x => x.ProjectId);
+           
         }
 
        

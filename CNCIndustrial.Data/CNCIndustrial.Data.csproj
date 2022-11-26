@@ -5,27 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20221115044959_Initil.cs" />
-    <Compile Remove="Migrations\20221115044959_Initil.Designer.cs" />
-    <Compile Remove="Migrations\20221115045445_Initial.cs" />
-    <Compile Remove="Migrations\20221115045445_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20221115074033_initial.cs" />
-    <Compile Remove="Migrations\20221115074033_initial.Designer.cs" />
-    <Compile Remove="Migrations\20221115074916_Initial.cs" />
-    <Compile Remove="Migrations\20221115074916_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20221115080314_Initial.cs" />
-    <Compile Remove="Migrations\20221115080314_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20221115081709_Initial.cs" />
-    <Compile Remove="Migrations\20221115081709_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20221116011525_Initial.cs" />
-    <Compile Remove="Migrations\20221116011525_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20221116033244_AspNetIdentityDatabase.cs" />
-    <Compile Remove="Migrations\20221116033244_AspNetIdentityDatabase.Designer.cs" />
-    <Compile Remove="Migrations\20221118085907_addDatabaseCategoryTranslation.cs" />
-    <Compile Remove="Migrations\20221118085907_addDatabaseCategoryTranslation.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.11">

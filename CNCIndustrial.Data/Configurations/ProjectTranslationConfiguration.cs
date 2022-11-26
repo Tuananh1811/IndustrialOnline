@@ -22,12 +22,13 @@ namespace CNCIndustrial.Data.Configurations
 
             builder.Property(x => x.Details).HasMaxLength(500);
 
-
             builder.Property(x => x.LanguageId).IsUnicode(false).IsRequired().HasMaxLength(10);
 
-            builder.HasOne(x => x.Language).WithMany(x => x.ProjectTranslations).HasForeignKey(x => x.LanguageId);
+            builder.HasOne(x => x.Languages).WithMany(x => x.ProjectTranslations).HasForeignKey(x => x.LanguageId);
 
             builder.HasOne(x => x.Project).WithMany(x => x.ProjectTranslations).HasForeignKey(x => x.ProjectId);
+           
+           // builder.HasOne(x => x.AccessibilityTranslation).WithMany(x => x.ProjectTranslations).HasForeignKey(x => x.AccessibilityTranslationId);
 
         }
     }

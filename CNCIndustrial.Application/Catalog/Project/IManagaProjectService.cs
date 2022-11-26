@@ -1,5 +1,5 @@
 ﻿using CncIndustrial.ViewModels.Catalog.ProductImages;
-using CncIndustrial.ViewModels.Catalog.Project.Manage;
+using CncIndustrial.ViewModels.Catalog.Project;
 using CncIndustrial.ViewModels.Catalog.ProjectImages;
 using CncIndustrial.ViewModels.Common;
 
@@ -20,20 +20,25 @@ namespace CNCIndustrial.Application.Catalog.Project
 
         Task AddViewCount(int projectId);
        
-       Task<PagedResult<ProductVm>> GetAllPaging(GetProjectPagingRequest request);
+       Task<PagedResult<ProductVm>> GetAllPaging(GetManageProductPagingRequest request);
 
         Task<int> AddImage(int projectId, ProjectImageCreateRequest request);
 
         Task<int> RemoveImage(int imageId);
 
         Task<int> UpdateImage(int imageId, ProjectImageUpdateRequest request);
-
-        Task<ProjectImageViewModel> GetImageById(int imageId);
+        //Task GetById(int productId, string languageId);
+       // Task<ProjectImageViewModel> GetImageById(int imageId);
 
         Task<List<ProjectImageViewModel>> GetListImages(int productId);
 
         Task<List<ProductVm>> GetLatestProducts(string languageId, int take);
 
         Task<List<ProductVm>> GetFeaturedProducts(string languageId, int take);
+
+        Task<ProjectViewModel> GetByIdPro(int projectId, string languageId);
+
+        Task<ProjectImageViewModel> GetImageById(int imageId);
+        Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
     }
 }

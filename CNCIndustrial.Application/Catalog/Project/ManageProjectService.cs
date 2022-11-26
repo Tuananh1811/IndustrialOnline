@@ -1,7 +1,7 @@
 ﻿using CncIndustrial.Utilities.Constants;
 using CncIndustrial.Utilities.Exceptions;
 using CncIndustrial.ViewModels.Catalog.ProductImages;
-using CncIndustrial.ViewModels.Catalog.Project.Manage;
+using CncIndustrial.ViewModels.Catalog.Project;
 using CncIndustrial.ViewModels.Catalog.ProjectImages;
 using CncIndustrial.ViewModels.Common;
 
@@ -57,7 +57,8 @@ namespace CNCIndustrial.Application.Catalog.Project
                         SeoDescription = request.SeoDescription,
                         SeoAlias = request.SeoAlias,
                         SeoTitle = request.SeoTitle,
-                        LanguageId = request.LanguageId
+                        LanguageId = request.LanguageId,
+                        
                     });
                 }
                 else
@@ -78,6 +79,7 @@ namespace CNCIndustrial.Application.Catalog.Project
                 Stock = request.Stock,
                 ViewCount = 0,
                 DateCreated = DateTime.Now,
+                iframeMap=request.iframeMap,
                 ProjectTranslations = translations
             };
             ////Save image
@@ -122,7 +124,7 @@ namespace CNCIndustrial.Application.Catalog.Project
        
        
 
-        public async Task<PagedResult<ProductVm>> GetAllPaging(GetProjectPagingRequest request)
+        public async Task<PagedResult<ProductVm>> GetAllPaging(GetManageProductPagingRequest request)
         {
             var query = from p in _context.Projects
                         join pt in _context.ProjectTranslations on p.Id equals pt.ProjectId
@@ -136,8 +138,8 @@ namespace CNCIndustrial.Application.Catalog.Project
                         select new { p, pt, pic, pi };
             //2. filter
             //
-            if (!string.IsNullOrEmpty(request.Keywork))
-                query = query.Where(x => x.pt.Name.Contains(request.Keywork));
+            if (!string.IsNullOrEmpty(request.Keyword))
+                query = query.Where(x => x.pt.Name.Contains(request.Keyword));
 
             if (request.CategoryId != null && request.CategoryId != 0)
             {
@@ -262,25 +264,25 @@ namespace CNCIndustrial.Application.Catalog.Project
             return "/" + USER_CONTENT_FOLDER_NAME + "/" + fileName;
         }
 
-        public async Task<ProjectImageViewModel> GetImageById(int imageId)
-        {
-            var image = await _context.ProjectImages.FindAsync(imageId);
-            if (image == null)
-                throw new CncIndustrialException($"Cannot find an image with id {imageId}");
+        //public async Task<ProjectImageViewModel> GetImageById(int imageId)
+        //{
+        //    var image = await _context.ProjectImages.FindAsync(imageId);
+        //    if (image == null)
+        //        throw new CncIndustrialException($"Cannot find an image with id {imageId}");
 
-            var viewModel = new ProjectImageViewModel()
-            {
-                Caption = image.Caption,
-                DateCreated = image.DateCreated,
-                FileSize = image.FileSize,
-                Id = image.Id,
-                ImagePath = image.ImagePath,
-                IsDefault = image.IsDefault,
-                ProjectId = image.ProjectId,
-                SortOrder = image.SortOrder
-            };
-            return viewModel;
-        }
+        //    var viewModel = new ProjectImageViewModel()
+        //    {
+        //        Caption = image.Caption,
+        //        DateCreated = image.DateCreated,
+        //        FileSize = image.FileSize,
+        //        Id = image.Id,
+        //        ImagePath = image.ImagePath,
+        //        IsDefault = image.IsDefault,
+        //        ProjectId = image.ProjectId,
+        //        SortOrder = image.SortOrder
+        //    };
+        //    return viewModel;
+        //}
         /*
          * 
          */
@@ -371,6 +373,96 @@ namespace CNCIndustrial.Application.Catalog.Project
                 }).ToListAsync();
 
             return data;
+        }
+
+        //public Task GetById(int productId, string languageId)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+       public async Task<ProjectViewModel> GetByIdPro(int projectId, string languageId)
+        {
+            var product = await _context.Projects.FindAsync(projectId);
+            var productTranslation = await _context.ProjectTranslations.FirstOrDefaultAsync(x => x.ProjectId == projectId
+            && x.LanguageId == languageId);
+
+            var categories = await(from c in _context.Categories
+                                   join ct in _context.CategoryTranslations on c.Id equals ct.CategoryId
+                                   join pic in _context.ProjectInCategories on c.Id equals pic.CategoryId
+                                   where pic.ProjectId == projectId && ct.LanguageId == languageId
+                                   select ct.Name).ToListAsync();
+
+            var image = await _context.ProjectImages.Where(x => x.ProjectId == projectId && x.IsDefault == true).FirstOrDefaultAsync();
+
+            var productViewModel = new ProjectViewModel()
+            {
+                Id = product.Id,
+                DateCreated = product.DateCreated,
+                Description = productTranslation != null ? productTranslation.Description : null,
+                LanguageId = productTranslation.LanguageId,
+                Details = productTranslation != null ? productTranslation.Details : null,
+                Name = productTranslation != null ? productTranslation.Name : null,
+                OriginalPrice = product.OriginalPrice,
+                Price = product.Price,
+                SeoAlias = productTranslation != null ? productTranslation.SeoAlias : null,
+                SeoDescription = productTranslation != null ? productTranslation.SeoDescription : null,
+                SeoTitle = productTranslation != null ? productTranslation.SeoTitle : null,
+                Stock = product.Stock,
+                iframe=product.iframeMap,
+                ViewCount = product.ViewCount,
+                Categories = categories,
+                ThumbnailImage = image != null ? image.ImagePath : "no-image.jpg"
+            };
+            return productViewModel;
+        }
+
+        public async Task<ProjectImageViewModel> GetImageById(int imageId)
+        {
+            var image = await _context.ProjectImages.FindAsync(imageId);
+            if (image == null)
+                throw new CncIndustrialException($"Cannot find an image with id {imageId}");
+
+            var viewModel = new ProjectImageViewModel()
+            {
+                Caption = image.Caption,
+                DateCreated = image.DateCreated,
+                FileSize = image.FileSize,
+                Id = image.Id,
+                ImagePath = image.ImagePath,
+                IsDefault = image.IsDefault,
+                ProjectId = image.ProjectId,
+                SortOrder = image.SortOrder
+            };
+            return viewModel;
+        }
+
+        public async Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request)
+        {
+            var user = await _context.Projects.FindAsync(id);
+            if (user == null)
+            {
+                return new ApiErrorResult<bool>($"Sản phẩm với id {id} không tồn tại");
+            }
+            foreach (var category in request.Categories)
+            {
+                var productInCategory = await _context.ProjectInCategories
+                    .FirstOrDefaultAsync(x => x.CategoryId == int.Parse(category.Id)
+                    && x.ProjectId == id);
+                if (productInCategory != null && category.Selected == false)
+                {
+                    _context.ProjectInCategories.Remove(productInCategory);
+                }
+                else if (productInCategory == null && category.Selected)
+                {
+                    await _context.ProjectInCategories.AddAsync(new ProjectInCategory()
+                    {
+                        CategoryId = int.Parse(category.Id),
+                        ProjectId = id
+                    });
+                }
+            }
+            await _context.SaveChangesAsync();
+            return new ApiSuccessResult<bool>();
         }
     }
 }

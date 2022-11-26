@@ -22,5 +22,6 @@ namespace CNCIndustrial.Data.Entities
         public string HotlineKo { set; get; }
         public Status Status { set; get; }
         public AppUser AppUser { set; get; }
+        
     }
 }

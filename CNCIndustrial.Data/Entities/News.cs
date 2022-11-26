@@ -9,6 +9,7 @@ namespace CNCIndustrial.Data.Entities
        
         public int Id { get; set; }
 
+      
        
         public string Title { get; set; }
 
@@ -29,7 +30,7 @@ namespace CNCIndustrial.Data.Entities
 
         
         public string HinhAnhMinhHoa { get; set; }
-        public List<ProjectImage> NewsImages { get; set; }
+    
         public List<NewsTranslation> NewsTranslations { get; set; }
         // public virtual TaiKhoan TaiKhoan { get; set; }
     }
