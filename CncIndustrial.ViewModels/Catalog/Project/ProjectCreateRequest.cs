@@ -14,7 +14,7 @@ namespace CncIndustrial.ViewModels.Catalog.Project
         public decimal OriginalPrice { set; get; }
         public int Stock { set; get; }
 
-        [Required(ErrorMessage = "Bạn phải nhập tên sản phẩm")]
+        [Required(ErrorMessage = "Bạn phải nhập tên dự án")]
         public string Name { set; get; }
 
         public string Description { set; get; }

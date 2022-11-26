@@ -4,7 +4,7 @@
 - Entity Framework Core 3.1
 ## How to configure and run
 - Clone code from Github: git clone https://github.com/Tuananh1811/IndustrialOnline.git
-- Open solution eShopSolution.sln in Visual Studio 2019
+- Open solution IndustrialOnline.sln in Visual Studio 2019
 - Set startup project is Industrial.Data
 - Change connection string in Appsetting.json in Industrial.Data project
 - Open Tools --> Nuget Package Manager --> Package Manager Console in Visual Studio

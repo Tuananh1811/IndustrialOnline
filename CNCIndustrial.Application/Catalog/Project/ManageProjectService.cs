@@ -145,7 +145,7 @@ namespace CNCIndustrial.Application.Catalog.Project
             {
                 query = query.Where(p => p.pic.CategoryId == request.CategoryId);
             }
-
+            
             //3. Paging
             int totalRow = await query.CountAsync();
 
@@ -435,13 +435,13 @@ namespace CNCIndustrial.Application.Catalog.Project
             };
             return viewModel;
         }
-
+        //chán vllol đấy nhá
         public async Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request)
         {
             var user = await _context.Projects.FindAsync(id);
             if (user == null)
             {
-                return new ApiErrorResult<bool>($"Sản phẩm với id {id} không tồn tại");
+                return new ApiErrorResult<bool>($"Dự án với id {id} không tồn tại");
             }
             foreach (var category in request.Categories)
             {
