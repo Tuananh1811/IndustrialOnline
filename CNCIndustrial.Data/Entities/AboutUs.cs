@@ -10,7 +10,7 @@ namespace CNCIndustrial.Data.Entities
        
         public string Intro { set; get; }
         public string Founding { set; get; }
-        public List<ProjectImage> AboutImages { get; set; }
+      
         public List<AboutUsTranslation> AboutUsTranslations { get; set; }
 
 

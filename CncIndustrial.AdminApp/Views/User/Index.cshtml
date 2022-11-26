@@ -1,0 +1,119 @@
+﻿@using CncIndustrial.ViewModels.Common;
+@model PagedResult<CncIndustrial.ViewModels.System.User.UserVm>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*@section Js{
+        <script>
+            setTimeout(function () {
+                $('#msgAlert').fadeOut('slow');
+            }, 2000);
+        </script>
+    }*@
+
+<div class="container-fluid">
+    <h2 class="mt-4" style="padding:30px 0px;color: #EF5924;text-transform:uppercase">Account Management</h2>
+    
+    <div class="card mb-12">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-lg-9 row" style="align-items: center;">
+                    <div class="col-lg-9">
+                        <input type="text" value="@ViewBag.searchString" name="searchString" style="width: 100%;padding: 5px;border: 1px solid #EF5924;padding-left: 5px;" placeholder="Enter username" />
+                    </div>
+                    <div class="col-lg-3">
+                        <button type="submit" style="font-weight:lighter;padding: 5px 10px;border: 0px;border-radius:5px;outline: none;background-color: #EF5924;color: #fff;font-weight: bold;"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <a style="float:right"  class="btn btn-success" asp-action="Create" asp-controller="User"><i class="fa-solid fa-user-plus"></i></a>
+                </div>
+
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                @if (ViewBag.SuccessMsg != null)
+                {
+                    <div id="msgAlert" class="alert alert-success" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                }
+            </div>
+            <div class="table-responsive">
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                               
+                                <th>
+                                    FullName
+                                </th>
+                                <th>
+                                    Phone
+                                </th>
+                                <th>
+                                    UserName
+                                </th>
+                                <th>
+                                    Email
+                                </th>
+                                
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                       
+                        <tbody>
+                            @foreach (var item in Model.Items)
+                            {
+                                <tr>
+                                    
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FullName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                   
+                                    <td>
+                                        @* @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |*@
+                                        @* @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |*@
+                                        <a style="text-decoration:none;padding:5px" href="/User/Edit/@item.Id" class="item itemdelete" id=@item.Id data-toggle="tooltip" data-placement="top" title="Sửa">
+                                            <i  class="fa-solid fa-pen-nib"></i>
+                                        </a>
+
+                                        <a style="text-decoration:none;padding:5px" href="/User/Details/@item.Id" class="item itemdelete" id=@item.Id data-toggle="tooltip" data-placement="top" title="Xem thông tin">
+                                            <i style="color:#d35400" class=" fa-solid fa-eye"></i>
+                                        </a>
+                                        @* @Html.ActionLink("Xóa", "Delete", new { id = item.Id }) |*@
+                                        <a style="text-decoration:none;padding:5px" href="User/Delete/@item.Id" class="item itemdelete" id=@item.Id data-toggle="tooltip" data-placement="top" title="Xóa">
+                                            <i style="color:red"  class="  fa-solid fa-user-minus"></i>
+                                        </a>
+                                        <a style="text-decoration:none;padding:5px" href="User/RoleAssign/@item.Id" class="item itemdelete" id=@item.Id data-toggle="tooltip" data-placement="top" title="Đổi quyền">
+                                            <i style="color: #16a085" class="fa-solid fa-restroom"></i>
+                                        </a>
+                                        @*@Html.ActionLink("Gán quyền", "RoleAssign", new { id = item.Id })*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            @*  @await Component.InvokeAsync("Pager", Model)*@
+        </div>
+
+    </div>
+</div>
+
+
+
+

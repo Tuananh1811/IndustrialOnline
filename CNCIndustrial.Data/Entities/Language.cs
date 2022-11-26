@@ -15,7 +15,12 @@ namespace CNCIndustrial.Data.Entities
         public List<ProjectTranslation> ProjectTranslations { get; set; }
 
         public List<CategoryTranslation> CategoryTranslations { get; set; }
+
         public List<NewsTranslation> NewsTranslations { get; set; }
+
         public List<AboutUsTranslation> AboutUsTranslations { get; set; }
+
+      
+        
     }
 }

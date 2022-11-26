@@ -31,7 +31,7 @@ namespace CNCIndustrial.Data.Configurations
             builder.HasOne(x => x.Language).WithMany(x => x.AboutUsTranslations).HasForeignKey(x => x.LanguageId);
 
             builder.HasOne(x => x.AboutUs).WithMany(x => x.AboutUsTranslations).HasForeignKey(x => x.AboutUsId);
-
+            builder.HasOne(x => x.Employees).WithMany(x => x.AboutUsTranslations).HasForeignKey(x => x.EmployeeId);
         }
     }
 }

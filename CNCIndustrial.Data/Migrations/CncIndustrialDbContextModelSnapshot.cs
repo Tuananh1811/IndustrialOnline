@@ -51,6 +51,9 @@ namespace CNCIndustrial.Data.Migrations
                     b.Property<int>("AboutUsId")
                         .HasColumnType("int");
 
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Founding")
                         .HasColumnType("nvarchar(max)");
 
@@ -80,6 +83,8 @@ namespace CNCIndustrial.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AboutUsId");
+
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("LanguageId");
 
@@ -124,6 +129,7 @@ namespace CNCIndustrial.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
@@ -132,20 +138,27 @@ namespace CNCIndustrial.Data.Migrations
                         .HasMaxLength(200);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppRoles");
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("583b332a-9d8b-4b9c-b502-1f48d02b9ec7"),
-                            ConcurrencyStamp = "4ec64dde-c89f-4c92-90ac-96275e1a3ced",
+                            ConcurrencyStamp = "1e18812f-837e-4186-8a91-0928a2a4c843",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -162,13 +175,15 @@ namespace CNCIndustrial.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Dob")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -185,10 +200,12 @@ namespace CNCIndustrial.Data.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -206,18 +223,27 @@ namespace CNCIndustrial.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppUsers");
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("e23c9b99-51d5-4f0e-a15b-9b5d6b4c9507"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f7f872f6-d236-42aa-9a60-02b6e0385bb7",
+                            ConcurrencyStamp = "54e54ca0-cab8-452e-bd44-c343bbceac08",
                             Dob = new DateTime(2000, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tanhdo18@gmail.com",
                             EmailConfirmed = true,
@@ -225,7 +251,7 @@ namespace CNCIndustrial.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tanhdo18@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEF85EDX9LqYdYtM/2Zj6KndO07aNRomN2csDclAEZMEkhAgoaHHWQr8S30DyfVkwFw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEME9odY7ISeu+tJW4Aiwn8UGPOtngwAXp6zkUteqKFFm2Fae5g63YS7NdhJ33dbLeA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -850,6 +876,18 @@ namespace CNCIndustrial.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateCreated = new DateTime(2022, 11, 22, 13, 49, 5, 721, DateTimeKind.Local).AddTicks(8209),
+                            OriginalPrice = 100000m,
+                            Price = 200000m,
+                            Stock = 0,
+                            ViewCount = 0,
+                            iframeMap = "Http://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3716.8211643267987!2d105.68034141461068!3d21.318081685842323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134e5dadc526c53%3A0xeb6c8f677c9262da!2zS2h1IGPDtG5nIG5naGnhu4dwIGLDoSB0aGnhu4duIDE!5e0!3m2!1svi!2s!4v1668825924376!5m2!"
+                        });
                 });
 
             modelBuilder.Entity("CNCIndustrial.Data.Entities.ProjectTranslation", b =>
@@ -861,6 +899,21 @@ namespace CNCIndustrial.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AccessibilityAirport")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AccessibilityCenter")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AccessibilityExpressway")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AccessibilityPort")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CeilingHeight")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -868,7 +921,13 @@ namespace CNCIndustrial.Data.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
 
+                    b.Property<string>("ElectricityCapacity")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Investor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Juridical")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LanguageId")
@@ -876,6 +935,9 @@ namespace CNCIndustrial.Data.Migrations
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
+
+                    b.Property<string>("LoadingCapacoty")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MainFunction1")
                         .HasColumnType("nvarchar(max)");
@@ -894,8 +956,14 @@ namespace CNCIndustrial.Data.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
+                    b.Property<string>("PriceProject")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ProjectOverView")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SeoAlias")
                         .IsRequired()
@@ -911,10 +979,22 @@ namespace CNCIndustrial.Data.Migrations
                     b.Property<string>("Summary")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TermOfSdd")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TotalArea")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Utilities")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("VacantArea")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WastewaterTreatmentCapacity")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WaterSupplyCapacity")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -984,7 +1064,9 @@ namespace CNCIndustrial.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppRoleClaims");
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
@@ -1005,27 +1087,30 @@ namespace CNCIndustrial.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppUserClaims");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("UserId");
+                    b.HasKey("LoginProvider", "ProviderKey");
 
-                    b.ToTable("AppUserLogins");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
@@ -1038,7 +1123,9 @@ namespace CNCIndustrial.Data.Migrations
 
                     b.HasKey("UserId", "RoleId");
 
-                    b.ToTable("AppUserRoles");
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
 
                     b.HasData(
                         new
@@ -1051,21 +1138,20 @@ namespace CNCIndustrial.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
                     b.Property<Guid>("UserId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AppUserTokens");
+                    b.ToTable("AspNetUserTokens");
                 });
 
             modelBuilder.Entity("CNCIndustrial.Data.Entities.AboutUsTranslation", b =>
@@ -1073,6 +1159,12 @@ namespace CNCIndustrial.Data.Migrations
                     b.HasOne("CNCIndustrial.Data.Entities.AboutUs", "AboutUs")
                         .WithMany("AboutUsTranslations")
                         .HasForeignKey("AboutUsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CNCIndustrial.Data.Entities.Employee", "Employees")
+                        .WithMany("AboutUsTranslations")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1129,18 +1221,6 @@ namespace CNCIndustrial.Data.Migrations
 
             modelBuilder.Entity("CNCIndustrial.Data.Entities.ProjectImage", b =>
                 {
-                    b.HasOne("CNCIndustrial.Data.Entities.AboutUs", "AboutUs")
-                        .WithMany("AboutImages")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CNCIndustrial.Data.Entities.News", "News")
-                        .WithMany("NewsImages")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CNCIndustrial.Data.Entities.ProjectLocation", "Project")
                         .WithMany("ProjectImages")
                         .HasForeignKey("ProjectId")
@@ -1165,7 +1245,7 @@ namespace CNCIndustrial.Data.Migrations
 
             modelBuilder.Entity("CNCIndustrial.Data.Entities.ProjectTranslation", b =>
                 {
-                    b.HasOne("CNCIndustrial.Data.Entities.Language", "Language")
+                    b.HasOne("CNCIndustrial.Data.Entities.Language", "Languages")
                         .WithMany("ProjectTranslations")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1174,6 +1254,57 @@ namespace CNCIndustrial.Data.Migrations
                     b.HasOne("CNCIndustrial.Data.Entities.ProjectLocation", "Project")
                         .WithMany("ProjectTranslations")
                         .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.HasOne("CNCIndustrial.Data.Entities.AppRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.HasOne("CNCIndustrial.Data.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.HasOne("CNCIndustrial.Data.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.HasOne("CNCIndustrial.Data.Entities.AppRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CNCIndustrial.Data.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.HasOne("CNCIndustrial.Data.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

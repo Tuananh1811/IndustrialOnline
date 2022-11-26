@@ -9,7 +9,6 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using CncIndustrial.ViewModels.Common;
 using CncIndustrial.ViewModels.Catalog.Project;
-using CncIndustrial.ViewModels.Catalog.Project.Public;
 
 namespace CNCIndustrial.Application.Catalog.Project
 {
@@ -81,6 +80,41 @@ namespace CNCIndustrial.Application.Catalog.Project
                 Items = data
             };
             return pagedResult;
+        }
+
+        public async Task<List<ProjectViewModel>> GetAll()
+        {
+            var query = from p in _context.Projects
+                        join pt in _context.ProjectTranslations on p.Id equals pt.ProjectId
+                        join pic in _context.ProjectInCategories on p.Id equals pic.ProjectId into ppic
+                        from pic in ppic.DefaultIfEmpty()
+                        join c in _context.Categories on pic.CategoryId equals c.Id
+                        //into picc
+                        //from c in picc.DefaultIfEmpty()
+                        //join pi in _context.ProjectImages on p.Id equals pi.ProjectId into ppi
+                        //from pi in ppi.DefaultIfEmpty()
+                        //where pt.LanguageId == request.LanguageId && pi.IsDefault == true
+                        select new { p, pt, pic };
+            var data = await query
+               .Select(x => new ProjectViewModel()
+               {
+                   Id = x.p.Id,
+                   Name = x.pt.Name,
+                   DateCreated = x.p.DateCreated,
+                   Description = x.pt.Description,
+                   Details = x.pt.Details,
+                   LanguageId = x.pt.LanguageId,
+                   OriginalPrice = x.p.OriginalPrice,
+                   Price = x.p.Price,
+                   SeoAlias = x.pt.SeoAlias,
+                   SeoDescription = x.pt.SeoDescription,
+                   SeoTitle = x.pt.SeoTitle,
+                   Stock = x.p.Stock,
+                   ViewCount = x.p.ViewCount,
+                  
+               }).ToListAsync();
+            return data;
+
         }
     }
 }

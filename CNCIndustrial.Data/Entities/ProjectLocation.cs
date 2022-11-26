@@ -21,6 +21,7 @@ namespace CNCIndustrial.Data.Entities
         public DateTime DateCreated { set; get; }
 
         public bool? IsFeatured { get; set; }
+
         public List<ProjectInCategory> ProductInCategories { get; set; }
 
         public List<ProjectImage> ProjectImages { get; set; }

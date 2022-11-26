@@ -13,5 +13,6 @@ namespace CNCIndustrial.Data.Entities
         public string Position { set; get; }
         public Guid UserId { set; get; }
         public AppUser AppUser { set; get; }
+        public List<AboutUsTranslation> AboutUsTranslations { get; set; }
     }
 }
