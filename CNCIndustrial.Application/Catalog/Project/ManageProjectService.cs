@@ -435,7 +435,7 @@ namespace CNCIndustrial.Application.Catalog.Project
             };
             return viewModel;
         }
-        //chán vllol đấy nhá
+        
         public async Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request)
         {
             var user = await _context.Projects.FindAsync(id);
