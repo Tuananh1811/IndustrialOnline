@@ -161,7 +161,7 @@ namespace CncIndustrial.AdminApp.Controllers
 
             ModelState.AddModelError("", result.Message);
             var roleAssignRequest = await GetRoleAssignRequest(request.Id);
-
+             
             return View(roleAssignRequest);
         }
         private async Task<RoleAssignRequest> GetRoleAssignRequest(Guid id)
@@ -178,8 +178,10 @@ namespace CncIndustrial.AdminApp.Controllers
                     Selected = userObj.ResultObj.Roles.Contains(role.Name)
                 });
             }
+           
             return roleAssignRequest;
         }
+        
         [HttpPost]
         public async Task<IActionResult> Logout()
         {

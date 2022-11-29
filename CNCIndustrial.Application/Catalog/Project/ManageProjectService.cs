@@ -53,13 +53,30 @@ namespace CNCIndustrial.Application.Catalog.Project
                     {
                         Name = request.Name,
                         Description = request.Description,
-                        Details = request.Details,
+
                         SeoDescription = request.SeoDescription,
                         SeoAlias = request.SeoAlias,
                         SeoTitle = request.SeoTitle,
+                        TotalArea = request.TotalArea,
+                        VacantArea = request.VacantArea,
+                        Area=request.Area,
+                        Location=request.Location,
+                        MainFunction1 = request.MainFunction1,
+                        MainFunction2 = request.MainFunction2,
+                        MainFunction3 = request.MainFunction3,
+                        MainFunction4 = request.MainFunction4,
+                        Summary = request.Summary,
+                        AccessibilityAirport = request.AccessibilityAirport,
+                        AccessibilityCenter = request.AccessibilityCenter,
+                        AccessibilityPort = request.AccessibilityPort,
+                        AccessibilityExpressway=request.AccessibilityExpressway,
+                        Commerce=request.Commerce,
+                        Technical=request.Technical,
+
                         LanguageId = request.LanguageId,
-                        
-                    });
+
+
+                    }); ;
                 }
                 else
                 {
@@ -101,8 +118,8 @@ namespace CNCIndustrial.Application.Catalog.Project
                 };
             }
             _context.Projects.Add(project);
-          return  await _context.SaveChangesAsync();
-           // return product.Id;
+               await _context.SaveChangesAsync();
+            return project.Id;
 
         }
 
@@ -157,7 +174,7 @@ namespace CNCIndustrial.Application.Catalog.Project
                     Name = x.pt.Name,
                     DateCreated = x.p.DateCreated,
                     Description = x.pt.Description,
-                    Details = x.pt.Details,
+                    
                     LanguageId = x.pt.LanguageId,
                     OriginalPrice = x.p.OriginalPrice,
                     Price = x.p.Price,
@@ -195,7 +212,20 @@ namespace CNCIndustrial.Application.Catalog.Project
             productTranslations.SeoDescription = request.SeoDescription;
             productTranslations.SeoTitle = request.SeoTitle;
             productTranslations.Description = request.Description;
-            productTranslations.Details = request.Details;
+            productTranslations.Area = request.Area;
+            productTranslations.TotalArea = request.TotalArea;
+            productTranslations.VacantArea = request.VacantArea;
+            productTranslations.Location = request.Location;
+            productTranslations.MainFunction1 = request.MainFunction1;
+            productTranslations.MainFunction2 = request.MainFunction2;
+            productTranslations.MainFunction3 = request.MainFunction3;
+            productTranslations.MainFunction4 = request.MainFunction4;
+            productTranslations.Commerce = request.Commerce;
+            productTranslations.Technical = request.Technical;
+            productTranslations.Summary = request.Summary;
+
+
+            
 
             //Save image
             if (request.ThumbnailImage != null)
@@ -323,7 +353,7 @@ namespace CNCIndustrial.Application.Catalog.Project
                     Name = x.pt.Name,
                     DateCreated = x.p.DateCreated,
                     Description = x.pt.Description,
-                    Details = x.pt.Details,
+                  
                     LanguageId = x.pt.LanguageId,
                     OriginalPrice = x.p.OriginalPrice,
                     Price = x.p.Price,
@@ -359,7 +389,7 @@ namespace CNCIndustrial.Application.Catalog.Project
                     Name = x.pt.Name,
                     DateCreated = x.p.DateCreated,
                     Description = x.pt.Description,
-                    Details = x.pt.Details,
+                   
                     LanguageId = x.pt.LanguageId,
                     OriginalPrice = x.p.OriginalPrice,
                     Price = x.p.Price,
@@ -380,7 +410,7 @@ namespace CNCIndustrial.Application.Catalog.Project
         //    throw new NotImplementedException();
         //}
 
-       public async Task<ProjectViewModel> GetByIdPro(int projectId, string languageId)
+       public async Task<ProductVm> GetByIdPro(int projectId, string languageId)
         {
             var product = await _context.Projects.FindAsync(projectId);
             var productTranslation = await _context.ProjectTranslations.FirstOrDefaultAsync(x => x.ProjectId == projectId
@@ -394,13 +424,13 @@ namespace CNCIndustrial.Application.Catalog.Project
 
             var image = await _context.ProjectImages.Where(x => x.ProjectId == projectId && x.IsDefault == true).FirstOrDefaultAsync();
 
-            var productViewModel = new ProjectViewModel()
+            var productViewModel = new ProductVm()
             {
                 Id = product.Id,
                 DateCreated = product.DateCreated,
                 Description = productTranslation != null ? productTranslation.Description : null,
                 LanguageId = productTranslation.LanguageId,
-                Details = productTranslation != null ? productTranslation.Details : null,
+              
                 Name = productTranslation != null ? productTranslation.Name : null,
                 OriginalPrice = product.OriginalPrice,
                 Price = product.Price,

@@ -4,14 +4,16 @@ using CNCIndustrial.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CNCIndustrial.Data.Migrations
 {
     [DbContext(typeof(CncIndustrialDbContext))]
-    partial class CncIndustrialDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221128092618_updateDBProjectTrans")]
+    partial class updateDBProjectTrans
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -158,7 +160,7 @@ namespace CNCIndustrial.Data.Migrations
                         new
                         {
                             Id = new Guid("583b332a-9d8b-4b9c-b502-1f48d02b9ec7"),
-                            ConcurrencyStamp = "42c3c922-c50b-476a-9b20-b8418bfa9381",
+                            ConcurrencyStamp = "85a67d9e-5f5a-44ff-9781-a421a9926530",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -243,7 +245,7 @@ namespace CNCIndustrial.Data.Migrations
                         {
                             Id = new Guid("e23c9b99-51d5-4f0e-a15b-9b5d6b4c9507"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0cb6b319-fdcc-4251-accd-f38392aef0a1",
+                            ConcurrencyStamp = "a6892340-624a-465a-8580-17c4c67ecfcf",
                             Dob = new DateTime(2000, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tanhdo18@gmail.com",
                             EmailConfirmed = true,
@@ -251,7 +253,7 @@ namespace CNCIndustrial.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tanhdo18@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAECEc5jQJ+d2WOSjcRSH+XkQ0C5Ltn0qpfnDwV7pjdRG9sOhdMUhBnR6KMS6N0RUyHA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMnyiOLoM9KgIM8W2mDSPjI/swpT2Hmy7hfN+gND4qqgwsWBGgvFa2GP+reW/LiCaQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -881,7 +883,7 @@ namespace CNCIndustrial.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2022, 11, 28, 16, 36, 23, 674, DateTimeKind.Local).AddTicks(5319),
+                            DateCreated = new DateTime(2022, 11, 28, 16, 26, 17, 254, DateTimeKind.Local).AddTicks(5976),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
@@ -911,13 +913,14 @@ namespace CNCIndustrial.Data.Migrations
                     b.Property<string>("AccessibilityPort")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Area")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Commerce")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<string>("Investor")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LanguageId")
@@ -925,9 +928,6 @@ namespace CNCIndustrial.Data.Migrations
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10)
                         .IsUnicode(false);
-
-                    b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MainFunction1")
                         .HasColumnType("nvarchar(max)");
@@ -949,6 +949,9 @@ namespace CNCIndustrial.Data.Migrations
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ProjectOverView")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SeoAlias")
                         .IsRequired()
                         .HasColumnType("nvarchar(200)")
@@ -961,9 +964,6 @@ namespace CNCIndustrial.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Summary")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Technical")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TotalArea")

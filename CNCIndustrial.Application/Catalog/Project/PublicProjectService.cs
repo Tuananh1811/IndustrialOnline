@@ -59,7 +59,7 @@ namespace CNCIndustrial.Application.Catalog.Project
                     Name = x.pt.Name,
                     DateCreated = x.p.DateCreated,
                     Description = x.pt.Description,
-                    Details = x.pt.Details,
+                    
                     LanguageId = x.pt.LanguageId,
                     OriginalPrice = x.p.OriginalPrice,
                     Price = x.p.Price,
@@ -102,7 +102,7 @@ namespace CNCIndustrial.Application.Catalog.Project
                    Name = x.pt.Name,
                    DateCreated = x.p.DateCreated,
                    Description = x.pt.Description,
-                   Details = x.pt.Details,
+                  
                    LanguageId = x.pt.LanguageId,
                    OriginalPrice = x.p.OriginalPrice,
                    Price = x.p.Price,

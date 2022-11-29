@@ -36,7 +36,7 @@ namespace CNCIndustrial.Application.Catalog.Project
 
         Task<List<ProductVm>> GetFeaturedProducts(string languageId, int take);
 
-        Task<ProjectViewModel> GetByIdPro(int projectId, string languageId);
+        Task<ProductVm> GetByIdPro(int projectId, string languageId);
 
         Task<ProjectImageViewModel> GetImageById(int imageId);
         Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);

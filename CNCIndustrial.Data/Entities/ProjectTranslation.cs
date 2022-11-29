@@ -16,7 +16,9 @@ namespace CNCIndustrial.Data.Entities
 
         public string Description { set; get; }
 
-        public string Details { set; get; }
+        public string Area { get; set; }
+
+        public string Location { get; set; }
 
         public string SeoDescription { set; get; }
 
@@ -25,8 +27,6 @@ namespace CNCIndustrial.Data.Entities
         public string TotalArea { set; get; }
 
         public string VacantArea { set; get; }
-
-        public string Investor { set; get; }
 
         public string SeoAlias { get; set; }
 
@@ -40,8 +40,6 @@ namespace CNCIndustrial.Data.Entities
 
         public string Summary { set; get; }
 
-        public string ProjectOverView { set; get; }
-
         public string AccessibilityCenter { get; set; }
 
         public string AccessibilityPort { get; set; }
@@ -50,23 +48,9 @@ namespace CNCIndustrial.Data.Entities
 
         public string AccessibilityExpressway { get; set; }
 
-        public string Juridical { get; set; }
-        
-        public string TermOfSdd { get; set; }
+       public string Commerce { get; set; }
 
-        public string PriceProject { get; set; }
-
-        public string ElectricityCapacity { get; set; }
-
-        public string WaterSupplyCapacity { get; set; }
-
-        public string WastewaterTreatmentCapacity { get; set; }
-
-        public string Utilities { get; set; }
-
-        public string LoadingCapacoty { get; set; }
-
-        public string CeilingHeight { get; set; }
+        public string Technical { get; set; }
 
         public ProjectLocation Project { get; set; }
 

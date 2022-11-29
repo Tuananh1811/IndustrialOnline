@@ -33,9 +33,9 @@ namespace CncIndustrial.BackendApi.Controllers
             return Ok(products);
         }
         [HttpGet("{projectId}/{languageId}")]
-        public async Task<IActionResult> GetByIdPro(int productId, string languageId)
+        public async Task<IActionResult> GetByIdPro(int projectId, string languageId)
         {
-            var product = await _projectService.GetByIdPro(productId, languageId);
+            var product = await _projectService.GetByIdPro(projectId, languageId);
             if (product == null)
                 return BadRequest("Cannot find product");
             return Ok(product);
@@ -59,20 +59,19 @@ namespace CncIndustrial.BackendApi.Controllers
 
         [HttpPost]
         [Consumes("multipart/form-data")]
-       
         public async Task<IActionResult> Create([FromForm] ProjectCreateRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var productId = await _projectService.Create(request);
-            if (productId == 0)
+            var projectId = await _projectService.Create(request);
+            if (projectId == 0)
                 return BadRequest();
 
-            var product = await _projectService.GetByIdPro(productId, request.LanguageId);
+            var project = await _projectService.GetByIdPro(projectId, request.LanguageId);
 
-            return CreatedAtAction(nameof(GetByIdPro), new { id = productId }, product);
+            return CreatedAtAction(nameof(GetByIdPro), new { id = projectId }, project);
         }
 
         [HttpPut("{projectId}")]

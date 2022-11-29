@@ -2,34 +2,37 @@
 @model PagedResult<CncIndustrial.ViewModels.System.User.UserVm>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Danh sách tài khoản";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*@section Js{
+@section Js{
         <script>
             setTimeout(function () {
                 $('#msgAlert').fadeOut('slow');
             }, 2000);
         </script>
-    }*@
+    }
 
 <div class="container-fluid">
     <h2 class="mt-4" style="padding:30px 0px;color: #EF5924;text-transform:uppercase">Account Management</h2>
     
     <div class="card mb-12">
         <div class="card-header">
+
             <div class="row">
-                <div class="col-lg-9 row" style="align-items: center;">
-                    <div class="col-lg-9">
-                        <input type="text" value="@ViewBag.searchString" name="searchString" style="width: 100%;padding: 5px;border: 1px solid #EF5924;padding-left: 5px;" placeholder="Enter username" />
+                <form class="col-lg-9" asp-action="Index" method="get">
+                   
+
+                    <div class="input-group">
+                        <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" placeholder="Nhập tên tài khoản" >
+                        <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="window.location.href='/User/Index'"><i class="fa-solid fa-trash"></i></button>
                     </div>
+
+                </form>
                     <div class="col-lg-3">
-                        <button type="submit" style="font-weight:lighter;padding: 5px 10px;border: 0px;border-radius:5px;outline: none;background-color: #EF5924;color: #fff;font-weight: bold;"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <a style="float:right" class="btn btn-success" asp-action="Create" asp-controller="User"><i class="fa-solid fa-user-plus"></i></a>
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <a style="float:right"  class="btn btn-success" asp-action="Create" asp-controller="User"><i class="fa-solid fa-user-plus"></i></a>
-                </div>
 
             </div>
         </div>
@@ -44,7 +47,7 @@
             </div>
             <div class="table-responsive">
                 <div>
-                    <table class="table">
+                    <table class="table table-striped table-hover table-bordered">
                         <thead>
                             <tr>
                                
@@ -65,7 +68,7 @@
                             </tr>
                         </thead>
                        
-                        <tbody>
+                        <tbody >
                             @foreach (var item in Model.Items)
                             {
                                 <tr>
@@ -108,7 +111,7 @@
                     </table>
                 </div>
             </div>
-            @*  @await Component.InvokeAsync("Pager", Model)*@
+              @await Component.InvokeAsync("Pager", Model)
         </div>
 
     </div>

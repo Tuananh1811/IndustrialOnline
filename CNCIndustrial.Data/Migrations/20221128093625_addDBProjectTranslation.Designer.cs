@@ -4,14 +4,16 @@ using CNCIndustrial.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CNCIndustrial.Data.Migrations
 {
     [DbContext(typeof(CncIndustrialDbContext))]
-    partial class CncIndustrialDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221128093625_addDBProjectTranslation")]
+    partial class addDBProjectTranslation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

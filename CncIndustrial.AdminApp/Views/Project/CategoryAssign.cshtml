@@ -1,7 +1,6 @@
-﻿@model CncIndustrial.ViewModels.System.User.RoleAssignRequest
-
+﻿@model CncIndustrial.ViewModels.Catalog.Project.CategoryAssignRequest
 @{
-    ViewData["Title"] = "RoleAssign";
+    ViewData["Title"] = "CategoryAssign";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,27 +8,25 @@
     <h1 class="mt-4">Gán quyền</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-        <li class="breadcrumb-item active">Gán quyền</li>
+        <li class="breadcrumb-item active">Gán danh mục</li>
     </ol>
     <div class="card mb-4">
         <div class="card-header">
-            <a class="btn btn-success" asp-action="Index" asp-controller="User">Về danh sách</a>
+            <a class="btn btn-success" asp-action="Index" asp-controller="Project">Về danh sách</a>
         </div>
-        @*
-           
-            *@
+
         <div class="card-body">
-            <form asp-action="RoleAssign">
+            <form asp-action="CategoryAssign">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
-                @for (var i = 0; i < Model.Roles.Count; i++)
+                @for (var i = 0; i < Model.Categories.Count; i++)
                 {
                     <div class="form-group">
                         <label>
-                            @Model.Roles[i].Name
-                            <input type="checkbox" asp-for="Roles[i].Selected" />
-                            <input type="hidden" asp-for="Roles[i].Id" />
-                            <input type="hidden" asp-for="Roles[i].Name" />
+                            @Model.Categories[i].Name
+                            <input type="checkbox" asp-for="Categories[i].Selected" />
+                            <input type="hidden" asp-for="Categories[i].Id" />
+                            <input type="hidden" asp-for="Categories[i].Name" />
                         </label>
                     </div>
                 }
@@ -40,4 +37,3 @@
         </div>
     </div>
 </div>
-
