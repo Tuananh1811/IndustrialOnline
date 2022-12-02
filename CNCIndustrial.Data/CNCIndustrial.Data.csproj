@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20221201070302_resetcolumn.cs" />
+    <Compile Remove="Migrations\20221201070302_resetcolumn.Designer.cs" />
+    <Compile Remove="Migrations\20221201082139_createtable.cs" />
+    <Compile Remove="Migrations\20221201082139_createtable.Designer.cs" />
+    <Compile Remove="Migrations\20221201082718_edit.cs" />
+    <Compile Remove="Migrations\20221201082718_edit.Designer.cs" />
+    <Compile Remove="Migrations\20221201083123_updateNlan.cs" />
+    <Compile Remove="Migrations\20221201083123_updateNlan.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.11">

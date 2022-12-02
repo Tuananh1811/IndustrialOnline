@@ -16,13 +16,8 @@ namespace CncIndustrial.BackendApi.Controllers
     public class ProjectsController : ControllerBase
     {
         private readonly IManagaProjectService _projectService;
-        //[HttpGet]
-        //public async Task<IActionResult> Get()
-        //{
-
-        //}
-        public ProjectsController(
-           IManagaProjectService productService)
+       
+        public ProjectsController(IManagaProjectService productService)
         {
             _projectService = productService;
         }
@@ -31,6 +26,12 @@ namespace CncIndustrial.BackendApi.Controllers
         {
             var products = await _projectService.GetAllPaging(request);
             return Ok(products);
+        }
+        [HttpGet("pagingImg")]
+        public async Task<IActionResult> GetAllPagingImg([FromQuery] GetManageImagePagingRequest request)
+        {
+            var images = await _projectService.GetAllPagingImg(request);
+            return Ok(images);
         }
         [HttpGet("{projectId}/{languageId}")]
         public async Task<IActionResult> GetByIdPro(int projectId, string languageId)
@@ -98,6 +99,7 @@ namespace CncIndustrial.BackendApi.Controllers
             return Ok();
         }
         [HttpPost("{productId}/images")]
+        [Consumes("multipart/form-data")]
         public async Task<IActionResult> CreateImage(int productId, [FromForm] ProjectImageCreateRequest request)
         {
             if (!ModelState.IsValid)

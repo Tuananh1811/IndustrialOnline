@@ -158,7 +158,7 @@ namespace CNCIndustrial.Data.Migrations
                         new
                         {
                             Id = new Guid("583b332a-9d8b-4b9c-b502-1f48d02b9ec7"),
-                            ConcurrencyStamp = "42c3c922-c50b-476a-9b20-b8418bfa9381",
+                            ConcurrencyStamp = "a2b5d691-e85c-4df0-8384-e55f9e556fb1",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -243,7 +243,7 @@ namespace CNCIndustrial.Data.Migrations
                         {
                             Id = new Guid("e23c9b99-51d5-4f0e-a15b-9b5d6b4c9507"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0cb6b319-fdcc-4251-accd-f38392aef0a1",
+                            ConcurrencyStamp = "182b3b95-ca7b-43d9-87e4-aa4f5ba2c990",
                             Dob = new DateTime(2000, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tanhdo18@gmail.com",
                             EmailConfirmed = true,
@@ -251,7 +251,7 @@ namespace CNCIndustrial.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tanhdo18@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAECEc5jQJ+d2WOSjcRSH+XkQ0C5Ltn0qpfnDwV7pjdRG9sOhdMUhBnR6KMS6N0RUyHA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMCDBl+OdF/i2xKpkBVXtUSEG2pcgI6DjoeU39ibmatmrjOzkQQRZ++E2TlmSwxCfA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -712,7 +712,7 @@ namespace CNCIndustrial.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CNCIndustrial.Data.Entities.News", b =>
+            modelBuilder.Entity("CNCIndustrial.Data.Entities.NewsTable", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -720,9 +720,6 @@ namespace CNCIndustrial.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("DescriShort")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DescriTall")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HinhAnhMinhHoa")
@@ -740,9 +737,12 @@ namespace CNCIndustrial.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ViewCount")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Newss");
+                    b.ToTable("NewsPostIndustrials");
                 });
 
             modelBuilder.Entity("CNCIndustrial.Data.Entities.NewsTranslation", b =>
@@ -758,7 +758,7 @@ namespace CNCIndustrial.Data.Migrations
                     b.Property<string>("LanguageId")
                         .HasColumnType("varchar(10)");
 
-                    b.Property<int>("NewsId")
+                    b.Property<int>("NewsTableId")
                         .HasColumnType("int");
 
                     b.Property<string>("SeoAlias")
@@ -777,9 +777,9 @@ namespace CNCIndustrial.Data.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.HasIndex("NewsId");
+                    b.HasIndex("NewsTableId");
 
-                    b.ToTable("NewsTranslations");
+                    b.ToTable("NewsPostTranslations");
                 });
 
             modelBuilder.Entity("CNCIndustrial.Data.Entities.ProjectImage", b =>
@@ -881,7 +881,7 @@ namespace CNCIndustrial.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2022, 11, 28, 16, 36, 23, 674, DateTimeKind.Local).AddTicks(5319),
+                            DateCreated = new DateTime(2022, 12, 1, 16, 42, 34, 506, DateTimeKind.Local).AddTicks(2700),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
@@ -1187,9 +1187,9 @@ namespace CNCIndustrial.Data.Migrations
                         .WithMany("NewsTranslations")
                         .HasForeignKey("LanguageId");
 
-                    b.HasOne("CNCIndustrial.Data.Entities.News", "News")
+                    b.HasOne("CNCIndustrial.Data.Entities.NewsTable", "NewsTable")
                         .WithMany("NewsTranslations")
-                        .HasForeignKey("NewsId")
+                        .HasForeignKey("NewsTableId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

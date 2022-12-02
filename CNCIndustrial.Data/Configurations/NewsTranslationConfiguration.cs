@@ -11,12 +11,11 @@ namespace CNCIndustrial.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<NewsTranslation> builder)
         {
-            builder.ToTable("NewsTranslations");
+            builder.ToTable("NewsPostTranslations");
 
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id).UseIdentityColumn();
-
 
             builder.Property(x => x.Title).IsRequired().HasMaxLength(200);
 
@@ -28,9 +27,11 @@ namespace CNCIndustrial.Data.Configurations
 
             builder.Property(x => x.LanguageId).IsUnicode(false).IsRequired().HasMaxLength(10);
 
+            builder.HasOne(x => x.NewsTable).WithMany(x => x.NewsTranslations).HasForeignKey(x => x.NewsTableId);
+
             builder.HasOne(x => x.Language).WithMany(x => x.NewsTranslations).HasForeignKey(x => x.LanguageId);
 
-            builder.HasOne(x => x.News).WithMany(x => x.NewsTranslations).HasForeignKey(x => x.NewsId);
+            
 
         }
     }

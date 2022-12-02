@@ -1,24 +1,28 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CncIndustrial.ViewModels.Catalog.ProjectImages
 {
-    public class ProjectImageUpdateRequest
+    public class ImageVm
     {
         public int Id { get; set; }
 
-        public int projectId { get; set; }
+        public int ProjectId { get; set; }
+
+        public string ImagePath { get; set; }
 
         public string Caption { get; set; }
 
         public bool IsDefault { get; set; }
 
+        public DateTime DateCreated { get; set; }
+
         public int SortOrder { get; set; }
 
-        public string LanguageId { get; set; }
+        public long FileSize { get; set; }
 
-        public IFormFile ImageFile { get; set; }
+        public string NameProject{get;set;}
+
     }
 }

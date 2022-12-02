@@ -1,4 +1,4 @@
-﻿@model CncIndustrial.ViewModels.Catalog.Project.ProductDeleteRequest
+﻿@model CncIndustrial.ViewModels.Catalog.ProjectImages.ProjectImageDeleteRequest
 
 @{
     ViewData["Title"] = "Delete";
@@ -6,14 +6,14 @@
 }
 
 <div class="container-fluid">
-    <h1 class="mt-4">Xóa dự án</h1>
+    <h1 class="mt-4">Xóa ảnh dự án</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-        <li class="breadcrumb-item active">Xóa dự án</li>
+        <li class="breadcrumb-item active">Xóa ảnh</li>
     </ol>
     <div class="card mb-4">
         <div class="card-header">
-            <a class="btn btn-success" asp-action="Index" asp-controller="Project">Về danh sách</a>
+            <a class="btn btn-success" asp-action="Index" asp-controller="Image">Về danh sách</a>
         </div>
     </div>
     <dl class="row">
@@ -26,9 +26,11 @@
     </dl>
 
     <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" value="Xóa " class="btn btn-danger" /> 
 
     </form>
 </div>
 
-      
+
+
+

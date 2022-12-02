@@ -294,28 +294,7 @@ namespace CNCIndustrial.Application.Catalog.Project
             return "/" + USER_CONTENT_FOLDER_NAME + "/" + fileName;
         }
 
-        //public async Task<ProjectImageViewModel> GetImageById(int imageId)
-        //{
-        //    var image = await _context.ProjectImages.FindAsync(imageId);
-        //    if (image == null)
-        //        throw new CncIndustrialException($"Cannot find an image with id {imageId}");
-
-        //    var viewModel = new ProjectImageViewModel()
-        //    {
-        //        Caption = image.Caption,
-        //        DateCreated = image.DateCreated,
-        //        FileSize = image.FileSize,
-        //        Id = image.Id,
-        //        ImagePath = image.ImagePath,
-        //        IsDefault = image.IsDefault,
-        //        ProjectId = image.ProjectId,
-        //        SortOrder = image.SortOrder
-        //    };
-        //    return viewModel;
-        //}
-        /*
-         * 
-         */
+      
         public async Task<List<ProjectImageViewModel>> GetListImages(int productId)
         {
             return await _context.ProjectImages.Where(x => x.ProjectId == productId)
@@ -494,5 +473,91 @@ namespace CNCIndustrial.Application.Catalog.Project
             await _context.SaveChangesAsync();
             return new ApiSuccessResult<bool>();
         }
+
+        //public async Task<PagedResult<ImageVm>> GetAllPagingImg(GetManageImagePagingRequest request)
+        //{
+
+        //    var query = from p in _context.Projects
+        //                join pi in _context.ProjectImages on p.Id equals pi.ProjectId
+        //                join pt in _context.ProjectTranslations on p.Id equals pt.ProjectId
+
+        //                select new {p, pt, pi };
+        //    //2. filter
+        //    //
+        //    if (!string.IsNullOrEmpty(request.Keyword))
+        //        query = query.Where(x => x.pt.Name.Contains(request.Keyword));
+
+
+
+        //    //3. Paging
+        //    int totalRow = await query.CountAsync();
+
+        //    var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+        //        .Take(request.PageSize)
+        //        .Select(x => new ImageVm()
+        //        {
+        //            Id = x.pi.Id,
+        //            Caption = x.pi.Caption,
+        //            DateCreated = x.pi.DateCreated,
+        //            FileSize=x.pi.FileSize,
+        //            ProjectId=x.pi.ProjectId,
+        //            ImagePath=x.pi.ImagePath,
+        //            NameProject=x.pt.Name 
+        //        }).ToListAsync();
+
+        //    //4. Select and projection
+        //    var pagedResult = new PagedResult<ImageVm>()
+        //    {
+        //        TotalRecord = totalRow,
+        //        PageSize = request.PageSize,
+        //        PageIndex = request.PageIndex,
+        //        Items = data
+        //    };
+        //    return pagedResult;
+
+
+        //}
+        public async Task<PagedResult<ImageVm>>GetAllPagingImg(GetManageImagePagingRequest request)
+        {
+            var query = _context.ProjectImages;
+           //var query= from p in _context.Projects
+           //           join pi in _context.ProjectImages on p.Id equals pi.ProjectId
+           //           join pt in _context.ProjectTranslations on p.Id equals pt.ProjectId
+           //           where pi.ProjectId == pt.ProjectId 
+           //           select new { p, pt, pi };
+            //3. Paging
+            int totalRow = await query.CountAsync();
+
+            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Select(x => new ImageVm()
+                {
+                    //Id = x.pi.Id,
+                    //Caption = x.pi.Caption,
+                    //DateCreated = x.pi.DateCreated,
+                    //FileSize = x.pi.FileSize,
+                    //ProjectId = x.pi.ProjectId,
+                    //ImagePath = x.pi.ImagePath,
+                    //NameProject=x.pt.Name
+                    Id = x.Id,
+                    Caption = x.Caption,
+                    DateCreated = x.DateCreated,
+                    FileSize = x.FileSize,
+                    ProjectId = x.ProjectId,
+                    ImagePath = x.ImagePath
+                }).ToListAsync();
+
+            //4. Select and projection
+            var pagedResult = new PagedResult<ImageVm>()
+            {
+                TotalRecords = totalRow,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize,
+                Items = data
+            };
+            return pagedResult;
+        }
+
+      
     }
 }

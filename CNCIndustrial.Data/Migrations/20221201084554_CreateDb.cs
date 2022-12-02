@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CNCIndustrial.Data.Migrations
 {
-    public partial class chanlamroi : Migration
+    public partial class CreateDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -105,22 +105,22 @@ namespace CNCIndustrial.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Newss",
+                name: "NewsPostIndustrials",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(nullable: true),
                     DescriShort = table.Column<string>(nullable: true),
-                    DescriTall = table.Column<string>(nullable: true),
                     NgayTao = table.Column<DateTime>(nullable: true),
                     NgayCapNhat = table.Column<DateTime>(nullable: true),
                     TenDangNhap = table.Column<string>(nullable: true),
-                    HinhAnhMinhHoa = table.Column<string>(nullable: true)
+                    HinhAnhMinhHoa = table.Column<string>(nullable: true),
+                    ViewCount = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Newss", x => x.Id);
+                    table.PrimaryKey("PK_NewsPostIndustrials", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -322,30 +322,6 @@ namespace CNCIndustrial.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AccessibilityTranslation",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(nullable: true),
-                    Parameter = table.Column<string>(nullable: true),
-                    LanguageId = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
-                    ProjectId = table.Column<string>(nullable: true),
-                    AccessibilityId = table.Column<int>(nullable: false),
-                    street = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AccessibilityTranslation", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AccessibilityTranslation_Languages_LanguageId",
-                        column: x => x.LanguageId,
-                        principalTable: "Languages",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CategoryTranslations",
                 columns: table => new
                 {
@@ -376,32 +352,32 @@ namespace CNCIndustrial.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "NewsTranslations",
+                name: "NewsPostTranslations",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NewsId = table.Column<int>(nullable: false),
+                    NewsTableId = table.Column<int>(nullable: false),
+                    LanguageId = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
                     SeoDescription = table.Column<string>(nullable: true),
                     SeoTitle = table.Column<string>(nullable: true),
-                    LanguageId = table.Column<string>(nullable: true),
                     SeoAlias = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_NewsTranslations", x => x.Id);
+                    table.PrimaryKey("PK_NewsPostTranslations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_NewsTranslations_Languages_LanguageId",
+                        name: "FK_NewsPostTranslations_Languages_LanguageId",
                         column: x => x.LanguageId,
                         principalTable: "Languages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_NewsTranslations_Newss_NewsId",
-                        column: x => x.NewsId,
-                        principalTable: "Newss",
+                        name: "FK_NewsPostTranslations_NewsPostIndustrials_NewsTableId",
+                        column: x => x.NewsTableId,
+                        principalTable: "NewsPostIndustrials",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -456,6 +432,52 @@ namespace CNCIndustrial.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProjectTranslations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProjectId = table.Column<int>(nullable: false),
+                    LanguageId = table.Column<string>(unicode: false, maxLength: 10, nullable: false),
+                    Name = table.Column<string>(maxLength: 200, nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    Area = table.Column<string>(nullable: true),
+                    Location = table.Column<string>(nullable: true),
+                    SeoDescription = table.Column<string>(nullable: true),
+                    SeoTitle = table.Column<string>(nullable: true),
+                    TotalArea = table.Column<string>(nullable: true),
+                    VacantArea = table.Column<string>(nullable: true),
+                    SeoAlias = table.Column<string>(maxLength: 200, nullable: false),
+                    MainFunction1 = table.Column<string>(nullable: true),
+                    MainFunction2 = table.Column<string>(nullable: true),
+                    MainFunction3 = table.Column<string>(nullable: true),
+                    MainFunction4 = table.Column<string>(nullable: true),
+                    Summary = table.Column<string>(nullable: true),
+                    AccessibilityCenter = table.Column<string>(nullable: true),
+                    AccessibilityPort = table.Column<string>(nullable: true),
+                    AccessibilityAirport = table.Column<string>(nullable: true),
+                    AccessibilityExpressway = table.Column<string>(nullable: true),
+                    Commerce = table.Column<string>(nullable: true),
+                    Technical = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectTranslations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProjectTranslations_Languages_LanguageId",
+                        column: x => x.LanguageId,
+                        principalTable: "Languages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProjectTranslations_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Projects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AboutUsTranslations",
                 columns: table => new
                 {
@@ -493,54 +515,6 @@ namespace CNCIndustrial.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ProjectTranslations",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProjectId = table.Column<int>(nullable: false),
-                    LanguageId = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    Details = table.Column<string>(nullable: true),
-                    SeoDescription = table.Column<string>(nullable: true),
-                    SeoTitle = table.Column<string>(nullable: true),
-                    TotalArea = table.Column<string>(nullable: true),
-                    VacantArea = table.Column<string>(nullable: true),
-                    Investor = table.Column<string>(nullable: true),
-                    SeoAlias = table.Column<string>(nullable: true),
-                    AccessibilityTranslationId = table.Column<int>(nullable: false),
-                    MainFunction1 = table.Column<string>(nullable: true),
-                    MainFunction2 = table.Column<string>(nullable: true),
-                    MainFunction3 = table.Column<string>(nullable: true),
-                    MainFunction4 = table.Column<string>(nullable: true),
-                    Summary = table.Column<string>(nullable: true),
-                    ProjectOverView = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProjectTranslations", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProjectTranslations_AccessibilityTranslation_AccessibilityTranslationId",
-                        column: x => x.AccessibilityTranslationId,
-                        principalTable: "AccessibilityTranslation",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProjectTranslations_Languages_LanguageId",
-                        column: x => x.LanguageId,
-                        principalTable: "Languages",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ProjectTranslations_Projects_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "Projects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "AppConfigs",
                 columns: new[] { "Key", "Value" },
@@ -554,12 +528,12 @@ namespace CNCIndustrial.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
-                values: new object[] { new Guid("583b332a-9d8b-4b9c-b502-1f48d02b9ec7"), "a4e1d574-1fcb-48fd-989a-ee370534e803", "Administrator role", "admin", "admin" });
+                values: new object[] { new Guid("583b332a-9d8b-4b9c-b502-1f48d02b9ec7"), "376205b6-093a-4f39-86bd-3ec121ff49e4", "Administrator role", "admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Dob", "Email", "EmailConfirmed", "FullName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("e23c9b99-51d5-4f0e-a15b-9b5d6b4c9507"), 0, "053764ea-526e-4ec8-a02f-b9bfb2efb295", new DateTime(2000, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "tanhdo18@gmail.com", true, "Tuan Anh", false, null, "tanhdo18@gmail.com", "admin", "AQAAAAEAACcQAAAAEPNQmfLSg6ihmEdlUgejnD5y87dAJygWpHNlKlgEwpc4l8VD/OR3NYviX9vVdoXdWA==", null, false, "", false, "admin" });
+                values: new object[] { new Guid("e23c9b99-51d5-4f0e-a15b-9b5d6b4c9507"), 0, "594c184b-428a-4d3a-9b54-aa7c561d7905", new DateTime(2000, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "tanhdo18@gmail.com", true, "Tuan Anh", false, null, "tanhdo18@gmail.com", "admin", "AQAAAAEAACcQAAAAEEOGmUC6xdEVJSg2OSRBjpOaR8IBwnsLrdZ2Q0Hf+4VLxqkShS+ez/HDBttMcZzDkw==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -587,7 +561,7 @@ namespace CNCIndustrial.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Projects",
                 columns: new[] { "Id", "DateCreated", "IsFeatured", "OriginalPrice", "Price", "iframeMap" },
-                values: new object[] { 1, new DateTime(2022, 11, 21, 16, 12, 3, 941, DateTimeKind.Local).AddTicks(2434), null, 100000m, 200000m, "Http://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3716.8211643267987!2d105.68034141461068!3d21.318081685842323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134e5dadc526c53%3A0xeb6c8f677c9262da!2zS2h1IGPDtG5nIG5naGnhu4dwIGLDoSB0aGnhu4duIDE!5e0!3m2!1svi!2s!4v1668825924376!5m2!" });
+                values: new object[] { 1, new DateTime(2022, 12, 1, 15, 45, 53, 970, DateTimeKind.Local).AddTicks(4187), null, 100000m, 200000m, "Http://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3716.8211643267987!2d105.68034141461068!3d21.318081685842323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134e5dadc526c53%3A0xeb6c8f677c9262da!2zS2h1IGPDtG5nIG5naGnhu4dwIGLDoSB0aGnhu4duIDE!5e0!3m2!1svi!2s!4v1668825924376!5m2!" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -634,11 +608,6 @@ namespace CNCIndustrial.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AboutUsTranslations_LanguageId",
                 table: "AboutUsTranslations",
-                column: "LanguageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AccessibilityTranslation_LanguageId",
-                table: "AccessibilityTranslation",
                 column: "LanguageId");
 
             migrationBuilder.CreateIndex(
@@ -701,14 +670,14 @@ namespace CNCIndustrial.Data.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_NewsTranslations_LanguageId",
-                table: "NewsTranslations",
+                name: "IX_NewsPostTranslations_LanguageId",
+                table: "NewsPostTranslations",
                 column: "LanguageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_NewsTranslations_NewsId",
-                table: "NewsTranslations",
-                column: "NewsId");
+                name: "IX_NewsPostTranslations_NewsTableId",
+                table: "NewsPostTranslations",
+                column: "NewsTableId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProjectImages_ProjectId",
@@ -719,11 +688,6 @@ namespace CNCIndustrial.Data.Migrations
                 name: "IX_ProjectInCategories_ProjectId",
                 table: "ProjectInCategories",
                 column: "ProjectId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProjectTranslations_AccessibilityTranslationId",
-                table: "ProjectTranslations",
-                column: "AccessibilityTranslationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProjectTranslations_LanguageId",
@@ -766,7 +730,7 @@ namespace CNCIndustrial.Data.Migrations
                 name: "Contacts");
 
             migrationBuilder.DropTable(
-                name: "NewsTranslations");
+                name: "NewsPostTranslations");
 
             migrationBuilder.DropTable(
                 name: "ProjectImages");
@@ -790,22 +754,19 @@ namespace CNCIndustrial.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Newss");
+                name: "NewsPostIndustrials");
 
             migrationBuilder.DropTable(
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "AccessibilityTranslation");
+                name: "Languages");
 
             migrationBuilder.DropTable(
                 name: "Projects");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Languages");
         }
     }
 }
