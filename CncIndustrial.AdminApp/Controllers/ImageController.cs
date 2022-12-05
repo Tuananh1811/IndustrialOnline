@@ -18,16 +18,14 @@ namespace CncIndustrial.AdminApp.Controllers
         private readonly IImageApiClient _iImageApiClient;
         private readonly IConfiguration _configuration;
 
-        private readonly ICategoryApiClient _categoryApiClient;
-        public ImageController(IImageApiClient imageApiClient,
-            IConfiguration configuration
+        public ImageController(IImageApiClient imageApiClient,IConfiguration configuration
            )
         {
             _configuration = configuration;
             _iImageApiClient = imageApiClient;
             
         }
-        public async Task<IActionResult> Index(string keyword, int? categoryId, int pageIndex = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 10)
         {
             var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
 

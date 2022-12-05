@@ -7,14 +7,12 @@ namespace CNCIndustrial.Data.Entities
   public  class AboutUs
     {
         public int Id { set; get; }
-       
-        public string Intro { set; get; }
-        public string Founding { set; get; }
-      
+     
+        public string ImageBanner { get; set; }
+
+        public string ImageFly { get; set; }
+
         public List<AboutUsTranslation> AboutUsTranslations { get; set; }
-
-
-
 
     }
 }

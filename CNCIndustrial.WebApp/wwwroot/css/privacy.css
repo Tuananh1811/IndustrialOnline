@@ -1,0 +1,16 @@
+.privacy h5 {
+    color: var(--color-span);
+}
+
+.privacy p {
+    font-size: 21px !important;
+    margin-top: 30px;
+    /* font-weight: lighter; */
+}
+
+.privacy ul li {
+    list-style: disc !important;
+    font-weight: lighter;
+    font-size: 20px !important;
+    margin-top: 20px;
+}

@@ -31,7 +31,7 @@
 
                 </form>
                 <div class="col-lg-3">
-                    <a style="float:right" class="btn btn-success" asp-action="Create" asp-controller="User"><i class="fa-solid fa-user-plus"></i></a>
+                    <a style="float:right" class="btn btn-success" asp-action="Create" asp-controller="Project"><i class="fa-solid fa-plus"></i> Dự Án</a>
                 </div>
 
             </div>
@@ -96,7 +96,7 @@
 
                                        
                                         <a style="text-decoration:none;padding:5px" href="Project/Delete/@item.Id" class="item itemdelete" id=@item.Id data-toggle="tooltip" data-placement="top" title="Xóa">
-                                            <i style="color:red" class="  fa-solid fa-user-minus"></i>
+                                            <i style="color:red" class="fa-solid fa-trash"></i>
                                         </a>
                                         <a style="text-decoration:none;padding:5px" href="Project/CategoryAssign/@item.Id" class="item itemdelete" id=@item.Id data-toggle="tooltip" data-placement="top" title="Đổi quyền">
                                             <i style="color: #16a085" class="fa-solid fa-restroom"></i>

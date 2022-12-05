@@ -46,6 +46,17 @@
                                 <a class="nav-link" asp-controller="User" asp-action="Create">Tạo Mới</a>
                             </nav>
                         </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts-Employee" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
+                            Quản Lý Nhân Viên
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts-Employee" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" asp-controller="Employee" asp-action="Index">Danh Sách Nhân Viên</a>
+                                <a class="nav-link" asp-controller="Employee" asp-action="Create">Tạo Mới</a>
+                            </nav>
+                        </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts-Location" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-location-dot"></i></div>
                             Địa Điểm
@@ -57,6 +68,7 @@
                                 <a class="nav-link" asp-controller="Category" asp-action="Create">Thêm Địa Điểm</a>
                             </nav>
                         </div>
+
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts-project" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-city"></i></div>
                             Dự Án

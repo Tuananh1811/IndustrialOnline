@@ -10,17 +10,11 @@ namespace CNCIndustrial.Data.Entities
         public int Id { get; set; }
        
         public string Title { get; set; }
-
-        public string DescriShort { get; set; }
       
         public DateTime? NgayTao { get; set; }
 
        
         public DateTime? NgayCapNhat { get; set; }
-
-        
-        public string TenDangNhap { get; set; }
-
         
         public string HinhAnhMinhHoa { get; set; }
 

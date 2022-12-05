@@ -49,5 +49,28 @@ namespace CncIndustrial.BackendApi.Controllers
             var products = await _newsService.GetAllPaging(request);
             return Ok(products);
         }
+        [HttpPut("{newsId}")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Update([FromRoute] int newsId, [FromForm] NewsUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            request.Id = newsId;
+            var affectedResult = await _newsService.Update(request);
+            if (affectedResult == 0)
+                return BadRequest();
+            return Ok();
+        }
+
+        [HttpDelete("{NewsId}")]
+        public async Task<IActionResult> Delete(int newsId)
+        {
+            var affectedResult = await _newsService.Delete(newsId);
+            if (affectedResult == 0)
+                return BadRequest();
+            return Ok();
+        }
     }
 }

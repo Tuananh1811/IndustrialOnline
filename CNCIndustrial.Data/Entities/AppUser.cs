@@ -10,6 +10,6 @@ namespace CNCIndustrial.Data.Entities
         public string FullName { get; set; }
         public DateTime Dob { get; set; }
         public List<Contact> Contacts { get; set; }
-        public List<Employee> Employees { get; set; }
+      
     }
 }

@@ -27,9 +27,10 @@ namespace CNCIndustrial.Data.EF
             modelBuilder.ApplyConfiguration(new CategoryTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new ContactConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectTranslationConfiguration());
+            modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
+            modelBuilder.ApplyConfiguration(new EmployeeTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new AboutUsConfiguration());
             modelBuilder.ApplyConfiguration(new AboutUsTranslationConfiguration());
-
             modelBuilder.ApplyConfiguration(new AppUserConfiguration());
             modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectImageConfiguration());
@@ -52,7 +53,7 @@ namespace CNCIndustrial.Data.EF
         public DbSet<AppConfig> AppConfigs { get; set; }
         public DbSet<CategoryTranslation> CategoryTranslations { get; set; }
         public DbSet<ProjectInCategory> ProjectInCategories { get; set; }
-
+        public DbSet<EmployeeUser> Employees { get; set; }
         public DbSet<Contact> Contacts { get; set; }
 
         public DbSet<NewsTable> NewsPostIndustrials { get; set; }
@@ -62,6 +63,8 @@ namespace CNCIndustrial.Data.EF
         public DbSet<ProjectTranslation> ProjectTranslations { get; set; }
         public DbSet<AboutUs> AboutUss { get; set; }
         public DbSet<AboutUsTranslation> AboutUsTranslations { get; set; }
+      
+        public DbSet<EmployeeTranslation> EmployeeTranslations { get; set; }
 
     }
 }

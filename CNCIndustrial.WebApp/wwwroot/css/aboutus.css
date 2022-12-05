@@ -1,0 +1,116 @@
+.list-user-item-text {
+    height: 300px;
+    overflow: auto;
+}
+
+.list-user-item-text p {
+    /* height: 350px; */
+    font-size: 13px;
+}
+
+.block-content-intro-company img {
+    height: 100%;
+}
+
+.about-us-block-header {
+    padding-top: 50px;
+    padding-bottom: 300px;
+    background-image: url("/img/about-us/Untitled-1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.about-us-block-header .container {
+    text-align: center;
+    color: #fff;
+}
+
+.about-us-block-header .container h4 {
+    color: #fff;
+    padding-bottom: 20px;
+}
+
+.about-us-block-header .container h1 {
+    color: #fff;
+}
+
+.intro-header {
+    position: relative;
+}
+
+.text-intro {
+    padding: 60px 40px !important;
+    position: absolute;
+    top: 26%;
+    background-color: #F4F4F4;
+    width: 50%;
+    height: auto;
+    left: 2%;
+}
+
+.founder-intro {
+    display: flex;
+}
+
+.founder-intro .founder-content {
+    padding: 150px 100px !important;
+    text-align: justify;
+    background-color: var(--about-color);
+    color: #fff;
+}
+
+.founder-intro img {
+    object-fit: cover;
+    width: 100% !important;
+    height: 600px !important;
+}
+
+.about-us-img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.list-user-item .list-user-item-img {
+    height: 300px;
+}
+
+.list-user-item .list-user-item-img img {
+    height: 100%;
+    object-fit: cover;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 575px) {
+    .header-desktop {
+        display: none;
+    }
+    .img-big-relative {
+        height: 100px;
+    }
+    .text-intro {
+        padding: 40px 40px !important;
+        position: relative;
+        margin-top: 0px;
+        background-color: #F4F4F4;
+        width: 100%;
+        height: auto;
+        left: 0%;
+    }
+    .block-content-intro-company {
+        margin-top: 140px;
+    }
+    .intro-header {
+        margin-bottom: 40px;
+    }
+    .founder-intro .founder-content {
+        padding: 40px 30px !important;
+        text-align: justify;
+        background-color: var(--about-color);
+        color: #fff;
+    }
+    .founder-intro {
+        flex-direction: column;
+    }
+    .founder-intro .width50 {
+        width: 100% !important;
+    }
+}

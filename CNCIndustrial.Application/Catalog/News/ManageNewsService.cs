@@ -1,4 +1,5 @@
 ﻿using CncIndustrial.Utilities.Constants;
+using CncIndustrial.Utilities.Exceptions;
 using CncIndustrial.ViewModels.Catalog.News;
 using CncIndustrial.ViewModels.Common;
 using CNCIndustrial.Application.Common;
@@ -29,8 +30,8 @@ namespace CNCIndustrial.Application.Catalog.News
         }
         public async Task AddViewCount(int newsId)
         {
-            var project = await _context.NewsPostIndustrials.FindAsync(newsId);
-            project.ViewCount += 1;
+            var post = await _context.NewsPostIndustrials.FindAsync(newsId);
+            post.ViewCount += 1;
             await _context.SaveChangesAsync();
         }
 
@@ -49,6 +50,7 @@ namespace CNCIndustrial.Application.Catalog.News
                         SeoDescription = request.SeoDescription,
                         SeoAlias = request.SeoAlias,
                         SeoTitle = request.SeoTitle,
+                        DescriShort=request.DescriShort,
                         LanguageId = request.LanguageId
                        
                     });
@@ -68,12 +70,11 @@ namespace CNCIndustrial.Application.Catalog.News
             var news = new NewsTable()
             {
                 Title = request.Title,
-                DescriShort = request.DescriShort,
-               
                 ViewCount = 0,
                 NgayTao = DateTime.Now,
                 NgayCapNhat = DateTime.Now,
                 NewsTranslations = translations,
+                
                 
             };
             if (request.HinhAnhMinhHoa != null)
@@ -86,9 +87,15 @@ namespace CNCIndustrial.Application.Catalog.News
             return news.Id;
         }
 
-        public Task<int> Delete(int newsId)
+        public async Task<int> Delete(int newsId)
         {
-            throw new NotImplementedException();
+            var post = await _context.NewsPostIndustrials.FindAsync(newsId);
+            if (post == null) throw new CncIndustrialException($"Cannot find a news: {newsId}");
+
+           
+            _context.NewsPostIndustrials.Remove(post);
+
+            return await _context.SaveChangesAsync();
         }
 
         public async Task<PagedResult<NewsVm>> GetAllPaging(GetManageNewsPagingRequest request)
@@ -109,8 +116,8 @@ namespace CNCIndustrial.Application.Catalog.News
                 {
                     Id = x.Id,
                     Title = x.Title,
-                    NgayTao =DateTime.Now,
-                    DescriShort = x.DescriShort,
+                  NgayTao=x.NgayTao,
+                    HinhAnhMinhHoa=x.HinhAnhMinhHoa
                 }).ToListAsync();
 
             //4. Select and projection
@@ -135,19 +142,43 @@ namespace CNCIndustrial.Application.Catalog.News
             {
                 Id = newPost.Id,
                 NgayTao = newPost.NgayTao,
-                DescriShort = newPost.DescriShort,
+               
                 LanguageId = newPostTranslation.LanguageId,
-                Title = newPost.Title,
+                Title = newPostTranslation.Title,
                 SeoAlias = newPostTranslation.SeoAlias,
                 SeoTitle = newPostTranslation.SeoTitle,              
-                HinhAnhMinhHoa = image.HinhAnhMinhHoa
+                HinhAnhMinhHoa = image.HinhAnhMinhHoa,
+                SeoDescription=newPostTranslation.SeoDescription,
             };
             return newsViewModel;
         }
 
-        public Task<int> Update(NewsUpdateRequest request)
+        public async Task<int> Update(NewsUpdateRequest request)
         {
-            throw new NotImplementedException();
+            var post = await _context.NewsPostIndustrials.FindAsync(request.Id);
+            var postTranslations = await _context.NewsPostTranslations.FirstOrDefaultAsync(x => x.NewsTableId == request.Id
+            && x.LanguageId == request.LanguageId);
+
+            if (post == null || postTranslations == null) throw new CncIndustrialException($"Cannot find a news with id: {request.Id}");
+
+            post.Title = request.Title;
+            postTranslations.Title = request.Title;
+            postTranslations.DescriShort = request.DescriShort;
+            postTranslations.Content = request.Content;
+            postTranslations.SeoTitle = request.SeoTitle;
+            postTranslations.SeoAlias = request.SeoAlias;
+            postTranslations.SeoDescription = request.SeoDescription;
+            post.NgayCapNhat = DateTime.Now;
+          
+          
+            //Save image
+            if (request.HinhAnhMinhHoa != null)
+            {
+                post.HinhAnhMinhHoa = await this.SaveFile(request.HinhAnhMinhHoa);
+
+            }
+
+            return await _context.SaveChangesAsync();
         }
         private async Task<string> SaveFile(IFormFile file)
         {

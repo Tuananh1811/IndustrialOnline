@@ -1,0 +1,23 @@
+.news-header {
+    background-image: url("/img/news/banner-news.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 550px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.news-header h1 {
+    font-size: 60px;
+}
+
+.news-header p {
+    font-size: 20px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 575px) {
+    .news-header h1 {
+        font-size: 40px;
+    }
+}

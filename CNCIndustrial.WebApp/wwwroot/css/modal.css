@@ -1,0 +1,52 @@
+.modal-block {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    display: none;
+}
+
+.form-block {
+    background-image: url("/img/contact/Untitled-1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 80%;
+    margin: 10px auto;
+    height: auto;
+    /* height: 100vh; */
+    border-radius: 5px;
+    padding: 10px 30px;
+    background-color: var(--bg-color);
+    /* display: none; */
+}
+
+.form-block i {
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.form-block i:hover {
+    color: var(--primary-color);
+    transition: all .3s;
+}
+
+.form-block h3 {
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-align: center;
+    /* padding-left: 10px; */
+}
+
+.form-block .form {
+    border-radius: 5px;
+    width: 80%;
+    margin: 0 auto;
+    height: 100%;
+    /* margin: 60px auto; */
+}

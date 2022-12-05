@@ -16,8 +16,8 @@ namespace CNCIndustrial.Data.Entities
         public string SeoAlias { set; get; }
 
         public AboutUs AboutUs { get; set; }
-        public int EmployeeId { get; set; }
+       
         public Language Language { get; set; }
-        public Employee Employees { get; set; }
+       
     }
 }
