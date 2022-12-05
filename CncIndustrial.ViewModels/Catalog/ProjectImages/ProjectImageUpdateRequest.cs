@@ -9,6 +9,8 @@ namespace CncIndustrial.ViewModels.Catalog.ProjectImages
     {
         public int Id { get; set; }
 
+        public int projectId { get; set; }
+
         public string Caption { get; set; }
 
         public bool IsDefault { get; set; }

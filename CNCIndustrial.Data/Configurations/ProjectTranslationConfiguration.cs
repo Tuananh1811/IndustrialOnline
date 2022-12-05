@@ -20,7 +20,7 @@ namespace CNCIndustrial.Data.Configurations
 
             builder.Property(x => x.SeoAlias).IsRequired().HasMaxLength(200);
 
-            builder.Property(x => x.Details).HasMaxLength(500);
+         
 
             builder.Property(x => x.LanguageId).IsUnicode(false).IsRequired().HasMaxLength(10);
 
@@ -28,7 +28,7 @@ namespace CNCIndustrial.Data.Configurations
 
             builder.HasOne(x => x.Project).WithMany(x => x.ProjectTranslations).HasForeignKey(x => x.ProjectId);
            
-           // builder.HasOne(x => x.AccessibilityTranslation).WithMany(x => x.ProjectTranslations).HasForeignKey(x => x.AccessibilityTranslationId);
+           
 
         }
     }

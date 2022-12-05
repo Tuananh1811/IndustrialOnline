@@ -7,6 +7,8 @@ namespace CncIndustrial.ViewModels.Catalog.ProjectImages
 {
     public class ProjectImageCreateRequest
     {
+        public int ProjectId { get; set; }
+
         public string Caption { get; set; }
 
         public bool IsDefault { get; set; }

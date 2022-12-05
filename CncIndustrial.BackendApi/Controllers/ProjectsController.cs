@@ -16,13 +16,8 @@ namespace CncIndustrial.BackendApi.Controllers
     public class ProjectsController : ControllerBase
     {
         private readonly IManagaProjectService _projectService;
-        //[HttpGet]
-        //public async Task<IActionResult> Get()
-        //{
-
-        //}
-        public ProjectsController(
-           IManagaProjectService productService)
+       
+        public ProjectsController(IManagaProjectService productService)
         {
             _projectService = productService;
         }
@@ -32,10 +27,16 @@ namespace CncIndustrial.BackendApi.Controllers
             var products = await _projectService.GetAllPaging(request);
             return Ok(products);
         }
-        [HttpGet("{projectId}/{languageId}")]
-        public async Task<IActionResult> GetByIdPro(int productId, string languageId)
+        [HttpGet("pagingImg")]
+        public async Task<IActionResult> GetAllPagingImg([FromQuery] GetManageImagePagingRequest request)
         {
-            var product = await _projectService.GetByIdPro(productId, languageId);
+            var images = await _projectService.GetAllPagingImg(request);
+            return Ok(images);
+        }
+        [HttpGet("{projectId}/{languageId}")]
+        public async Task<IActionResult> GetByIdPro(int projectId, string languageId)
+        {
+            var product = await _projectService.GetByIdPro(projectId, languageId);
             if (product == null)
                 return BadRequest("Cannot find product");
             return Ok(product);
@@ -59,20 +60,19 @@ namespace CncIndustrial.BackendApi.Controllers
 
         [HttpPost]
         [Consumes("multipart/form-data")]
-       
         public async Task<IActionResult> Create([FromForm] ProjectCreateRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var productId = await _projectService.Create(request);
-            if (productId == 0)
+            var projectId = await _projectService.Create(request);
+            if (projectId == 0)
                 return BadRequest();
 
-            var product = await _projectService.GetByIdPro(productId, request.LanguageId);
+            var project = await _projectService.GetByIdPro(projectId, request.LanguageId);
 
-            return CreatedAtAction(nameof(GetByIdPro), new { id = productId }, product);
+            return CreatedAtAction(nameof(GetByIdPro), new { id = projectId }, project);
         }
 
         [HttpPut("{projectId}")]
@@ -99,6 +99,7 @@ namespace CncIndustrial.BackendApi.Controllers
             return Ok();
         }
         [HttpPost("{productId}/images")]
+        [Consumes("multipart/form-data")]
         public async Task<IActionResult> CreateImage(int productId, [FromForm] ProjectImageCreateRequest request)
         {
             if (!ModelState.IsValid)

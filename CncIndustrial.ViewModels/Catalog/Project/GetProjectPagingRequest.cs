@@ -11,5 +11,6 @@ namespace CncIndustrial.ViewModels.Catalog.Project
         public string LanguageId { get; set; }
         public int? categoryId { get; set; }
        
+       
     }
 }

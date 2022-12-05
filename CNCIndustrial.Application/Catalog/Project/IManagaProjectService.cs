@@ -22,6 +22,8 @@ namespace CNCIndustrial.Application.Catalog.Project
        
        Task<PagedResult<ProductVm>> GetAllPaging(GetManageProductPagingRequest request);
 
+       // Task<PagedResult<ImageVm>> GetAllPagingImg(GetManageImagePagingRequest request);
+        Task<PagedResult<ImageVm>> GetAllPagingImg(GetManageImagePagingRequest request);
         Task<int> AddImage(int projectId, ProjectImageCreateRequest request);
 
         Task<int> RemoveImage(int imageId);
@@ -36,9 +38,10 @@ namespace CNCIndustrial.Application.Catalog.Project
 
         Task<List<ProductVm>> GetFeaturedProducts(string languageId, int take);
 
-        Task<ProjectViewModel> GetByIdPro(int projectId, string languageId);
+        Task<ProductVm> GetByIdPro(int projectId, string languageId);
 
         Task<ProjectImageViewModel> GetImageById(int imageId);
+
         Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
     }
 }

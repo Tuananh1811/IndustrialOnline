@@ -10,7 +10,7 @@ using System.Text;
 
 namespace CNCIndustrial.Data.EF
 {
-   public class CncIndustrialDbContext: IdentityDbContext<AppUser, AppRole, Guid>
+    public class CncIndustrialDbContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
         public CncIndustrialDbContext(DbContextOptions options) : base(options)
         {
@@ -29,7 +29,7 @@ namespace CNCIndustrial.Data.EF
             modelBuilder.ApplyConfiguration(new ProjectTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new AboutUsConfiguration());
             modelBuilder.ApplyConfiguration(new AboutUsTranslationConfiguration());
-        
+
             modelBuilder.ApplyConfiguration(new AppUserConfiguration());
             modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectImageConfiguration());
@@ -52,17 +52,16 @@ namespace CNCIndustrial.Data.EF
         public DbSet<AppConfig> AppConfigs { get; set; }
         public DbSet<CategoryTranslation> CategoryTranslations { get; set; }
         public DbSet<ProjectInCategory> ProjectInCategories { get; set; }
-        public DbSet<NewsTranslation> NewsTranslations { get; set; }
+
         public DbSet<Contact> Contacts { get; set; }
-        
-        public DbSet<News> Newss { get; set; }
+
+        public DbSet<NewsTable> NewsPostIndustrials { get; set; }
+        public DbSet<NewsTranslation> NewsPostTranslations { get; set; }
         public DbSet<ProjectImage> ProjectImages { get; set; }
         public DbSet<Slide> Slides { get; set; }
         public DbSet<ProjectTranslation> ProjectTranslations { get; set; }
         public DbSet<AboutUs> AboutUss { get; set; }
         public DbSet<AboutUsTranslation> AboutUsTranslations { get; set; }
-      
-       // public DbSet<AccessibilityTranslation> AccessibilityTranslations { get; set; }
 
     }
 }

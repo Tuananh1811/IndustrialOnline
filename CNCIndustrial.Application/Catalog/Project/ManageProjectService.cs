@@ -53,13 +53,30 @@ namespace CNCIndustrial.Application.Catalog.Project
                     {
                         Name = request.Name,
                         Description = request.Description,
-                        Details = request.Details,
+
                         SeoDescription = request.SeoDescription,
                         SeoAlias = request.SeoAlias,
                         SeoTitle = request.SeoTitle,
+                        TotalArea = request.TotalArea,
+                        VacantArea = request.VacantArea,
+                        Area=request.Area,
+                        Location=request.Location,
+                        MainFunction1 = request.MainFunction1,
+                        MainFunction2 = request.MainFunction2,
+                        MainFunction3 = request.MainFunction3,
+                        MainFunction4 = request.MainFunction4,
+                        Summary = request.Summary,
+                        AccessibilityAirport = request.AccessibilityAirport,
+                        AccessibilityCenter = request.AccessibilityCenter,
+                        AccessibilityPort = request.AccessibilityPort,
+                        AccessibilityExpressway=request.AccessibilityExpressway,
+                        Commerce=request.Commerce,
+                        Technical=request.Technical,
+
                         LanguageId = request.LanguageId,
-                        
-                    });
+
+
+                    }); ;
                 }
                 else
                 {
@@ -101,8 +118,8 @@ namespace CNCIndustrial.Application.Catalog.Project
                 };
             }
             _context.Projects.Add(project);
-          return  await _context.SaveChangesAsync();
-           // return product.Id;
+               await _context.SaveChangesAsync();
+            return project.Id;
 
         }
 
@@ -145,7 +162,7 @@ namespace CNCIndustrial.Application.Catalog.Project
             {
                 query = query.Where(p => p.pic.CategoryId == request.CategoryId);
             }
-
+            
             //3. Paging
             int totalRow = await query.CountAsync();
 
@@ -157,7 +174,7 @@ namespace CNCIndustrial.Application.Catalog.Project
                     Name = x.pt.Name,
                     DateCreated = x.p.DateCreated,
                     Description = x.pt.Description,
-                    Details = x.pt.Details,
+                    
                     LanguageId = x.pt.LanguageId,
                     OriginalPrice = x.p.OriginalPrice,
                     Price = x.p.Price,
@@ -195,7 +212,20 @@ namespace CNCIndustrial.Application.Catalog.Project
             productTranslations.SeoDescription = request.SeoDescription;
             productTranslations.SeoTitle = request.SeoTitle;
             productTranslations.Description = request.Description;
-            productTranslations.Details = request.Details;
+            productTranslations.Area = request.Area;
+            productTranslations.TotalArea = request.TotalArea;
+            productTranslations.VacantArea = request.VacantArea;
+            productTranslations.Location = request.Location;
+            productTranslations.MainFunction1 = request.MainFunction1;
+            productTranslations.MainFunction2 = request.MainFunction2;
+            productTranslations.MainFunction3 = request.MainFunction3;
+            productTranslations.MainFunction4 = request.MainFunction4;
+            productTranslations.Commerce = request.Commerce;
+            productTranslations.Technical = request.Technical;
+            productTranslations.Summary = request.Summary;
+
+
+            
 
             //Save image
             if (request.ThumbnailImage != null)
@@ -264,28 +294,7 @@ namespace CNCIndustrial.Application.Catalog.Project
             return "/" + USER_CONTENT_FOLDER_NAME + "/" + fileName;
         }
 
-        //public async Task<ProjectImageViewModel> GetImageById(int imageId)
-        //{
-        //    var image = await _context.ProjectImages.FindAsync(imageId);
-        //    if (image == null)
-        //        throw new CncIndustrialException($"Cannot find an image with id {imageId}");
-
-        //    var viewModel = new ProjectImageViewModel()
-        //    {
-        //        Caption = image.Caption,
-        //        DateCreated = image.DateCreated,
-        //        FileSize = image.FileSize,
-        //        Id = image.Id,
-        //        ImagePath = image.ImagePath,
-        //        IsDefault = image.IsDefault,
-        //        ProjectId = image.ProjectId,
-        //        SortOrder = image.SortOrder
-        //    };
-        //    return viewModel;
-        //}
-        /*
-         * 
-         */
+      
         public async Task<List<ProjectImageViewModel>> GetListImages(int productId)
         {
             return await _context.ProjectImages.Where(x => x.ProjectId == productId)
@@ -323,7 +332,7 @@ namespace CNCIndustrial.Application.Catalog.Project
                     Name = x.pt.Name,
                     DateCreated = x.p.DateCreated,
                     Description = x.pt.Description,
-                    Details = x.pt.Details,
+                  
                     LanguageId = x.pt.LanguageId,
                     OriginalPrice = x.p.OriginalPrice,
                     Price = x.p.Price,
@@ -359,7 +368,7 @@ namespace CNCIndustrial.Application.Catalog.Project
                     Name = x.pt.Name,
                     DateCreated = x.p.DateCreated,
                     Description = x.pt.Description,
-                    Details = x.pt.Details,
+                   
                     LanguageId = x.pt.LanguageId,
                     OriginalPrice = x.p.OriginalPrice,
                     Price = x.p.Price,
@@ -380,7 +389,7 @@ namespace CNCIndustrial.Application.Catalog.Project
         //    throw new NotImplementedException();
         //}
 
-       public async Task<ProjectViewModel> GetByIdPro(int projectId, string languageId)
+       public async Task<ProductVm> GetByIdPro(int projectId, string languageId)
         {
             var product = await _context.Projects.FindAsync(projectId);
             var productTranslation = await _context.ProjectTranslations.FirstOrDefaultAsync(x => x.ProjectId == projectId
@@ -394,13 +403,13 @@ namespace CNCIndustrial.Application.Catalog.Project
 
             var image = await _context.ProjectImages.Where(x => x.ProjectId == projectId && x.IsDefault == true).FirstOrDefaultAsync();
 
-            var productViewModel = new ProjectViewModel()
+            var productViewModel = new ProductVm()
             {
                 Id = product.Id,
                 DateCreated = product.DateCreated,
                 Description = productTranslation != null ? productTranslation.Description : null,
                 LanguageId = productTranslation.LanguageId,
-                Details = productTranslation != null ? productTranslation.Details : null,
+              
                 Name = productTranslation != null ? productTranslation.Name : null,
                 OriginalPrice = product.OriginalPrice,
                 Price = product.Price,
@@ -435,13 +444,13 @@ namespace CNCIndustrial.Application.Catalog.Project
             };
             return viewModel;
         }
-
+        
         public async Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request)
         {
             var user = await _context.Projects.FindAsync(id);
             if (user == null)
             {
-                return new ApiErrorResult<bool>($"Sản phẩm với id {id} không tồn tại");
+                return new ApiErrorResult<bool>($"Dự án với id {id} không tồn tại");
             }
             foreach (var category in request.Categories)
             {
@@ -464,5 +473,91 @@ namespace CNCIndustrial.Application.Catalog.Project
             await _context.SaveChangesAsync();
             return new ApiSuccessResult<bool>();
         }
+
+        //public async Task<PagedResult<ImageVm>> GetAllPagingImg(GetManageImagePagingRequest request)
+        //{
+
+        //    var query = from p in _context.Projects
+        //                join pi in _context.ProjectImages on p.Id equals pi.ProjectId
+        //                join pt in _context.ProjectTranslations on p.Id equals pt.ProjectId
+
+        //                select new {p, pt, pi };
+        //    //2. filter
+        //    //
+        //    if (!string.IsNullOrEmpty(request.Keyword))
+        //        query = query.Where(x => x.pt.Name.Contains(request.Keyword));
+
+
+
+        //    //3. Paging
+        //    int totalRow = await query.CountAsync();
+
+        //    var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+        //        .Take(request.PageSize)
+        //        .Select(x => new ImageVm()
+        //        {
+        //            Id = x.pi.Id,
+        //            Caption = x.pi.Caption,
+        //            DateCreated = x.pi.DateCreated,
+        //            FileSize=x.pi.FileSize,
+        //            ProjectId=x.pi.ProjectId,
+        //            ImagePath=x.pi.ImagePath,
+        //            NameProject=x.pt.Name 
+        //        }).ToListAsync();
+
+        //    //4. Select and projection
+        //    var pagedResult = new PagedResult<ImageVm>()
+        //    {
+        //        TotalRecord = totalRow,
+        //        PageSize = request.PageSize,
+        //        PageIndex = request.PageIndex,
+        //        Items = data
+        //    };
+        //    return pagedResult;
+
+
+        //}
+        public async Task<PagedResult<ImageVm>>GetAllPagingImg(GetManageImagePagingRequest request)
+        {
+            var query = _context.ProjectImages;
+           //var query= from p in _context.Projects
+           //           join pi in _context.ProjectImages on p.Id equals pi.ProjectId
+           //           join pt in _context.ProjectTranslations on p.Id equals pt.ProjectId
+           //           where pi.ProjectId == pt.ProjectId 
+           //           select new { p, pt, pi };
+            //3. Paging
+            int totalRow = await query.CountAsync();
+
+            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Select(x => new ImageVm()
+                {
+                    //Id = x.pi.Id,
+                    //Caption = x.pi.Caption,
+                    //DateCreated = x.pi.DateCreated,
+                    //FileSize = x.pi.FileSize,
+                    //ProjectId = x.pi.ProjectId,
+                    //ImagePath = x.pi.ImagePath,
+                    //NameProject=x.pt.Name
+                    Id = x.Id,
+                    Caption = x.Caption,
+                    DateCreated = x.DateCreated,
+                    FileSize = x.FileSize,
+                    ProjectId = x.ProjectId,
+                    ImagePath = x.ImagePath
+                }).ToListAsync();
+
+            //4. Select and projection
+            var pagedResult = new PagedResult<ImageVm>()
+            {
+                TotalRecords = totalRow,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize,
+                Items = data
+            };
+            return pagedResult;
+        }
+
+      
     }
 }

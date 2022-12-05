@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CNCIndustrial.Data.Migrations
 {
     [DbContext(typeof(CncIndustrialDbContext))]
-    [Migration("20221122064906_addColumn")]
-    partial class addColumn
+    [Migration("20221201094235_updatefield")]
+    partial class updatefield
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -160,7 +160,7 @@ namespace CNCIndustrial.Data.Migrations
                         new
                         {
                             Id = new Guid("583b332a-9d8b-4b9c-b502-1f48d02b9ec7"),
-                            ConcurrencyStamp = "1e18812f-837e-4186-8a91-0928a2a4c843",
+                            ConcurrencyStamp = "a2b5d691-e85c-4df0-8384-e55f9e556fb1",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -245,7 +245,7 @@ namespace CNCIndustrial.Data.Migrations
                         {
                             Id = new Guid("e23c9b99-51d5-4f0e-a15b-9b5d6b4c9507"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "54e54ca0-cab8-452e-bd44-c343bbceac08",
+                            ConcurrencyStamp = "182b3b95-ca7b-43d9-87e4-aa4f5ba2c990",
                             Dob = new DateTime(2000, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tanhdo18@gmail.com",
                             EmailConfirmed = true,
@@ -253,7 +253,7 @@ namespace CNCIndustrial.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tanhdo18@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEME9odY7ISeu+tJW4Aiwn8UGPOtngwAXp6zkUteqKFFm2Fae5g63YS7NdhJ33dbLeA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMCDBl+OdF/i2xKpkBVXtUSEG2pcgI6DjoeU39ibmatmrjOzkQQRZ++E2TlmSwxCfA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -714,7 +714,7 @@ namespace CNCIndustrial.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CNCIndustrial.Data.Entities.News", b =>
+            modelBuilder.Entity("CNCIndustrial.Data.Entities.NewsTable", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -722,9 +722,6 @@ namespace CNCIndustrial.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("DescriShort")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DescriTall")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HinhAnhMinhHoa")
@@ -742,9 +739,12 @@ namespace CNCIndustrial.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ViewCount")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Newss");
+                    b.ToTable("NewsPostIndustrials");
                 });
 
             modelBuilder.Entity("CNCIndustrial.Data.Entities.NewsTranslation", b =>
@@ -760,7 +760,7 @@ namespace CNCIndustrial.Data.Migrations
                     b.Property<string>("LanguageId")
                         .HasColumnType("varchar(10)");
 
-                    b.Property<int>("NewsId")
+                    b.Property<int>("NewsTableId")
                         .HasColumnType("int");
 
                     b.Property<string>("SeoAlias")
@@ -779,9 +779,9 @@ namespace CNCIndustrial.Data.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.HasIndex("NewsId");
+                    b.HasIndex("NewsTableId");
 
-                    b.ToTable("NewsTranslations");
+                    b.ToTable("NewsPostTranslations");
                 });
 
             modelBuilder.Entity("CNCIndustrial.Data.Entities.ProjectImage", b =>
@@ -883,7 +883,7 @@ namespace CNCIndustrial.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2022, 11, 22, 13, 49, 5, 721, DateTimeKind.Local).AddTicks(8209),
+                            DateCreated = new DateTime(2022, 12, 1, 16, 42, 34, 506, DateTimeKind.Local).AddTicks(2700),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
@@ -913,23 +913,13 @@ namespace CNCIndustrial.Data.Migrations
                     b.Property<string>("AccessibilityPort")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CeilingHeight")
+                    b.Property<string>("Area")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Commerce")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Details")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
-
-                    b.Property<string>("ElectricityCapacity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Investor")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Juridical")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LanguageId")
@@ -938,7 +928,7 @@ namespace CNCIndustrial.Data.Migrations
                         .HasMaxLength(10)
                         .IsUnicode(false);
 
-                    b.Property<string>("LoadingCapacoty")
+                    b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MainFunction1")
@@ -958,14 +948,8 @@ namespace CNCIndustrial.Data.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
-                    b.Property<string>("PriceProject")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
-
-                    b.Property<string>("ProjectOverView")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SeoAlias")
                         .IsRequired()
@@ -981,22 +965,13 @@ namespace CNCIndustrial.Data.Migrations
                     b.Property<string>("Summary")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TermOfSdd")
+                    b.Property<string>("Technical")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TotalArea")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Utilities")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("VacantArea")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WastewaterTreatmentCapacity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WaterSupplyCapacity")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -1214,9 +1189,9 @@ namespace CNCIndustrial.Data.Migrations
                         .WithMany("NewsTranslations")
                         .HasForeignKey("LanguageId");
 
-                    b.HasOne("CNCIndustrial.Data.Entities.News", "News")
+                    b.HasOne("CNCIndustrial.Data.Entities.NewsTable", "NewsTable")
                         .WithMany("NewsTranslations")
-                        .HasForeignKey("NewsId")
+                        .HasForeignKey("NewsTableId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

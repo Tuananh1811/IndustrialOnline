@@ -7,18 +7,20 @@ using System.Text;
 
 namespace CNCIndustrial.Data.Configurations
 {
-   public class NewsConfiguration : IEntityTypeConfiguration<News>
+   public class NewsConfiguration : IEntityTypeConfiguration<NewsTable>
     {
-        public void Configure(EntityTypeBuilder<News> builder)
+        public void Configure(EntityTypeBuilder<NewsTable> builder)
         {
-            builder.ToTable("Newss");
+            builder.ToTable("NewsPostIndustrials");
 
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id).UseIdentityColumn();
 
+            builder.Property(x => x.ViewCount).IsRequired().HasDefaultValue(0);
+            builder.Property(x => x.HinhAnhMinhHoa).HasMaxLength(200).IsRequired(true);
 
-          
+
         }
     }
 }

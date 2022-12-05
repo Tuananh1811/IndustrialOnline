@@ -1,0 +1,98 @@
+﻿@using CncIndustrial.ViewModels.Common;
+@model PagedResult<CncIndustrial.ViewModels.Catalog.News.NewsVm>
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h2 class="mt-4" style="padding:30px 0px;color: #EF5924;text-transform:uppercase">Danh Sách Dự Án</h2>
+
+    <div class="card mb-12">
+        <div class="card-header">
+
+            <div class="row">
+                <form class="col-lg-9" asp-action="Index" method="get">
+
+
+                    <div class="input-group">
+                        <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" placeholder="Nhập tên dự án">
+                        <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="window.location.href='/Image/Index'"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+
+                </form>
+                <div class="col-lg-3">
+                    <a style="float:right" class="btn btn-success" asp-action="Create" asp-controller="Image"><i class="fa-solid fa-user-plus"></i></a>
+                </div>
+
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                @if (ViewBag.SuccessMsg != null)
+                {
+                    <div id="msgAlert" class="alert alert-success" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                }
+            </div>
+
+            <table id="datatablesSimple" class=" table table-striped table-hover table-bordered align-middle">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Tiêu đề
+                        </th>
+                        <th>
+                            Mô tả
+                        </th>
+
+
+                        <th>
+                            Ngày tạo
+                        </th>
+                        <th>
+                            Ảnh
+                        </th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DescriShort)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NgayTao)
+                            </td>
+                            <td>
+                                <img src="@(Configuration["BaseAddress"] + item.HinhAnhMinhHoa)" asp-append-version="true" width="150" />
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

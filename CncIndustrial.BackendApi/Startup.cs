@@ -25,6 +25,7 @@ using CNCIndustrial.Application.System.Roles;
 using FluentValidation.AspNetCore;
 using CncIndustrial.ViewModels.System.User;
 using FluentValidation;
+using CNCIndustrial.Application.Catalog.News;
 
 namespace CncIndustrial.BackendApi
 {
@@ -61,7 +62,7 @@ namespace CncIndustrial.BackendApi
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
             services.AddTransient<ILanguageService, LanguageService>();
             //services.AddTransient<ISlideService, SlideService>();
-
+            services.AddTransient<IManageNewsService, ManageNewsService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
@@ -156,7 +157,7 @@ namespace CncIndustrial.BackendApi
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger CNCIndustrialDB V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger CNCIndustrialData V1");
             });
             app.UseEndpoints(endpoints =>
             {
