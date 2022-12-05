@@ -2,7 +2,517 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section style{
+    <link rel="stylesheet" href="/css/style.css">
+}
+@section js{
+    <script src="/js/event.js"></script>
+
+    <script src="/js/statistical.js"></script>
+}
+@section slick5Item{
+    <script type="text/javascript">
+        $('.responsive').slick({
+            dots: true,
+            infinite: true,
+            speed: 700,
+            slidesToShow: 5,
+            slidesToScroll: 2,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            responsive: [{
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            }, {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            }, {
+                breakpoint: 580,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+
+            ]
+        });
+
+    </script>
+}
+@section slick3Item{
+    <script type="text/javascript">
+        $('.responsive-new').slick({
+            dots: true,
+            infinite: true,
+            speed: 700,
+            slidesToShow: 3,
+            slidesToScroll: 2,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            responsive: [{
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            }, {
+                breakpoint: 700,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            }, {
+                breakpoint: 680,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+
+            ]
+        });
+    </script>
+}
+<div class="banner field__item field-landing__item">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/img/banner/DJI_0766.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="/img/banner/DJI_0774.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="/img/banner/DJI_0777.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+
+    </div>
+    <div class="slide-content">
+        <div class="container">
+            <p class="title">What can We do for you?</p>
+            <p class="des">
+                We can provide information about Vietnam Industrial Real Estate Market, Industrial property and real estate Investment Guide, support legal and law for foreigner
+            </p>
+        </div>
+    </div>
+</div>
+<!-- thống kê -->
+<div class="thongke-bg field__item field-landing__item padding-top-bottom ">
+    <h2 data-aos="fade-down" data-aos-duration="1000" class="text-center text-upp font-wei leter-spacing margin-bottom-40 color-w">Track record</h2>
+    <div data-aos="fade-up" data-aos-duration="2000" class="row container Leased-area ">
+        <div class="col-lg-3 col-md-4 col-sm-12 col-12 text-center white-color">
+
+            <h1 id="leased-area" class=" white-color font-wei">452.043</h1>
+            <p class="text-center white-color">Leased area (m2)</p>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-12 col-12 text-center">
+            <h1 id="sold-area" class="font-wei white-color">452.043</h1>
+            <p class="text-center white-color">Sold area (m2)</p>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-12 col-12  text-center">
+            <h1 id="values-tran" class="white-color font-wei">452.043</h1>
+            <p class="text-center white-color">Transaction values (US$)</p>
+        </div>
+        <div class="col-lg-3 com-md-4 col-sm-12 col-12 text-center">
+            <h1 id="developer-contracts" class="font-wei white-color">60</h1>
+            <p class="text-center white-color">Developer contracts</p>
+        </div>
+    </div>
+    <p class="text-center margin-top-60 ">
+        <a href="./pdf/Huong_Dan_CaseStudio_2.pdf" class="eff-a-hover font-wei leter-spacing text-upp padding-20 bg-white">
+            Our Capability Statement <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </p>
+</div>
+<!-- project -->
+<div data-aos="fade-down" data-aos-duration="2000" class="field__item field-landing__item">
+    <div class="container">
+        <div class="row  no-margin no-padding">
+            <div class="col-lg-10 col-md-8 col-sm-8 col-8 no-margin no-padding">
+                <h2 class=" text-upp font-wei leter-spacing  ">Hot industrial park</h2>
+
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-4 text-right"><a href="#" class="btn btn-view-all zoom-small">View more</a></div>
+        </div>
+        <p>List of some outstanding industrial parks .</p>
+    </div>
+
+
+
+    <div class="container news-homepage row">
+        <div class="news-homepage-item col-lg-4 col-md-4 col-sm-6 col-12">
+            <div class="news-homepage-item-img">
+                <img src="/img/project/0dc3f3f1ef9d28c3718c.jpg" alt="">
+            </div>
+            <div class="newshomepage-item-text">
+                <h5><a href="#">Real Estate: A Foundation for Growth</a></h5>
+                <hr>
+                <p class="font-12">
+                    <i class="fa-solid fa-location-dot font-i padding-i"></i>Ba Thien, Vinh Phuc Province.
+                </p>
+                <p class="font-12">
+                    <i class="font-i padding-i fa-solid fa-chart-area"></i>Total area: <span>10500</span>m2
+                </p>
+                <p class="font-12">
+                    <i class="font-i padding-i fa-solid fa-chart-area"></i>Vacant area: <span>8500</span>m2
+                </p>
+                <a class="btn-a text-upp font-12 font-wei ">
+                    view now <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="news-homepage-item col-lg-4 col-md-4 col-sm-6 col-12">
+            <div class="news-homepage-item-img">
+                <img src="/img/project/0dc3f3f1ef9d28c3718c.jpg" alt="">
+            </div>
+            <div class="newshomepage-item-text">
+                <h5><a href="#">Real Estate: A Foundation for Growth</a></h5>
+                <hr>
+                <p class="font-12">
+                    <i class="fa-solid fa-location-dot font-i padding-i"></i>Ba Thien, Vinh Phuc Province.
+                </p>
+                <p class="font-12">
+                    <i class="font-i padding-i fa-solid fa-chart-area"></i>Total area: <span>10500</span>m2
+                </p>
+                <p class="font-12">
+                    <i class="font-i padding-i fa-solid fa-chart-area"></i>Vacant area: <span>8500</span>m2
+                </p>
+                <a class="btn-a text-upp font-12 font-wei ">
+                    view now <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="news-homepage-item col-lg-4 col-md-4 col-sm-6 col-12">
+            <div class="news-homepage-item-img">
+                <img src="/img/project/0dc3f3f1ef9d28c3718c.jpg" alt="">
+            </div>
+            <div class="newshomepage-item-text">
+                <h5><a href="#">Real Estate: A Foundation for Growth</a></h5>
+                <hr>
+                <p class="font-12">
+                    <i class="fa-solid fa-location-dot font-i padding-i"></i>Ba Thien, Vinh Phuc Province.
+                </p>
+                <p class="font-12">
+                    <i class="font-i padding-i fa-solid fa-chart-area"></i>Total area: <span>10500</span>m2
+                </p>
+                <p class="font-12">
+                    <i class="font-i padding-i fa-solid fa-chart-area"></i>Vacant area: <span>8500</span>m2
+                </p>
+                <a class="btn-a text-upp font-12 font-wei ">
+                    view now <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="news-homepage-item col-lg-4 col-md-4 col-sm-6 col-12">
+            <div class="news-homepage-item-img">
+                <img src="~/Assets/Client/img/project/0dc3f3f1ef9d28c3718c.jpg" alt="">
+            </div>
+            <div class="newshomepage-item-text">
+                <h5><a href="#">Real Estate: A Foundation for Growth</a></h5>
+                <hr>
+                <p class="font-12">
+                    <i class="fa-solid fa-location-dot font-i padding-i"></i>Ba Thien, Vinh Phuc Province.
+                </p>
+                <p class="font-12">
+                    <i class="font-i padding-i fa-solid fa-chart-area"></i>Total area: <span>10500</span>m2
+                </p>
+                <p class="font-12">
+                    <i class="font-i padding-i fa-solid fa-chart-area"></i>Vacant area: <span>8500</span>m2
+                </p>
+                <a class="btn-a text-upp font-12 font-wei ">
+                    view now <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="news-homepage-item col-lg-4 col-md-4 col-sm-6 col-12">
+            <div class="news-homepage-item-img">
+                <img src="/img/project/0dc3f3f1ef9d28c3718c.jpg" alt="">
+            </div>
+            <div class="newshomepage-item-text">
+                <h5><a href="#">Real Estate: A Foundation for Growth</a></h5>
+                <hr>
+                <p class="font-12">
+                    <i class="fa-solid fa-location-dot font-i padding-i"></i>Ba Thien, Vinh Phuc Province.
+                </p>
+                <p class="font-12">
+                    <i class="font-i padding-i fa-solid fa-chart-area"></i>Total area: <span>10500</span>m2
+                </p>
+                <p class="font-12">
+                    <i class="font-i padding-i fa-solid fa-chart-area"></i>Vacant area: <span>8500</span>m2
+                </p>
+                <a class="btn-a text-upp font-12 font-wei ">
+                    view now <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="news-homepage-item col-lg-4 col-md-4 col-sm-6 col-12">
+            <div class="news-homepage-item-img">
+                <img src="/img/project/0dc3f3f1ef9d28c3718c.jpg" alt="">
+            </div>
+            <div class="newshomepage-item-text">
+                <h5><a href="#">Real Estate: A Foundation for Growth</a></h5>
+                <hr>
+                <p class="font-12">
+                    <i class="fa-solid fa-location-dot font-i padding-i"></i>Ba Thien, Vinh Phuc Province.
+                </p>
+                <p class="font-12">
+                    <i class="font-i padding-i fa-solid fa-chart-area"></i>Total area: <span>10500</span>m2
+                </p>
+                <p class="font-12">
+                    <i class="font-i padding-i fa-solid fa-chart-area"></i>Vacant area: <span>8500</span>m2
+                </p>
+                <a class="btn-a text-upp font-12 font-wei ">
+                    view now <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="about-block field__item field-landing__item">
+    <div class="container">
+        <h3 data-aos="fade-down" data-aos-duration="1500">
+            Factors that make up our quality
+        </h3>
+        <div class="row about-item-block">
+            <div data-aos="fade-up" data-aos-duration="1000" class="col-md-4 about-item">
+                <div class="about-item-wrapper">
+                    <img class="about-icon" src="/img/about-img/about_img_1.png" alt="">
+                    <h3 class="about-title">Legal clarity</h3>
+                    <p class="about-content">
+                        We provide real estate products with full legal records, appraised by attorneys
+                    </p>
+                </div>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="2000" class="col-md-4 about-item">
+                <div class="about-item-wrapper">
+                    <img class="about-icon" src="/img/about-img/about_heart_icon.png" alt="">
+                    <h3 class="about-title">Devoted attitude</h3>
+                    <p class="about-content">
+                        Consulting from the heart (trustconsulting), the success of investors is a value that we are proud of
+                    </p>
+                </div>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="3000" class="col-md-4 about-item">
+                <div class="about-item-wrapper">
+                    <img class="about-icon" src="/img/about-img/about_diamond_icon.png" alt="">
+                    <h3 class="about-title">Synchronous and Comprehensive</h3>
+                    <p class="about-content">
+                        Service chain for investors: Market research – Real estate – law – labor +++
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="home-partner-block field__item field-landing__item">
+    <div data-aos="zoom-in" data-aos-duration="1500" class="field__item field-landing__item">
+        <div class="container-fluid-slick">
+            <div class="row no-padding no-margin slick block-partner">
+                <p class="partner-title">Customers & Partners</p>
+                <div class="slick-partner   row responsive autoplay multiple-items">
+
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-6  block-slick-partner">
+                        <div class="partner-img-slick no-padding ">
+                            <img src="/img/partner/amaccao_viettinbank-150x144.jpg" class="partner-img-slick-style ">
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-6  block-slick-partner">
+                        <div class="partner-img-slick no-padding ">
+                            <img src="/img/partner/amaccao_vinaconect-150x144.jpg" class="partner-img-slick-style">
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-6  block-slick-partner">
+                        <div class="partner-img-slick no-padding ">
+                            <img src="/img/partner/amaccao_Vingroup_sg9Ig0d-150x144.jpg" class="partner-img-slick-style">
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-6  block-slick-partner">
+                        <div class="partner-img-slick no-padding ">
+                            <img src="/img/partner/amaccao_hoaphat-150x144.jpg" class="partner-img-slick-style">
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-6  block-slick-partner">
+                        <div class="partner-img-slick no-padding ">
+                            <img src="/img/partner/amaccao_canbuid-150x144.jpg" class="partner-img-slick-style">
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-6  block-slick-partner">
+                        <div class="partner-img-slick no-padding ">
+                            <img src="/img/partner/amaccao_sungroup_efk0mpM-150x144.jpg" class="partner-img-slick-style">
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-6  block-slick-partner">
+                        <div class="partner-img-slick no-padding ">
+                            <img src="/img/partner/amaccao_taisei-150x144.jpg" class="partner-img-slick-style">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-aos="fade-up" data-aos-duration="1400" class="field__item field-landing__item">
+
+    <div class="contact_free">
+
+        <div class="content_contact">
+            <h2 class=" p-upp">GET PROJECT INFORMATION</h2>
+            <p>
+                Each connection begins with a conversation. Our team is here to help.
+            </p>
+            <form action="" class="content_contact-form">
+                <div>
+                    <input type="email" placeholder="Enter your email">
+                    <button href=""><i class="fa-solid fa-share-from-square"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<div class="field__item field-landing__item">
+    <div class="width100">
+        <div class="container">
+            <div class="row  no-margin no-padding">
+                <div class="col-lg-10 col-md-9 col-sm-8 col-8 no-margin no-padding">
+                    <h2 class=" text-upp font-wei leter-spacing  ">News & Article</h2>
+
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-4 text-right"><a href="#" class="btn btn-view-all zoom-small">View more</a></div>
+            </div>
+
+        </div>
+        <div data-aos="fade-down" data-aos-duration="2000" class="field__item field-landing__item">
+            <div class="container-fluid-slick ">
+                <div class=" no-padding no-margin slick slick-new">
+
+                    <div class="slick-new-array  row responsive-new autoplay multiple-items">
+
+                        <div class="col-lg-4 col-md-3 col-sm-4 col-6  slick-new-item">
+                            <div class="new-img-slick no-padding ">
+                                <img src="~/Assets/Client/img/project/0d97c809d065173b4e74.jpg" class=" height-100 width100 ">
+                            </div>
+                            <div class="newshomepage-item-text">
+                                <h5><a href="#">Factory for lease in industrial park</a></h5>
+                                <p class="span">21/10/2022</p>
+                                <p>
+                                    Ho Chi Minh City's open-door policy to attract investment has brought many positive effects to revive the domestic economy. This also creates a big challenge for businesses to store goods before they have two options:
+                                    build a new warehouse or rent a warehouse.
+                                </p>
+                                <a class="btn-a text-upp font-12 font-wei ">
+                                    view now <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-4 col-md-3 col-sm-4 col-6  slick-new-item">
+                            <div class="new-img-slick no-padding ">
+                                <img src="~/Assets/Client/img/project/0d97c809d065173b4e74.jpg" class=" height-100 width100 ">
+                            </div>
+                            <div class="newshomepage-item-text">
+                                <h5><a href="#">Factory for lease in industrial park</a></h5>
+                                <p class="span">21/10/2022</p>
+                                <p>
+                                    Ho Chi Minh City's open-door policy to attract investment has brought many positive effects to revive the domestic economy. This also creates a big challenge for businesses to store goods before they have two options:
+                                    build a new warehouse or rent a warehouse.
+                                </p>
+                                <a class="btn-a text-upp font-12 font-wei ">
+                                    view now <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-3 col-sm-4 col-6  slick-new-item">
+                            <div class="new-img-slick no-padding ">
+                                <img src="~/Assets/Client/img/project/0d97c809d065173b4e74.jpg" class=" height-100 width100 ">
+                            </div>
+                            <div class="newshomepage-item-text">
+                                <h5><a href="#">Factory for lease in industrial park</a></h5>
+                                <p class="span">21/10/2022</p>
+                                <p>
+                                    Ho Chi Minh City's open-door policy to attract investment has brought many positive effects to revive the domestic economy. This also creates a big challenge for businesses to store goods before they have two options:
+                                    build a new warehouse or rent a warehouse.
+                                </p>
+                                <a class="btn-a text-upp font-12 font-wei ">
+                                    view now <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-3 col-sm-4 col-6  slick-new-item">
+                            <div class="new-img-slick no-padding ">
+                                <img src="~/Assets/Client/img/project/0d97c809d065173b4e74.jpg" class=" height-100 width100 ">
+                            </div>
+                            <div class="newshomepage-item-text">
+                                <h5><a href="#">Factory for lease in industrial park</a></h5>
+                                <p class="span">21/10/2022</p>
+                                <p>
+                                    Ho Chi Minh City's open-door policy to attract investment has brought many positive effects to revive the domestic economy. This also creates a big challenge for businesses to store goods before they have two options:
+                                    build a new warehouse or rent a warehouse.
+                                </p>
+                                <a class="btn-a text-upp font-12 font-wei ">
+                                    view now <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-3 col-sm-4 col-6  slick-new-item">
+                            <div class="new-img-slick no-padding ">
+                                <img src="~/Assets/Client/img/project/0d97c809d065173b4e74.jpg" class=" height-100 width100 ">
+                            </div>
+                            <div class="newshomepage-item-text">
+                                <h5><a href="#">Factory for lease in industrial park</a></h5>
+                                <p class="span">21/10/2022</p>
+                                <p>
+                                    Ho Chi Minh City's open-door policy to attract investment has brought many positive effects to revive the domestic economy. This also creates a big challenge for businesses to store goods before they have two options:
+                                    build a new warehouse or rent a warehouse.
+                                </p>
+                                <a class="btn-a text-upp font-12 font-wei ">
+                                    view now <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-3 col-sm-4 col-6  slick-new-item">
+                            <div class="new-img-slick no-padding ">
+                                <img src="~/Assets/Client/img/project/0d97c809d065173b4e74.jpg" class=" height-100 width100 ">
+                            </div>
+                            <div class="newshomepage-item-text">
+                                <h5><a href="#">Factory for lease in industrial park</a></h5>
+                                <p class="span">21/10/2022</p>
+                                <p>
+                                    Ho Chi Minh City's open-door policy to attract investment has brought many positive effects to revive the domestic economy. This also creates a big challenge for businesses to store goods before they have two options:
+                                    build a new warehouse or rent a warehouse.
+                                </p>
+                                <a class="btn-a text-upp font-12 font-wei ">
+                                    view now <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>

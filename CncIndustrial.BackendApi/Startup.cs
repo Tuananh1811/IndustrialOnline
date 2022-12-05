@@ -26,6 +26,7 @@ using FluentValidation.AspNetCore;
 using CncIndustrial.ViewModels.System.User;
 using FluentValidation;
 using CNCIndustrial.Application.Catalog.News;
+using CNCIndustrial.Application.Catalog.Employee;
 
 namespace CncIndustrial.BackendApi
 {
@@ -63,6 +64,8 @@ namespace CncIndustrial.BackendApi
             services.AddTransient<ILanguageService, LanguageService>();
             //services.AddTransient<ISlideService, SlideService>();
             services.AddTransient<IManageNewsService, ManageNewsService>();
+            services.AddTransient<IManageEmployeeService, ManageEmployeeService>();
+
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();

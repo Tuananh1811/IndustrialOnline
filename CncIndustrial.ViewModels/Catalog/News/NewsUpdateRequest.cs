@@ -1,18 +1,22 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace CncIndustrial.ViewModels.Catalog.News
 {
    public class NewsUpdateRequest
     {
+        public int Id { set; get; }
+
+        [Required(ErrorMessage = "Bạn phải nhập tiêu đề tin tức")]
         public string Title { get; set; }
 
 
         public string DescriShort { get; set; }
 
-        public string DescriTall { get; set; }
+     
 
         public string Content { set; get; }
 
@@ -24,6 +28,8 @@ namespace CncIndustrial.ViewModels.Catalog.News
 
         public string SeoAlias { set; get; }
 
-        public IFormFile ThumbnailImage { get; set; }
+         public DateTime CreateDate { get; set; }
+
+        public IFormFile HinhAnhMinhHoa { get; set; }
     }
 }

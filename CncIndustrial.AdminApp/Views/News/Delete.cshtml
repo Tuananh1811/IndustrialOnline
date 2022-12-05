@@ -1,0 +1,32 @@
+﻿@model CncIndustrial.ViewModels.Catalog.News.NewsDeleteRequest
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h1 class="mt-4">Xóa tin tức</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Xóa ảnh</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index" asp-controller="News">Về danh sách</a>
+        </div>
+    </div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="submit" value="Xóa tin tức" class="btn btn-danger" /> 
+        
+    </form>
+</div>
+

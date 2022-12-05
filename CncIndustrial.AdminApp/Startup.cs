@@ -53,6 +53,7 @@ namespace CncIndustrial.AdminApp
             services.AddTransient<ICategoryApiClient, CategoryApiClient>();
             services.AddTransient<IImageApiClient, ImageApiClient>();
             services.AddTransient<INewsApiClient, NewsApiClient>();
+            services.AddTransient<IEmployeeApiClient, EmployeeApiClient>();
             services.AddRazorPages();
         }
 

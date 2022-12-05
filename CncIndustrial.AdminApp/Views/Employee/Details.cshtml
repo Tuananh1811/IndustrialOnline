@@ -1,0 +1,69 @@
+﻿@using CncIndustrial.ViewModels.Common;
+@model CncIndustrial.ViewModels.Catalog.Employee.EmployeeVm;
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>EmployeeVm</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ImagePath)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@(Configuration["BaseAddress"] +Model.ImagePath)" asp-append-version="true" width="150" height="100" />
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Introduce)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Introduce)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LanguageId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LanguageId)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

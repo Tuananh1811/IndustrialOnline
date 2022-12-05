@@ -1,0 +1,111 @@
+﻿@using CncIndustrial.ViewModels.Common;
+@model PagedResult<CncIndustrial.ViewModels.Catalog.Employee.EmployeeVm>
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*@section style{
+    img{
+    width: 90%;
+    /* border: 5px solid #fff; */
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    object-fit: cover;
+    }
+}*@
+<div class="container-fluid">
+    <h2 class="mt-4" style="padding:30px 0px;color: #EF5924;text-transform:uppercase">Danh Sách Nhân Viên</h2>
+    <div class="card mb-12">
+        <div class="card-header">
+
+            <div class="row">
+                <form class="col-lg-9" asp-action="Index" method="get">
+
+
+                    <div class="input-group">
+                        <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" placeholder="Nhập tên dự án">
+                        <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="window.location.href='/Employee/Index'"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+
+                </form>
+                <div class="col-lg-3">
+                    <a style="float:right" class="btn btn-success" asp-action="Create" asp-controller="Employee"><i class="fa-solid fa-user-plus"></i></a>
+                </div>
+
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                @if (ViewBag.SuccessMsg != null)
+                {
+                    <div id="msgAlert" class="alert alert-success" role="alert">
+                        @ViewBag.SuccessMsg
+                    </div>
+                }
+            </div>
+            <table id="datatablesSimple" class=" table table-striped table-hover table-bordered align-middle">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Họ Tên
+                        </th>
+
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Ảnh
+                        </th>
+                        <th>
+                            Vị Trí
+                        </th>
+                        <th>Chức Năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                <img src="@(Configuration["BaseAddress"] + item.ImagePath)" asp-append-version="true" height="170" width="200"
+                                     style="display:block;margin-left:auto;margin-right:auto;object-fit:cover" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Position)
+                            </td>
+
+
+                            <td>
+                                <a style="text-decoration:none;padding:5px;font-size:20px" href="/Employee/Edit/@item.Id" class="item itemdelete" id=@item.Id data-toggle="tooltip" data-placement="top" title="Sửa">
+                                    <i class="fa-solid fa-pen-nib"></i>
+                                </a>
+                                <a style="text-decoration:none;padding:5px;font-size:20px" href="/Employee/Details/@item.Id" class="item itemdelete" id=@item.Id data-toggle="tooltip" data-placement="top" title="Sửa">
+                                    <i style="color:#d35400" class=" fa-solid fa-eye"></i>
+                                </a>
+                                <a style="text-decoration: none;padding: 5px;font-size: 20px" href="Employee/Delete/@item.Id" class="item itemdelete" id=@item.Id data-toggle="tooltip" data-placement="top" title="Xóa">
+                                    <i style="color:red" class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

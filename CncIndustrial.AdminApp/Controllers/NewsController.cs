@@ -73,5 +73,83 @@ namespace CncIndustrial.AdminApp.Controllers
             ModelState.AddModelError("", "Thêm tin tức thất bại");
             return View(request);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
+
+            var post = await _newsApiClient.GetById(id, languageId);
+            var editVm = new NewsUpdateRequest()
+            {
+                Id = post.Id,
+               CreateDate=(DateTime)post.NgayTao,
+                Title = post.Title,
+                
+            };
+            return View(editVm);
+        }
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Edit([FromForm] NewsUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(request);
+
+            var result = await _newsApiClient.UpdatePost(request);
+            if (result)
+            {
+                TempData["result"] = "Cập nhật tin tức thành công";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Cập nhật tin tức thất bại");
+            return View(request);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
+            var result = await _newsApiClient.GetById(id,languageId);
+            var editVm = new NewsVm()
+            {
+                Id = result.Id,
+                NgayTao = (DateTime)result.NgayTao,
+                Title = result.Title,
+                DescriShort = result.DescriShort,
+                SeoTitle=result.SeoTitle,
+                SeoAlias=result.SeoAlias
+
+            };
+            return View(editVm);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            return View(new NewsDeleteRequest()
+            {
+                Id = id
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(NewsDeleteRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var result = await _newsApiClient.DeleteNews(request.Id);
+            if (result)
+            {
+                TempData["result"] = "Xóa tin tức thành công";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Xóa không thành công");
+            return View(request);
+        }
+
     }
 }

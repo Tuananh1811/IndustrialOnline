@@ -20,7 +20,9 @@ namespace CNCIndustrial.Data.Entities
 
         public List<AboutUsTranslation> AboutUsTranslations { get; set; }
 
-      
-        
+        public List<EmployeeTranslation> EmployeeTranslations { get; set; }
+
+
+
     }
 }

@@ -7,7 +7,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container-fluid">
-    <h2 class="mt-4" style="padding:30px 0px;color: #EF5924;text-transform:uppercase">Danh Sách Dự Án</h2>
+    <h2 class="mt-4" style="padding:30px 0px;color: #EF5924;text-transform:uppercase">Danh Sách Tin Tức</h2>
 
     <div class="card mb-12">
         <div class="card-header">
@@ -19,12 +19,12 @@
                     <div class="input-group">
                         <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" placeholder="Nhập tên dự án">
                         <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        <button class="btn btn-outline-secondary" type="button" onclick="window.location.href='/Image/Index'"><i class="fa-solid fa-trash"></i></button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="window.location.href='/Employee/Index'"><i class="fa-solid fa-trash"></i></button>
                     </div>
 
                 </form>
                 <div class="col-lg-3">
-                    <a style="float:right" class="btn btn-success" asp-action="Create" asp-controller="Image"><i class="fa-solid fa-user-plus"></i></a>
+                    <a style="float:right" class="btn btn-success" asp-action="Create" asp-controller="Employee"><i class="fa-solid fa-user-plus"></i></a>
                 </div>
 
             </div>
@@ -48,11 +48,7 @@
                         <th>
                             Tiêu đề
                         </th>
-                        <th>
-                            Mô tả
-                        </th>
-
-
+                       
                         <th>
                             Ngày tạo
                         </th>
@@ -73,19 +69,21 @@
                                 @Html.DisplayFor(modelItem => item.Title)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.DescriShort)
-                            </td>
-
-                            <td>
                                 @Html.DisplayFor(modelItem => item.NgayTao)
                             </td>
                             <td>
                                 <img src="@(Configuration["BaseAddress"] + item.HinhAnhMinhHoa)" asp-append-version="true" width="150" />
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                <a style="text-decoration:none;padding:5px;font-size:20px" href="/News/Edit/@item.Id" class="item itemdelete" id=@item.Id data-toggle="tooltip" data-placement="top" title="Sửa">
+                                    <i class="fa-solid fa-pen-nib"></i>
+                                </a>
+                                <a style="text-decoration:none;padding:5px;font-size:20px" href="/News/Details/@item.Id" class="item itemdelete" id=@item.Id data-toggle="tooltip" data-placement="top" title="Sửa">
+                                    <i style="color:#d35400" class=" fa-solid fa-eye"></i>
+                                </a>
+                                <a style="text-decoration: none;padding: 5px;font-size: 20px" href="News/Delete/@item.Id" class="item itemdelete" id=@item.Id data-toggle="tooltip" data-placement="top" title="Xóa">
+                                    <i style="color:red" class="fa-solid fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                     }

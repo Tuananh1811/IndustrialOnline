@@ -51,9 +51,6 @@ namespace CNCIndustrial.Data.Migrations
                     b.Property<int>("AboutUsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Founding")
                         .HasColumnType("nvarchar(max)");
 
@@ -83,8 +80,6 @@ namespace CNCIndustrial.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AboutUsId");
-
-                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("LanguageId");
 
@@ -158,7 +153,7 @@ namespace CNCIndustrial.Data.Migrations
                         new
                         {
                             Id = new Guid("583b332a-9d8b-4b9c-b502-1f48d02b9ec7"),
-                            ConcurrencyStamp = "a2b5d691-e85c-4df0-8384-e55f9e556fb1",
+                            ConcurrencyStamp = "f71c56f7-96c0-452a-b5bb-b199300bb83b",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -243,7 +238,7 @@ namespace CNCIndustrial.Data.Migrations
                         {
                             Id = new Guid("e23c9b99-51d5-4f0e-a15b-9b5d6b4c9507"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "182b3b95-ca7b-43d9-87e4-aa4f5ba2c990",
+                            ConcurrencyStamp = "ae338552-acd4-486b-bb03-0ff80902577a",
                             Dob = new DateTime(2000, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tanhdo18@gmail.com",
                             EmailConfirmed = true,
@@ -251,7 +246,7 @@ namespace CNCIndustrial.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tanhdo18@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMCDBl+OdF/i2xKpkBVXtUSEG2pcgI6DjoeU39ibmatmrjOzkQQRZ++E2TlmSwxCfA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECMU6AJjQF4KcvL2aWL9lAuFhaz+kYszG7Jh9Qh+FYV/yF8z4hcCMRdET0sL/O5B+A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -628,36 +623,71 @@ namespace CNCIndustrial.Data.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("CNCIndustrial.Data.Entities.Employee", b =>
+            modelBuilder.Entity("CNCIndustrial.Data.Entities.EmployeeTranslation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid?>("AppUserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Avatar")
+                    b.Property<string>("Introduce")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("LanguageId")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)")
+                        .HasMaxLength(10)
+                        .IsUnicode(false);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<string>("Position")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("EmployeeId");
 
-                    b.ToTable("Employee");
+                    b.HasIndex("LanguageId");
+
+                    b.ToTable("EmployeeTranslations");
+                });
+
+            modelBuilder.Entity("CNCIndustrial.Data.Entities.EmployeeUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(11)")
+                        .HasMaxLength(11);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("CNCIndustrial.Data.Entities.Language", b =>
@@ -719,9 +749,6 @@ namespace CNCIndustrial.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DescriShort")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("HinhAnhMinhHoa")
                         .HasColumnType("nvarchar(max)");
 
@@ -730,9 +757,6 @@ namespace CNCIndustrial.Data.Migrations
 
                     b.Property<DateTime?>("NgayTao")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("TenDangNhap")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -753,6 +777,9 @@ namespace CNCIndustrial.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescriShort")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LanguageId")
@@ -881,7 +908,7 @@ namespace CNCIndustrial.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2022, 12, 1, 16, 42, 34, 506, DateTimeKind.Local).AddTicks(2700),
+                            DateCreated = new DateTime(2022, 12, 3, 13, 54, 45, 508, DateTimeKind.Local).AddTicks(7357),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
@@ -1137,12 +1164,6 @@ namespace CNCIndustrial.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CNCIndustrial.Data.Entities.Employee", "Employees")
-                        .WithMany("AboutUsTranslations")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CNCIndustrial.Data.Entities.Language", "Language")
                         .WithMany("AboutUsTranslations")
                         .HasForeignKey("LanguageId")
@@ -1174,11 +1195,19 @@ namespace CNCIndustrial.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CNCIndustrial.Data.Entities.Employee", b =>
+            modelBuilder.Entity("CNCIndustrial.Data.Entities.EmployeeTranslation", b =>
                 {
-                    b.HasOne("CNCIndustrial.Data.Entities.AppUser", "AppUser")
-                        .WithMany("Employees")
-                        .HasForeignKey("AppUserId");
+                    b.HasOne("CNCIndustrial.Data.Entities.EmployeeUser", "Employee")
+                        .WithMany("EmployeeTranslations")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CNCIndustrial.Data.Entities.Language", "Languages")
+                        .WithMany("EmployeeTranslations")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CNCIndustrial.Data.Entities.NewsTranslation", b =>

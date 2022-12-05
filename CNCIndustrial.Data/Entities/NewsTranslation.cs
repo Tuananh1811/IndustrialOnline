@@ -10,6 +10,8 @@ namespace CNCIndustrial.Data.Entities
 
         public int NewsTableId { set; get; }
 
+        public string DescriShort { get; set; }
+
         public string LanguageId { set; get; }
 
         public string Title { set; get; }

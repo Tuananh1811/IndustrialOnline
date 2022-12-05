@@ -1,0 +1,86 @@
+﻿@model CncIndustrial.ViewModels.Catalog.News.NewsUpdateRequest
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Js{
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#txt_content'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+       
+
+    </script>
+}
+<div style="width:98%; margin:0 auto;">
+    <h1 class="mt-4">Cập nhật tin tức</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Cập nhật tin tức</li>
+    </ol>
+</div>
+<div class="row" style="width: 98%;padding:0px; margin: 0px auto;">
+    <div class="row" style="width: 100%; padding: 0px; margin: 0px;">
+        <form asp-action="Edit" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input  asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescriShort" class="control-label"></label>
+                <textarea asp-for="DescriShort" cols="10" class="form-control" ></textarea>
+                <span asp-validation-for="DescriShort" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <textarea id="txt_content" asp-for="Content" class="form-control"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SeoDescription" class="control-label"></label>
+                <input asp-for="SeoDescription" class="form-control" />
+                <span asp-validation-for="SeoDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SeoTitle" class="control-label"></label>
+                <input asp-for="SeoTitle" class="form-control" />
+                <span asp-validation-for="SeoTitle" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SeoAlias" class="control-label"></label>
+                <input asp-for="SeoAlias" class="form-control" />
+                <span asp-validation-for="SeoAlias" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HinhAnhMinhHoa" class="control-label"></label>
+                <input asp-for="HinhAnhMinhHoa" type="file" class="form-control" />
+                <span asp-validation-for="HinhAnhMinhHoa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

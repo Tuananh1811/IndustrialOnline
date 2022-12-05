@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace CncIndustrial.ViewModels.Catalog.News
 {
    public class NewsCreateRequest
     {
-
+        [Required(ErrorMessage = "Bạn phải nhập tiêu đề tin tức")]
         public string Title { get; set; }
 
         public string DescriShort { get; set; }

@@ -1,0 +1,376 @@
+.slick {
+    background-color: #fff;
+    /* margin-top: 30px !important; */
+}
+
+
+/* .slick-dots {
+    display: none !important;
+} */
+
+.block-partner {
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+.partner-title {
+    font-size: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 50px;
+}
+
+.partner-title span {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.category_title {
+    margin-left: 80px;
+    font-size: 18px;
+    font-weight: 500;
+    border-left: 5px solid var(--primary-color);
+    padding-left: 5px;
+    text-transform: uppercase;
+}
+
+.slick-partner {
+    width: 100% !important;
+    /* margin: 20px auto !important; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-fluid-slick {
+    width: 98% !important;
+    margin: 0 auto !important;
+}
+
+.block-slick-partner {
+    box-shadow: 0px 10px 8px -5px #7f8fa6 !important;
+}
+
+.slick-partner .block-slick-partner:hover {
+    box-shadow: 0px 10px 8px -5px #7f8fa6;
+    cursor: pointer;
+}
+
+.partner-img-slick {
+    /* margin: 5px auto !important; */
+    text-align: center !important;
+    display: block !important;
+    opacity: .8;
+}
+
+.product-img-slick:hover {
+    opacity: 1;
+}
+
+.partner-img-slick-style {
+    margin: 0 auto;
+    height: 100px;
+}
+
+.product-name-slick a:hover {
+    color: var(--primary-color);
+}
+
+.slick-new {
+    width: 100% !important;
+    height: auto;
+    margin: 0 auto !important;
+}
+
+.slick-new-array {
+    width: 100%;
+    height: auto;
+}
+
+.slick-new-item {
+    padding: 20px !important;
+    height: auto;
+}
+
+
+/* .slick-new-item :hover {
+    box-shadow: 4px 5px 6px -3px #F2916D;
+} */
+
+.new-img-slick {
+    height: 240px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.new-img-slick img:hover {
+    transform: scale(1.1);
+    transition: all .5s;
+}
+
+
+/* kết thức slick tin tức */
+
+
+/* Slider */
+
+.slick-loading .slick-list {
+    background: #fff url('./ajax-loader.gif') center center no-repeat;
+}
+
+
+/* Icons */
+
+@font-face {
+    font-family: 'slick';
+    font-weight: normal;
+    font-style: normal;
+    src: url('./fonts/slick.eot');
+    src: url('./fonts/slick.eot?#iefix') format('embedded-opentype'), url('./fonts/slick.woff') format('woff'), url('./fonts/slick.ttf') format('truetype'), url('./fonts/slick.svg#slick') format('svg');
+}
+
+
+/* Arrows */
+
+.slick-prev,
+.slick-next {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 58%;
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+    color: transparent;
+    outline: none;
+    background: transparent;
+}
+
+.slick-prev:hover:before,
+.slick-prev:focus:before,
+.slick-next:hover:before,
+.slick-next:focus:before {
+    opacity: 1;
+}
+
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before {
+    opacity: .25;
+}
+
+.slick-next:before,
+.slick-prev:before {
+    font-family: slick;
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: #fff!important;
+    background-color: var(--primary-color);
+    -webkit-font-smoothing: antialiased;
+    /* border: 3px solid black; */
+    border-radius: 5px;
+    padding: 10px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev {
+    left: 0px !important;
+    text-align: left !important;
+}
+
+
+/* [dir='rtl'] .slick-prev {
+    right: -25px;
+    left: auto;
+} */
+
+.slick-prev:before {
+    content: '←';
+}
+
+[dir='rtl'] .slick-prev:before {
+    content: '→';
+}
+
+.slick-next {
+    right: 0px !important;
+    text-align: right !important;
+}
+
+
+/* [dir='rtl'] .slick-next {
+    right: auto;
+    left: -25px;
+} */
+
+.slick-next:before {
+    content: '→';
+}
+
+[dir='rtl'] .slick-next:before {
+    content: '←';
+}
+
+
+/* Dots */
+
+.slick-dotted.slick-slider {
+    margin-bottom: 30px;
+}
+
+.slick-dots {
+    position: absolute;
+    bottom: -25px;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
+
+.slick-dots li {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.slick-dots li button {
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    cursor: pointer;
+    color: transparent;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+
+.slick-dots li button:hover,
+.slick-dots li button:focus {
+    outline: none;
+}
+
+.slick-dots li button:hover:before,
+.slick-dots li button:focus:before {
+    opacity: 1;
+}
+
+.slick-dots li button:before {
+    font-family: 'slick';
+    font-size: 6px;
+    line-height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    content: '•';
+    text-align: center;
+    opacity: .25;
+    color: black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-dots li.slick-active button:before {
+    opacity: .75;
+    color: black;
+}
+
+.slick-list {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0 !important;
+    padding: 0;
+    width: 86% !important;
+    margin: 0 auto !important;
+}
+
+
+/* intro */
+
+.list-user {
+    width: 100%;
+}
+
+.list-user-item-img {
+    width: 100%;
+    height: 280px;
+    /* margin-bottom: 20px; */
+    overflow: hidden;
+}
+
+.list-user-item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1.62;
+}
+
+.list-user-item-text {
+    color: #fff;
+    background-color: var(--about-color);
+    padding: 20px 20px;
+    height: 400px;
+}
+
+.list-user-item-text h5 {
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.list-user-item-text p {
+    overflow-y: auto;
+    color: #fff !important;
+    text-align: justify;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 575px) {
+    .category_title {
+        margin-left: 31px;
+    }
+    .slick-list {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        margin: 0 !important;
+        padding: 0;
+        width: 80% !important;
+        margin: 0 auto !important;
+    }
+    .slick-prev {
+        left: 0px !important;
+        text-align: left !important;
+        padding: 0px !important;
+    }
+    .slick-next {
+        padding: 0px !important;
+        right: -10px !important;
+        text-align: right !important;
+    }
+}

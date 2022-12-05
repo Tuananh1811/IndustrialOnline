@@ -57,8 +57,9 @@ namespace CncIndustrial.AdminApp.Service
             }
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Title) ? "" : request.Title.ToString()), "title");
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Content) ? "" : request.Content.ToString()), "content");
-            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.DescriShort) ? "" : request.DescriShort.ToString()), "descripShort"); 
-            
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.DescriShort) ? "" : request.DescriShort.ToString()), "descriShort");
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.SeoDescription) ? "" : request.SeoDescription.ToString()), "seoDescription");
+
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.SeoTitle) ? "" : request.SeoTitle.ToString()), "seoTitle");
             requestContent.Add(new StringContent(string.IsNullOrEmpty(request.SeoAlias) ? "" : request.SeoAlias.ToString()), "seoAlias");
             requestContent.Add(new StringContent(languageId), "languageId");
@@ -68,14 +69,16 @@ namespace CncIndustrial.AdminApp.Service
 
         }
 
-        public Task<bool> DeleteNews(int id)
+        public async Task<bool> DeleteNews(int id)
         {
-            throw new NotImplementedException();
+            return await Delete($"/api/news/" + id);
         }
 
-        public Task<NewsVm> GetById(int id, string languageId)
+        public async Task<NewsVm> GetById(int id, string languageId)
         {
-            throw new NotImplementedException();
+            var data = await GetAsync<NewsVm>($"/api/news/{id}/{languageId}");
+
+            return data;
         }
 
         public Task<List<NewsVm>> GetFeaturedNews(string languageId, int take)
@@ -98,9 +101,42 @@ namespace CncIndustrial.AdminApp.Service
             return data;
         }
 
-        public Task<bool> UpdatePost(NewsUpdateRequest request)
+        public async Task<bool> UpdatePost(NewsUpdateRequest request)
         {
-            throw new NotImplementedException();
+            var sessions = _httpContextAccessor
+               .HttpContext
+               .Session
+               .GetString(SystemConstants.AppSettings.Token);
+
+            var languageId = _httpContextAccessor.HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
+
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var requestContent = new MultipartFormDataContent();
+
+            if (request.HinhAnhMinhHoa != null)
+            {
+                byte[] data;
+                using (var br = new BinaryReader(request.HinhAnhMinhHoa.OpenReadStream()))
+                {
+                    data = br.ReadBytes((int)request.HinhAnhMinhHoa.OpenReadStream().Length);
+                }
+                ByteArrayContent bytes = new ByteArrayContent(data);
+                requestContent.Add(bytes, "HinhAnhMinhHoa", request.HinhAnhMinhHoa.FileName);
+            }
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Title) ? "" : request.Title.ToString()), "title");
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.Content) ? "" : request.Content.ToString()), "content");
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.DescriShort) ? "" : request.DescriShort.ToString()), "descriShort");
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.SeoDescription) ? "" : request.SeoDescription.ToString()), "seoDescription");
+
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.SeoTitle) ? "" : request.SeoTitle.ToString()), "seoTitle");
+            requestContent.Add(new StringContent(string.IsNullOrEmpty(request.SeoAlias) ? "" : request.SeoAlias.ToString()), "seoAlias");
+            requestContent.Add(new StringContent(languageId), "languageId");
+
+            var response = await client.PutAsync($"/api/news/" + request.Id, requestContent);
+            return response.IsSuccessStatusCode;
         }
     }
 }

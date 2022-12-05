@@ -76,7 +76,7 @@ namespace CNCIndustrial.Application.Catalog.Project
                         LanguageId = request.LanguageId,
 
 
-                    }); ;
+                    }); 
                 }
                 else
                 {
