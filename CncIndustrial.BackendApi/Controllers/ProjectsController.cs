@@ -91,9 +91,9 @@ namespace CncIndustrial.BackendApi.Controllers
         }
 
         [HttpDelete("{projectId}")]
-        public async Task<IActionResult> Delete(int productId)
+        public async Task<IActionResult> Delete(int projectId)
         {
-            var affectedResult = await _projectService.Delete(productId);
+            var affectedResult = await _projectService.Delete(projectId);
             if (affectedResult == 0)
                 return BadRequest();
             return Ok();

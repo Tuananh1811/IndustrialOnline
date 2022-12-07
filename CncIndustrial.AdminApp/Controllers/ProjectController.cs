@@ -1,4 +1,5 @@
-﻿using CncIndustrial.AdminApp.Service;
+﻿
+using CncIndustrial.ApiIntegration;
 using CncIndustrial.Utilities.Constants;
 using CncIndustrial.ViewModels.Catalog.Project;
 using CncIndustrial.ViewModels.Common;
@@ -116,11 +117,17 @@ namespace CncIndustrial.AdminApp.Controllers
             {
                 Id = product.Id,
                 Description = product.Description,
-               
+               LanguageId=product.LanguageId,
                 Name = product.Name,
+                Area=product.Area,
                 SeoAlias = product.SeoAlias,
                 SeoDescription = product.SeoDescription,
                 SeoTitle = product.SeoTitle,
+               Location=product.Location,
+               TotalArea=product.TotalArea,
+               VacantArea=product.VacantArea,
+               iframeMap=product.iframe
+               
                 
             };
             return View(editVm);

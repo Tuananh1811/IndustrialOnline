@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Domain", "2.Domain", "{F8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{F6EFE601-05C2-456B-8140-B1E19CA27B07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CncIndustrial.ApiIntegration", "CncIndustrial.ApiIntegration\CncIndustrial.ApiIntegration.csproj", "{E7829AE0-F273-4969-8032-F557D9AE27C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{FABBAF73-C304-4F45-8188-26A1D8ABE6FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FABBAF73-C304-4F45-8188-26A1D8ABE6FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FABBAF73-C304-4F45-8188-26A1D8ABE6FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7829AE0-F273-4969-8032-F557D9AE27C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7829AE0-F273-4969-8032-F557D9AE27C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7829AE0-F273-4969-8032-F557D9AE27C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7829AE0-F273-4969-8032-F557D9AE27C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{A0E6984D-B281-406F-AD6B-B474EE8FDA39} = {02DB36FF-472F-48AA-A3F0-06B6DC0DA71E}
 		{2808FEDC-4F84-4A3E-89EC-DED8D76E3709} = {F6EFE601-05C2-456B-8140-B1E19CA27B07}
 		{FABBAF73-C304-4F45-8188-26A1D8ABE6FC} = {F6EFE601-05C2-456B-8140-B1E19CA27B07}
+		{E7829AE0-F273-4969-8032-F557D9AE27C0} = {F6EFE601-05C2-456B-8140-B1E19CA27B07}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED0BAEA4-8A34-4036-B4E2-0913A47F90B9}

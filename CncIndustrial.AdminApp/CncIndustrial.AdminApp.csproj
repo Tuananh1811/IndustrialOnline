@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CncIndustrial.ApiIntegration\CncIndustrial.ApiIntegration.csproj" />
     <ProjectReference Include="..\CncIndustrial.Utilities\CncIndustrial.Utilities.csproj" />
     <ProjectReference Include="..\CncIndustrial.ViewModels\CncIndustrial.ViewModels.csproj" />
   </ItemGroup>

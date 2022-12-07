@@ -17,7 +17,7 @@ namespace CncIndustrial.Utilities.Constants
 
         public class ProductSettings
         {
-            public const int NumberOfFeaturedProducts = 4;
+            public const int NumberOfFeaturedProducts = 6;
             public const int NumberOfLatestProducts = 6;
         }
 

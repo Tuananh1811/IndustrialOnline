@@ -153,6 +153,10 @@
     <value>News&amp;Research</value>
     <comment>layout</comment>
   </data>
+  <data name="productUrl" xml:space="preserve">
+    <value>projects</value>
+    <comment>/Home/Index</comment>
+  </data>
   <data name="Tiếng Việt" xml:space="preserve">
     <value>Vietnamese</value>
     <comment>layout</comment>

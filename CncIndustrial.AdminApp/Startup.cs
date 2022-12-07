@@ -1,4 +1,5 @@
-using CncIndustrial.AdminApp.Service;
+
+using CncIndustrial.ApiIntegration;
 using CncIndustrial.ViewModels.System.User;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
