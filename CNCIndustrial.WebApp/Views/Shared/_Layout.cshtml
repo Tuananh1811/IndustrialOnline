@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     var culture = CultureInfo.CurrentCulture.Name;
 }
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
@@ -13,7 +12,8 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="/css/base.css">
 
-    <link rel="stylesheet" href="/css/header.css">
+    <link href="~/css/header.css" rel="stylesheet" />
+   
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/slick.css">
     <link rel="stylesheet" href="/css/banner.css">
@@ -38,8 +38,8 @@
 
         <!-- kết thúc header-mobile -->
         <!-- banner -->
-
-        @Html.Partial("_header")
+        @*@Html.Partial("_header")*@
+        @await Component.InvokeAsync("Header")
 
         @RenderBody()
 

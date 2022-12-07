@@ -121,6 +121,10 @@
     <value>Về Chúng Tôi</value>
     <comment>layout</comment>
   </data>
+  <data name="categoryUrl" xml:space="preserve">
+    <value>danh-muc</value>
+    <comment>header</comment>
+  </data>
   <data name="China" xml:space="preserve">
     <value>Trung Quốc</value>
     <comment>layout</comment>
