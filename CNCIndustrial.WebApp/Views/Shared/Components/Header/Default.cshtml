@@ -1,0 +1,229 @@
+﻿@model List<CncIndustrial.ViewModels.Catalog.Categories.CategoryVm>
+@inject LazZiya.ExpressLocalization.ISharedCultureLocalizer _loc;
+@{
+    var culture = CultureInfo.CurrentCulture.Name;
+}
+
+
+<div class="header-desktop ">
+    <div class="header-top width-90">
+        <div class="block-social ">
+
+            <ul class="row social container-fluid no-margin no-padding">
+                <div class="col-lg-9 no-padding">
+
+                    <a class="white-color" href="mailto:tanhdo18@gmail.com"> <i class="fa-solid fa-phone"></i>(+84) 81.580.436</a>
+                    <a class="white-color" href="mailto:tanhdo18@gmail.com"> <i class="color-w fa-solid fa-envelope"></i>tanhdo18@gmail.com</a>
+                </div>
+                <div class="col-lg-3 no-padding">
+
+
+                    <div class="multi-language text-right ">
+                        <span class="cursor" localize-content> Tiếng Việt <i class="fa-solid fa-caret-down"></i></span>
+                        <div class="dropdown-language">
+                            <p>
+                                <a href="vi/Home/SetCultureCookie?cltr=vi&returnUrl=/vi" localize-content><img src="/img/language/vi.png" alt=""><span>Tiếng Việt</span></a>
+
+                            </p>
+                            <p>
+                                <a href="en/Home/SetCultureCookie?cltr=en&returnUrl=/en" localize-content><img src="/img/language/en.png" alt=""><span>English</span></a>
+                            </p>
+                            <p>
+                                <a href="">
+                                    <img src="/img/language/china.png" alt=""><span>
+                                        中文(中国)
+                                    </span>
+                                </a>
+                            </p>
+                            <p>
+                                <a href=""><img src="/img/language/japan.png" alt=""><span>日本語</span></a>
+                            </p>
+                            <p>
+                                <a href=""><img src="/img/language/korean.png" alt=""><span> 한국어</span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- <li class=""><i class="color-w fa-solid fa-phone"></i> <a href="">(+84) 24626.00016</a></li> -->
+                <!-- <li class="">
+                    <i class="color-w fa-solid fa-envelope"></i>
+                    <span>support@cnctech.com</span>
+                </li> -->
+
+
+
+
+
+            </ul>
+
+        </div>
+    </div>
+    <div class="header-main">
+        <div class="width-90 ">
+            <nav class="row no-padding no-margin">
+                <div class="col-lg-3 logo no-padding">
+                    <a class="width100 navbar-brand" href="./home.html"><img class="width100" src="./img/logo/LOGO-png.png" alt=""></a>
+                </div>
+
+                <div class=" col-lg-9 navbar-main">
+                    <ul class="navbar-menu">
+                        <li class="navbar-menu-item"><a href="./home.html" class="active navbar-menu-item-link">Home</a></li>
+                        <li class="navbar-menu-item">
+                            <a href="./intro.html" class=" navbar-menu-item-link">About Us</a>
+                        </li>
+                        <li class="navbar-menu-item">
+                            <a href="./project.html" class="navbar-menu-item-link">Location <i class="fa-solid fa-chevron-down"></i></a>
+                            <ul class="dropdown_menu">
+                                <li class="dropdown-menu-item"><a href="" class="dropdown-menu-item-link"><i class="fa-solid fa-location-dot"></i>Vĩnh Phúc</a></li>
+                                <li class="dropdown-menu-item"><a href="" class="dropdown-menu-item-link"><i class="fa-solid fa-location-dot"></i>Hà Nam</a></li>
+                                <li class="dropdown-menu-item"><a href="" class="dropdown-menu-item-link"><i class="fa-solid fa-location-dot"></i>Bắc Ninh</a></li>
+                                <li class="dropdown-menu-item"><a href="" class="dropdown-menu-item-link"><i class="fa-solid fa-location-dot"></i>Hồ Chí Minh</a></li>
+                            </ul>
+                        </li>
+                        <li class="navbar-menu-item">
+                            <a href="./news.html" class="navbar-menu-item-link">News & Research</a>
+                        </li>
+                        <li class="navbar-menu-item">
+                            <a href="./contact.html" class=" navbar-menu-item-link">Contact</a>
+                        </li>
+                    </ul>
+                    <!-- <div class="block-search">
+
+                        <a class="search-link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+
+
+                        <div class="dropdown-search">
+                            <b>Search</b>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Search by topic or keyword" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i
+                                        class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
+                        </div>
+
+                    </div> -->
+
+                </div>
+            </nav>
+        </div>
+    </div>
+
+</div>
+<!-- header- mobile -->
+<div class="header-mobile">
+
+    <div class="row  no-padding aline-item container">
+        <div id="icon" class="col-2 menu-mobile-toggle">
+            <a>
+                <i class="fa-solid fa-bars"></i>
+            </a>
+
+        </div>
+
+        <div class="col-8 logo-mobile">
+            <a href="./index.html"><img src="/img/logo/LOGO-png.png" alt=""></a>
+        </div>
+        <div class="col-2 no-padding">
+
+            <div class="multi-language text-right ">
+                <span class="cursor"> <img src="/img/language/en.png" alt=""> <i class="fa-solid fa-caret-down"></i></span>
+                <div class="dropdown-language">
+                    <p>
+                        <a href="#"><img src="/img/language/vi.png" alt=""><span>Tiếng Việt</span></a>
+                    </p>
+                    <p>
+                        <a href=""><img src="/img/language/en.png" alt=""><span>English</span></a>
+                    </p>
+                    <p>
+                        <a href="">
+                            <img src="/img/language/china.png" alt=""><span>
+                                中文(中国)
+                            </span>
+                        </a>
+                    </p>
+                    <p>
+                        <a href=""><img src="/img/language/japan.png" alt=""><span>日本語</span></a>
+                    </p>
+                    <p>
+                        <a href=""><img src="/img/language/korean.png" alt=""><span> 한국어</span></a>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="menuCap1" class="nav-mobile">
+        <ul class="nav-mobile-level-1">
+            <li class="nav-mobile-level-1-item">
+                <a href="" class="nav-mobile-level-1-item-link">
+                    Home
+                </a>
+            </li>
+            <li class="nav-mobile-level-1-item">
+                <a href="" class="nav-mobile-level-1-item-link">
+                    About Us
+                </a>
+            </li>
+            <li class="nav-mobile-level-1-item">
+                <a href="" class="nav-mobile-level-1-item-link">
+                    Location   <p><i class="fa-solid fa-sort-down"></i></p>
+                </a>
+                <ul id="menuCap2" class="nav-mobile-level-2">
+                    <li class="nav-mobile-level-2-item">
+                        <a class="nav-mobile-level-2-item-link" href="">Vinh Phuc  <p><i class="fa-solid fa-sort-down"></i></p></a>
+                        <ul class="nav-mobile-level-3">
+                            <li class="nav-mobile-level-3-item">
+                                <a class="nav-mobile-level-3-item-link" href="">Ba Thien</a>
+                            </li>
+                            <li class="nav-mobile-level-3-item">
+                                <a class="nav-mobile-level-3-item-link" href="">Binh Xuyen</a>
+                            </li>
+                            <li class="nav-mobile-level-3-item">
+                                <a class="nav-mobile-level-3-item-link" href="">Khai Quang</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-mobile-level-2-item">
+                        <a class="nav-mobile-level-2-item-link" href="">Ha Nam</a>
+                        <ul class="nav-mobile-level-3">
+                            <li class="nav-mobile-level-3-item">
+                                <a class="nav-mobile-level-3-item-link" href="">Ba Thien</a>
+                            </li>
+                            <li class="nav-mobile-level-3-item">
+                                <a class="nav-mobile-level-3-item-link" href="">Binh Xuyen</a>
+                            </li>
+                            <li class="nav-mobile-level-3-item">
+                                <a class="nav-mobile-level-3-item-link" href="">Khai Quang</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-mobile-level-2-item">
+                        <a class="nav-mobile-level-2-item-link" href="">Bac Ninh</a>
+                    </li>
+                    <li class="nav-mobile-level-2-item">
+                        <a class="nav-mobile-level-2-item-link" href="">Ho Chi Minh</a>
+                    </li>
+                </ul>
+
+
+
+            </li>
+
+            <li class="nav-mobile-level-1-item">
+                <a href="" class="nav-mobile-level-1-item-link">
+                    News
+                </a>
+
+            </li>
+            <li class="nav-mobile-level-1-item">
+                <a href="" class="nav-mobile-level-1-item-link">
+                    Contact Us
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
