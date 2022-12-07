@@ -85,6 +85,14 @@ namespace CNCIndustrial.Application.Catalog.Project
                         Name = SystemConstants.ProductConstants.NA,
                         Description = SystemConstants.ProductConstants.NA,
                         SeoAlias = SystemConstants.ProductConstants.NA,
+                        TotalArea = request.TotalArea,
+                        VacantArea = request.VacantArea,
+                        Area = request.Area,
+                        Location = request.Location,
+                        AccessibilityAirport = request.AccessibilityAirport,
+                        AccessibilityCenter = request.AccessibilityCenter,
+                        AccessibilityPort = request.AccessibilityPort,
+                        AccessibilityExpressway = request.AccessibilityExpressway,
                         LanguageId = language.Id
                     });
                 }
@@ -322,7 +330,7 @@ namespace CNCIndustrial.Application.Catalog.Project
                         join c in _context.Categories on pic.CategoryId equals c.Id into picc
                         from c in picc.DefaultIfEmpty()
                         where pt.LanguageId == languageId && (pi == null || pi.IsDefault == true)
-                        && p.IsFeatured == true
+                      
                         select new { p, pt, pic, pi };
 
             var data = await query.OrderByDescending(x => x.p.DateCreated).Take(take)
@@ -341,6 +349,9 @@ namespace CNCIndustrial.Application.Catalog.Project
                     SeoTitle = x.pt.SeoTitle,
                     Stock = x.p.Stock,
                     ViewCount = x.p.ViewCount,
+                    Location=x.pt.Location,
+                    TotalArea=x.pt.TotalArea,
+                    VacantArea=x.pt.VacantArea,
                     ThumbnailImage = x.pi.ImagePath
                 }).ToListAsync();
 
@@ -377,6 +388,9 @@ namespace CNCIndustrial.Application.Catalog.Project
                     SeoTitle = x.pt.SeoTitle,
                     Stock = x.p.Stock,
                     ViewCount = x.p.ViewCount,
+                    Location = x.pt.Location,
+                    TotalArea = x.pt.TotalArea,
+                    VacantArea = x.pt.VacantArea,
                     ThumbnailImage = x.pi.ImagePath
                     
                 }).ToListAsync();
@@ -409,7 +423,10 @@ namespace CNCIndustrial.Application.Catalog.Project
                 DateCreated = product.DateCreated,
                 Description = productTranslation != null ? productTranslation.Description : null,
                 LanguageId = productTranslation.LanguageId,
-              
+                TotalArea=productTranslation.TotalArea,
+                Location=productTranslation.Location,
+                VacantArea=productTranslation.VacantArea,
+                Area=productTranslation.Area,
                 Name = productTranslation != null ? productTranslation.Name : null,
                 OriginalPrice = product.OriginalPrice,
                 Price = product.Price,

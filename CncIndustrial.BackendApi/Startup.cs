@@ -27,6 +27,7 @@ using CncIndustrial.ViewModels.System.User;
 using FluentValidation;
 using CNCIndustrial.Application.Catalog.News;
 using CNCIndustrial.Application.Catalog.Employee;
+using CNCIndustrial.Application.Slides;
 
 namespace CncIndustrial.BackendApi
 {
@@ -62,7 +63,7 @@ namespace CncIndustrial.BackendApi
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
             services.AddTransient<ILanguageService, LanguageService>();
-            //services.AddTransient<ISlideService, SlideService>();
+            services.AddTransient<ISlideService, SlideService>();
             services.AddTransient<IManageNewsService, ManageNewsService>();
             services.AddTransient<IManageEmployeeService, ManageEmployeeService>();
 

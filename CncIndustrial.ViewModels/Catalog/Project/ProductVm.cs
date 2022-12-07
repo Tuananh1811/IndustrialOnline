@@ -18,11 +18,16 @@ namespace CncIndustrial.ViewModels.Catalog.Project
        
         public string SeoDescription { set; get; }
         public string SeoTitle { set; get; }
-
+        public string Area { get; set; }
+        public string VacantArea { set; get; }
+       
         public string SeoAlias { get; set; }
         public string LanguageId { set; get; }
         public string iframe { get; set; }
         public bool? IsFeatured { get; set; }
+        public string Location { get; set; }
+        public string TotalArea { get; set; }
+      
 
         public string ThumbnailImage { get; set; }
 

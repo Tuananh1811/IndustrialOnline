@@ -136,6 +136,13 @@ namespace CNCIndustrial.Data.Extensions
                 UserId = adminId
             });
 
+            modelBuilder.Entity<Slide>().HasData(
+              new Slide() { Id = 1, Name = "Image-1", Description = "Mô tả", SortOrder = 1, Url = "#", Image = "/img/banner/DJI_0766.jpg", Status = Status.Active },
+              new Slide() { Id = 2, Name = "Image-2", Description = "Mô tả", SortOrder = 2, Url = "#", Image = "/img/banner/DJI_0774.jpg", Status = Status.Active },
+              new Slide() { Id = 3, Name = "Image-3", Description = "Mô tả", SortOrder = 3, Url = "#", Image = "/img/banner/DJI_0777.jpg", Status = Status.Active }
+              
+              );
+
         }
     }
     

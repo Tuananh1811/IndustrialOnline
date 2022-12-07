@@ -28,10 +28,10 @@ namespace CNCIndustrial.Data.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Founding")
+                    b.Property<string>("ImageBanner")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Intro")
+                    b.Property<string>("ImageFly")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -153,7 +153,7 @@ namespace CNCIndustrial.Data.Migrations
                         new
                         {
                             Id = new Guid("583b332a-9d8b-4b9c-b502-1f48d02b9ec7"),
-                            ConcurrencyStamp = "f71c56f7-96c0-452a-b5bb-b199300bb83b",
+                            ConcurrencyStamp = "9c1a0bd7-4aa7-4661-a28a-266ee552a339",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -238,7 +238,7 @@ namespace CNCIndustrial.Data.Migrations
                         {
                             Id = new Guid("e23c9b99-51d5-4f0e-a15b-9b5d6b4c9507"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ae338552-acd4-486b-bb03-0ff80902577a",
+                            ConcurrencyStamp = "4be5b37d-72c0-4243-ab44-6a020a693385",
                             Dob = new DateTime(2000, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tanhdo18@gmail.com",
                             EmailConfirmed = true,
@@ -246,7 +246,7 @@ namespace CNCIndustrial.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tanhdo18@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAECMU6AJjQF4KcvL2aWL9lAuFhaz+kYszG7Jh9Qh+FYV/yF8z4hcCMRdET0sL/O5B+A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA+N7WkZzmgBtTtjLdGGJPKRYU1/vSbCUY2hewiaIexszDC8SRGYcmu13cbpd7MUOQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -908,7 +908,7 @@ namespace CNCIndustrial.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2022, 12, 3, 13, 54, 45, 508, DateTimeKind.Local).AddTicks(7357),
+                            DateCreated = new DateTime(2022, 12, 6, 9, 51, 13, 823, DateTimeKind.Local).AddTicks(8130),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
@@ -1046,6 +1046,38 @@ namespace CNCIndustrial.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Slides");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Mô tả",
+                            Image = "/img/banner/DJI_0766.jpg",
+                            Name = "Image-1",
+                            SortOrder = 1,
+                            Status = 1,
+                            Url = "#"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Mô tả",
+                            Image = "/img/banner/DJI_0774.jpg",
+                            Name = "Image-2",
+                            SortOrder = 2,
+                            Status = 1,
+                            Url = "#"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Mô tả",
+                            Image = "/img/banner/DJI_0777.jpg",
+                            Name = "Image-3",
+                            SortOrder = 3,
+                            Status = 1,
+                            Url = "#"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
