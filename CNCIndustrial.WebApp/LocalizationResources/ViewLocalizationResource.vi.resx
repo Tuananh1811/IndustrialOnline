@@ -121,6 +121,15 @@
     <value>Về Chúng Tôi</value>
     <comment>layout</comment>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Khả năng tiếp cận</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Diện tích</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
   <data name="categoryUrl" xml:space="preserve">
     <value>danh-muc</value>
     <comment>header</comment>
@@ -129,6 +138,12 @@
     <value>Trung Quốc</value>
     <comment>layout</comment>
   </data>
+  <data name="Commerce" xml:space="preserve">
+    <value>Thương Mại</value>
+  </data>
+  <data name="Company name" xml:space="preserve">
+    <value>Tên công ty</value>
+  </data>
   <data name="Consulting from the heart (trustconsulting), the success of investors is a value that we are proud of" xml:space="preserve">
     <value>Tư vấn từ trái tim (trustconsulting), sự thành công của nhà đầu tư là giá trị mà chúng tôi tự hào</value>
     <comment>layout</comment>
@@ -136,6 +151,13 @@
   <data name="Contact" xml:space="preserve">
     <value>Liên Hệ</value>
     <comment>layout</comment>
+  </data>
+  <data name="Contact now" xml:space="preserve">
+    <value>Liên hệ</value>
+  </data>
+  <data name="Contact us" xml:space="preserve">
+    <value>Liên hệ</value>
+    <comment>Project/Detail</comment>
   </data>
   <data name="Customers &amp; Partners" xml:space="preserve">
     <value>Khách hàng &amp; Đối tác</value>
@@ -165,9 +187,24 @@
     <value>Các yếu tố tạo nên chất lượng của chúng tôi</value>
     <comment>layout</comment>
   </data>
+  <data name="Full name" xml:space="preserve">
+    <value>Họ tên</value>
+  </data>
+  <data name="GET PROJECT DETAILS" xml:space="preserve">
+    <value>Lấy thông tin chi tiết dự án</value>
+  </data>
   <data name="GET PROJECT INFORMATION" xml:space="preserve">
     <value>NHẬN THÔNG TIN DỰ ÁN</value>
     <comment>layout</comment>
+  </data>
+  <data name="Hai Phong port" xml:space="preserve">
+    <value>Cảng Hải Phòng</value>
+  </data>
+  <data name="Hanoi - Ha Long Expressway" xml:space="preserve">
+    <value>Cao Tốc Hà Nội - Hạ Long</value>
+  </data>
+  <data name="Hanoi Center" xml:space="preserve">
+    <value>Trung tâm Hà Nội</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Trang Chủ</value>
@@ -176,6 +213,12 @@
   <data name="Hot industrial park" xml:space="preserve">
     <value>Khu công nghiệp nóng</value>
     <comment>layout</comment>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Thông tin</value>
+  </data>
+  <data name="Investor" xml:space="preserve">
+    <value>Chủ đầu tư</value>
   </data>
   <data name="Japan" xml:space="preserve">
     <value>Nhật Bản</value>
@@ -202,8 +245,14 @@
     <comment>layout</comment>
   </data>
   <data name="Location" xml:space="preserve">
-    <value>Địa Điểm</value>
+    <value>Địa điểm</value>
     <comment>layout</comment>
+  </data>
+  <data name="main function" xml:space="preserve">
+    <value>Chức Năng Chính</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Lời nhắn</value>
   </data>
   <data name="News &amp; Article" xml:space="preserve">
     <value>Tin tức &amp; Bài viết</value>
@@ -213,13 +262,32 @@
     <value>Tin Tức</value>
     <comment>layout</comment>
   </data>
+  <data name="Noi Bai Airport" xml:space="preserve">
+    <value>Sân bay Nội Bài</value>
+  </data>
   <data name="Our Capability Statement &lt;i class=&quot;fa-solid fa-arrow-right&quot;&gt;&lt;/i&gt;" xml:space="preserve">
     <value>Tuyên bố năng lực của chúng tôi</value>
     <comment>layout</comment>
   </data>
+  <data name="Phone number" xml:space="preserve">
+    <value>Số điện thoại</value>
+  </data>
+  <data name="Please complete the form below and our agent will respond to your query shortly Thank you!" xml:space="preserve">
+    <value>Vui lòng điền vào mẫu dưới đây và chúng tôi sẽ sớm trả lời câu hỏi của bạn. Cảm ơn bạn!</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Giá</value>
+    <comment>Project/Detail</comment>
+  </data>
   <data name="productUrl" xml:space="preserve">
     <value>du-an</value>
     <comment>/Home/Index</comment>
+  </data>
+  <data name="Project overview" xml:space="preserve">
+    <value>Tổng quan dự án</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Gửi</value>
   </data>
   <data name="Service chain for investors: Market research – Real estate – law – labor +++" xml:space="preserve">
     <value>Chuỗi dịch vụ dành cho nhà đầu tư: Nghiên cứu thị trường – Bất động sản – pháp luật – lao động +++</value>
@@ -229,9 +297,15 @@
     <value>Diện tích bán (m2)</value>
     <comment>layout</comment>
   </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Bản tóm tắt</value>
+  </data>
   <data name="Synchronous and Comprehensive" xml:space="preserve">
     <value>Đồng bộ và toàn diện</value>
     <comment>layout</comment>
+  </data>
+  <data name="Technical" xml:space="preserve">
+    <value>Kỹ Thuật</value>
   </data>
   <data name="Track record" xml:space="preserve">
     <value>Hồ sơ theo dõi</value>
@@ -250,7 +324,7 @@
     <comment>layout</comment>
   </data>
   <data name="view now" xml:space="preserve">
-    <value>xem ngay </value>
+    <value>xem chi tiết</value>
     <comment>layout</comment>
   </data>
   <data name="We can provide information about Vietnam Industrial Real Estate Market, Industrial property and real estate Investment Guide, support legal and law for foreigner" xml:space="preserve">

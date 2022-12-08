@@ -436,7 +436,19 @@ namespace CNCIndustrial.Application.Catalog.Project
                 Stock = product.Stock,
                 iframe=product.iframeMap,
                 ViewCount = product.ViewCount,
+                Technical=productTranslation.Technical,
+                Commerce=productTranslation.Commerce,
+                MainFunction1=productTranslation.MainFunction1,
+                MainFunction2 = productTranslation.MainFunction2,
+                MainFunction3 = productTranslation.MainFunction3,
+                MainFunction4 = productTranslation.MainFunction4,
+                Summary=productTranslation.Summary,
+                AccessibilityPort=productTranslation.AccessibilityPort,
+                AccessibilityExpressway=productTranslation.AccessibilityExpressway,
+                AccessibilityAirport=productTranslation.AccessibilityAirport,
+                AccessibilityCenter=productTranslation.AccessibilityCenter,
                 Categories = categories,
+
                 ThumbnailImage = image != null ? image.ImagePath : "no-image.jpg"
             };
             return productViewModel;

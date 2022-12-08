@@ -85,9 +85,11 @@ namespace CncIndustrial.ApiIntegration
 
         }
 
-        public Task<List<ProjectImageViewModel>> GetListImagesProject(int productId)
+        public async Task<List<ImageVm>> GetListImagesProject(int productId)
         {
-            throw new NotImplementedException();
+            var data = await GetAsync<List<ImageVm>>($"/api/projects/{productId}/images");
+            return data;
+           
         }
 
         public async Task<PagedResult<ImageVm>> GetPagingsImage(GetManageImagePagingRequest request)

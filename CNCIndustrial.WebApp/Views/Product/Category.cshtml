@@ -1,0 +1,153 @@
+﻿@model ProductCategoryViewModel
+@{
+    ViewData["Title"] = Model.Category.Name + (Model.Products.PageIndex == 1 ? "" : " - " + _loc["Page"] + " " + Model.Products.PageIndex);
+    ViewData["Description"] = Model.Category.Name + (Model.Products.PageIndex == 1 ? "" : " - " + _loc["Page"] + " " + Model.Products.PageIndex);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var culture = CultureInfo.CurrentCulture;
+}
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+@inject LazZiya.ExpressLocalization.ISharedCultureLocalizer _loc;
+
+@section style{
+    <link href="~/css/project-location.css" rel="stylesheet" />
+}
+<div data-aos="fade-down" data-aos-duration="2000" class="banner-project field__item field-landing__item">
+    <div class="banner">
+        <img src="/img/project/location/vinh-phuc/ba thien/27cb93aab8a37efd27b2.jpg" alt="">
+    </div>
+    <div class="title">
+        <h2 class="color-w">All our projects at <span> @Model.Category.Name</span></h2>
+        <p class="color-w">Our employees strive to build lasting relationships that bring value to your business. Your success is our success.</p>
+    </div>
+</div>
+<div class="field__item field-landing__item">
+    <div class="container">
+        <p class="brearkcum "><localize>Home</localize> / <span><localize>Location</localize></span> / <span> @Model.Category.Name</span></p>
+    </div>
+</div>
+<!-- gg map -->
+<div class="field__item field-landing__item">
+    <div class="container">
+        <div class="img-container">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-all" type="button" role="tab" aria-controls="pills-home" aria-selected="true">All</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-phoicanh" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Factory</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-noithat" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Industrial</button>
+                </li>
+
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="galary-img">
+                        @for (int i = 0; i < Model.Products.Items.Count; i++)
+                        {
+
+                            var item = Model.Products.Items[i];
+                            var url = $"/{culture}/{_loc["productUrl"]}/{item.Id}";
+                            <div class="galary-img-item">
+                                <div class="width100 overlay-img">
+                                    <img src="@(Configuration["BaseAddress"]+item.ThumbnailImage)" alt="@item.Name">
+                                </div>
+                                <a href="@url">
+                                    <span class="project-overlay">
+                                        <span class="project-name id-color">@item.Name</span>
+                                    </span>
+                                </a>
+
+                            </div>
+                        }
+
+
+
+
+
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-phoicanh" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="galary-img">
+                        <div class="galary-img-item">
+                            <div class="width100 overlay-img">
+                                <img src="/img/project/97c219d402b8c5e69ca9.jpg" alt="">
+                            </div>
+                            <a href="/project-detail.html">
+                                <span class="project-overlay">
+                                    <span class="project-name id-color">SAPPHIRE</span>
+                                </span>
+                            </a>
+
+                        </div>
+                        <div class="galary-img-item">
+                            <div class="width100 overlay-img">
+                                <img src="/img/project/0d97c809d065173b4e74.jpg" alt="">
+                            </div>
+                            <a href="">
+                                <span class="project-overlay">
+                                    <span class="project-name id-color">RUBY</span>
+                                </span>
+                            </a>
+
+                        </div>
+                        <div class="galary-img-item">
+                            <div class="width100 overlay-img">
+                                <img src="/img/project/0d97c809d065173b4e74.jpg" alt="">
+                            </div>
+                            <a href="">
+                                <span class="project-overlay">
+                                    <span class="project-name id-color">BERYL</span>
+                                </span>
+                            </a>
+
+                        </div>
+                        <div class="galary-img-item">
+                            <div class="width100 overlay-img">
+                                <img src="/img/project/0d97c809d065173b4e74.jpg" alt="">
+                            </div>
+                            <a href="">
+                                <span class="project-overlay">
+                                    <span class="project-name id-color">DIAMOND</span>
+                                </span>
+                            </a>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-noithat" role="tabpanel" aria-labelledby="pills-contact-tab">
+                    <div class="galary-img">
+                        @for (int i = 0; i < Model.Products.Items.Count; i++)
+                        {
+
+                            var item = Model.Products.Items[i];
+                            var url = $"/{culture}/{_loc["productUrl"]}/{item.Id}";
+                            <div class="galary-img-item">
+                                <div class="width100 overlay-img">
+                                    <img src="@(Configuration["BaseAddress"]+item.ThumbnailImage)" alt="@item.Name">
+                                </div>
+                                <a href="@url">
+                                    <span class="project-overlay">
+                                        <span class="project-name id-color">@item.Name</span>
+                                    </span>
+                                </a>
+
+                            </div>
+                        }
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Component.InvokeAsync("Pager", Model.Products)

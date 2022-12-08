@@ -94,7 +94,7 @@
 .dropdown_menu {
     color: #fff !important;
     position: absolute;
-    width: 280px;
+    width: 280px !important;
     display: none;
     height: auto;
     z-index: 20;

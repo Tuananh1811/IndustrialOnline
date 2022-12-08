@@ -121,6 +121,15 @@
     <value>About Us</value>
     <comment>layout</comment>
   </data>
+  <data name="Accessibility" xml:space="preserve">
+    <value>Accessibility</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="categoryUrl" xml:space="preserve">
     <value>categories</value>
     <comment>header</comment>
@@ -129,17 +138,50 @@
     <value>China</value>
     <comment>layout</comment>
   </data>
+  <data name="Commerce" xml:space="preserve">
+    <value>Commerce</value>
+  </data>
+  <data name="Company name" xml:space="preserve">
+    <value>Company name</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
     <comment>layout</comment>
+  </data>
+  <data name="Contact now" xml:space="preserve">
+    <value>Contact now</value>
+  </data>
+  <data name="Contact us" xml:space="preserve">
+    <value>Contact us</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
     <comment>layout</comment>
   </data>
+  <data name="Full name" xml:space="preserve">
+    <value>Full name</value>
+  </data>
+  <data name="GET PROJECT DETAILS" xml:space="preserve">
+    <value>GET PROJECT DETAILS</value>
+  </data>
+  <data name="Hai Phong port" xml:space="preserve">
+    <value>Hai Phong port</value>
+  </data>
+  <data name="Hanoi - Ha Long Expressway" xml:space="preserve">
+    <value>Hanoi - Ha Long Expressway</value>
+  </data>
+  <data name="Hanoi Center" xml:space="preserve">
+    <value>Hanoi Center</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
     <comment>layout</comment>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Investor" xml:space="preserve">
+    <value>Investor</value>
   </data>
   <data name="Japan" xml:space="preserve">
     <value>Japan</value>
@@ -153,13 +195,44 @@
     <value>Location</value>
     <comment>layout</comment>
   </data>
+  <data name="main function" xml:space="preserve">
+    <value>main function</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
   <data name="News &amp; Research" xml:space="preserve">
     <value>News&amp;Research</value>
     <comment>layout</comment>
   </data>
+  <data name="Noi Bai Airport" xml:space="preserve">
+    <value>Noi Bai Airport</value>
+  </data>
+  <data name="Phone number" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="Please complete the form below and our agent will respond to your query shortly Thank you!" xml:space="preserve">
+    <value>Please complete the form below and our agent will respond to your query shortly Thank you!</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+    <comment>/project/detail</comment>
+  </data>
   <data name="productUrl" xml:space="preserve">
     <value>projects</value>
     <comment>/Home/Index</comment>
+  </data>
+  <data name="Project overview" xml:space="preserve">
+    <value>Project overview</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="Technical" xml:space="preserve">
+    <value>Technical</value>
   </data>
   <data name="Tiếng Việt" xml:space="preserve">
     <value>Vietnamese</value>
