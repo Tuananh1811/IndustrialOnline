@@ -62,29 +62,54 @@
         <div class="width-90 ">
             <nav class="row no-padding no-margin">
                 <div class="col-lg-3 logo no-padding">
-                    <a class="width100 navbar-brand" href="./home.html"><img class="width100" src="./img/logo/LOGO-png.png" alt=""></a>
+                    <a class="width100 navbar-brand" href="./home.html"><img class="width100" src="/img/logo/LOGO-png.png" alt=""></a>
                 </div>
 
                 <div class=" col-lg-9 navbar-main">
                     <ul class="navbar-menu">
-                        <li class="navbar-menu-item"><a href="./home.html" class="active navbar-menu-item-link">Home</a></li>
+                        <li class="navbar-menu-item"><a href="./home.html" class="active navbar-menu-item-link" localize-content>Home</a></li>
                         <li class="navbar-menu-item">
-                            <a href="./intro.html" class=" navbar-menu-item-link">About Us</a>
+                            <a href="./intro.html" class=" navbar-menu-item-link" localize-content>About Us</a>
                         </li>
                         <li class="navbar-menu-item">
-                            <a href="./project.html" class="navbar-menu-item-link">Location <i class="fa-solid fa-chevron-down"></i></a>
+                            <a href="./project.html" class="navbar-menu-item-link"><localize>Location</localize> <i class="fa-solid fa-chevron-down"></i></a>
                             <ul class="dropdown_menu">
-                                <li class="dropdown-menu-item"><a href="" class="dropdown-menu-item-link"><i class="fa-solid fa-location-dot"></i>Vĩnh Phúc</a></li>
-                                <li class="dropdown-menu-item"><a href="" class="dropdown-menu-item-link"><i class="fa-solid fa-location-dot"></i>Hà Nam</a></li>
-                                <li class="dropdown-menu-item"><a href="" class="dropdown-menu-item-link"><i class="fa-solid fa-location-dot"></i>Bắc Ninh</a></li>
-                                <li class="dropdown-menu-item"><a href="" class="dropdown-menu-item-link"><i class="fa-solid fa-location-dot"></i>Hồ Chí Minh</a></li>
+                                @{
+                                    var parents = Model.Where(x => x.ParentId == null);
+                                }
+                                @for (int index = 0; index < parents.Count(); index++)
+                                {
+                                    var parent = parents.ElementAt(index);
+                                    var children = Model.Where(x => x.ParentId == parent.Id);
+                                    if (children.Any())
+                                    {
+                                        <li class="subMenu open">
+                                            <a> @parent.Name</a>
+                                            <ul>
+                                                @foreach (var item in children)
+                                                {
+                                                    <li><a class="active" href="/@culture/@_loc["categoryUrl"]/@item.Id"><i class="icon-chevron-right"></i><i class="fa-solid fa-location-dot"></i>@item.Name </a></li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="dropdown-menu-item"><a class="dropdown-menu-item-link" href="/@culture/@_loc["categoryUrl"]/@parent.Id"><i class="fa-solid fa-location-dot"></i>@parent.Name</a></li>
+                                    }
+
+                                }
+                                @*<li class="dropdown-menu-item"><a href="" class="dropdown-menu-item-link"><i class="fa-solid fa-location-dot"></i>Vĩnh Phúc</a></li>
+        <li class="dropdown-menu-item"><a href="" class="dropdown-menu-item-link"><i class="fa-solid fa-location-dot"></i>Hà Nam</a></li>
+        <li class="dropdown-menu-item"><a href="" class="dropdown-menu-item-link"><i class="fa-solid fa-location-dot"></i>Bắc Ninh</a></li>
+        <li class="dropdown-menu-item"><a href="" class="dropdown-menu-item-link"><i class="fa-solid fa-location-dot"></i>Hồ Chí Minh</a></li>*@
                             </ul>
                         </li>
                         <li class="navbar-menu-item">
-                            <a href="./news.html" class="navbar-menu-item-link">News & Research</a>
+                            <a href="./news.html" class="navbar-menu-item-link"localize-content>News & Research</a>
                         </li>
                         <li class="navbar-menu-item">
-                            <a href="./contact.html" class=" navbar-menu-item-link">Contact</a>
+                            <a href="./contact.html" class=" navbar-menu-item-link"localize-content>Contact</a>
                         </li>
                     </ul>
                     <!-- <div class="block-search">

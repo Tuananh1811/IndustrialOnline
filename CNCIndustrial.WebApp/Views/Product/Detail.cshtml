@@ -1,0 +1,391 @@
+﻿@model ProductDetailViewModel
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var culture = CultureInfo.CurrentCulture;
+}
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+@inject LazZiya.ExpressLocalization.ISharedCultureLocalizer _loc;
+@section style{
+
+    <link href="/css/project-detail.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+}
+@section js{
+    <script src="/js/event.js"></script>
+    <script src="/js/zoomImg.js"></script>
+}
+@section slick5Item{
+    <script type="text/javascript">
+        $('.responsive').slick({
+            dots: true,
+            infinite: true,
+            speed: 700,
+            slidesToShow: 5,
+            slidesToScroll: 2,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            responsive: [{
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            }, {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            }, {
+                breakpoint: 580,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+
+            ]
+        });
+
+    </script>
+}
+<div class=" project-detail field__item field-landing__item">
+    <div class="project-detail-big-img width100 ">
+        <div class="row two-img-big no-margin no-padding">
+            @for (int i = 0; i < Model.ProductImages.Count; i++)
+            {
+                if (i <= 1)
+                {
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 no-margin no-padding">
+
+                        <img src="@(Configuration["BaseAddress"] + Model.ProductImages[i].ImagePath) " style="width:100%" alt="@Model.Product.Name" class="partner-img-slick-style" alt="">
+                    </div>
+                }
+
+            }
+
+
+        </div>
+        <div class="width100">
+            <div class="container-fluid-slick">
+                <div class="margin-top row no-padding no-margin slick block-partner">
+
+                    <div class="slick-partner no-padding  row responsive autoplay multiple-items">
+                        @for (int i = 0; i < Model.ProductImages.Count; i++)
+                        {
+                            var item = Model.ProductImages[i];
+                            <div class="height-200 col-lg-3 col-md-3 col-sm-4 col-6  block-slick-partner">
+                                <div class="partner-img-slick height-100 ">
+                                    <img src="@(Configuration["BaseAddress"]+item.ImagePath)" alt="@item.Caption" class="partner-img-slick-style height-100">
+                                </div>
+
+
+                            </div>
+                        }
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- <img src="./img/project/0d97c809d065173b4e74.jpg" alt=""> -->
+    </div>
+</div>
+<div class="width100 project-header field__item field-landing__item">
+    <div class="container padding-20 " data-aos="fade-up" data-aos-duration="1200">
+        <p class="brearkcum color-w ">
+            Home / <span>Project</span> / <span>
+                @Model.Product.Name
+            </span>
+        </p>
+        <h2 class="color-w">@Model.Product.Name</h2>
+        <p class="font-i color-w">@Model.Product.Location</p>
+        <hr class="color-w">
+        <div class="row no-margin no-padding">
+            <div class="col-lg-4 no-margin no-padding col-md-6 col-sm-6 col-12">
+                <p class="font-i color-w">
+                    <i class="fa-solid fa-chart-area color-w padding-i font-i"></i> <span class="color-w"><localize>Total Area</localize>: </span><span>@Model.Product.TotalArea</span>
+                </p>
+            </div>
+            <div class="col-lg-4 no-margin no-padding col-md-6 col-sm-6 col-12">
+                <p class="font-i color-w">
+                    <i class="fa-solid fa-chart-area color-w padding-i font-i"></i> <span class="color-w"><localize>Vacant Area</localize>: </span><span>@Model.Product.VacantArea</span>
+                </p>
+            </div>
+            <div class="col-lg-4 no-margin no-padding col-md-6 col-sm-6 col-12">
+                <p class="font-i color-w">
+                    <i class="fa-solid fa-money-check-dollar color-w padding-i font-i"></i>
+                    <span class="color-w"><localize>Price</localize> <span>Contact us</span> </span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="field__item field-landing__item">
+    <div class="container">
+        <div class="content-pro-container">
+
+            <div class="content-pro-detail-container">
+                <div class="content-intro-pro row no-margin no-padding">
+                    <div data-aos="fade-right" data-aos-duration="2000" class="col-lg-6 content-img no-padding no-margin">
+
+                        <div class="row no-margin no-padding col-lg-12 ">
+                            <div class="box-big-img ">
+                                <a href="#">
+                                    <img src="@(Configuration["BaseAddress"] + Model.Product.ThumbnailImage)" alt="@Model.Product.Name" id="big-img">
+
+                                </a>
+                            </div>
+                            <div class="box-images-list col-lg-12 no-padding no-margin">
+                                <ul class="row no-margin no-padding">
+                                    <li class="col-lg-2 col-md-3 col-sm-2 col-3 no-margin no-padding ">
+                                        <a href="#">
+                                            <img onclick="onClick(this)" src="/img/project/location/vinh-phuc/ba thien/9de0a8a8d0f116af4fe0.jpg" alt="" class="small-img">
+                                        </a>
+                                    </li>
+                                    <li class="col-lg-2 col-md-3 col-sm-2 col-3 no-margin no-padding ">
+                                        <a href="#">
+                                            <img src="/img/project/location/vinh-phuc/ba thien/330b7d2a0173c72d9e62.jpg" alt="" class="small-img">
+                                        </a>
+                                    </li>
+                                    <li class="col-lg-2 col-md-3 col-sm-2 col-3 no-margin no-padding ">
+                                        <a href="#">
+                                            <img src="/img/project/location/vinh-phuc/ba thien/c12f25195d409b1ec251.jpg" alt="" class="small-img">
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 no-margin no-padding content-pro">
+                        <h3 class="style_h2">@Model.Product.Name</h3>
+                        <p>
+                            <b class="style-b"> <localize>Area</localize> :</b> <span class="style-span style-b">@Model.Product.TotalArea</span>
+                            <b class="style-b"><localize>Location</localize> : </b><span class="style-b">@Model.Product.Location</span>
+                        </p>
+                        <b class="style-b"><localize>Information</localize> :</b>
+                        <h6 class="style-h6"><i class="fa-brands fa-slack"></i> <localize>Project overview</localize> </h6>
+                        <p>
+                            @Html.Raw(Model.Product.Description)
+                        </p>
+
+                        <p class="intro-p"> <span><localize>Investor</localize> </span>: <span>CncTech</span></p>
+                        <div class="btn-submit">
+                            <button type="button" data-bs-toggle="modal" class="btn-contact" data-bs-target="#exampleModal">
+                                <localize>Contact now</localize>
+                            </button>
+                           
+                        </div>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title color-w" id="exampleModalLabel">
+                                            <localize>GET PROJECT DETAILS</localize> 
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                                    </div>
+                                    <div class="modal-decs">
+                                        <p class="color-w"><localize>Please complete the form below and our agent will respond to your query shortly Thank you!</localize></p>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <form action="" class="form ">
+                                            <div class="form-infor row no-margin no-padding">
+                                                <div class="form-input col-lg-12">
+                                                    <label for=""><localize>Full name</localize></label>
+                                                    <input type="text" name="" placeholder="Name" id="">
+                                                </div>
+                                                <div class="form-input col-lg-12">
+                                                    <label for=""><localize>Company name</localize></label>
+                                                    <input type="text" name="" placeholder="Company name" id="">
+                                                </div>
+
+                                                <div class="form-input col-lg-12">
+                                                    <label for="">Email</label>
+                                                    <input type="Email" name="" placeholder="Email" id="">
+                                                </div>
+                                                <div class="form-input col-lg-12">
+                                                    <label for=""><localize>Phone number</localize> </label>
+                                                    <input type="text" name="" placeholder="Phone" id="">
+                                                </div>
+
+
+                                                <div class="form-input-lable col-ld-12">
+                                                    <label for=""><localize>Message</localize></label>
+                                                    <textarea name="message" id="" cols="10" rows="4">
+
+                                                        </textarea>
+                                                </div>
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><localize>Cancel</localize></button>
+                                        <button type="button" class="btn btn-send"><localize>Send</localize></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- show img -->
+    <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+        <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+        <div class="w3-modal-content w3-animate-zoom">
+            <img id="img01" style="width:100%">
+        </div>
+    </div>
+
+</div>
+<div class=" field__item field-landing__item">
+    <div class=" container">
+        <div class=" more-benefit row no-margin no-padding">
+            <div class="col-lg-7">
+                <h3 class=" padding-20 text-upp" data-aos="fade-right" data-aos-duration="1000">
+                    <localize>main function</localize>
+                </h3>
+                <div class="row no-margin no-padding">
+                    <div class="col-lg-6 padding-20 " data-aos="fade-up" data-aos-duration="2000">
+                        <span class="color-primary font-i">
+                            <i class="color-orange fa-solid fa-angles-right"></i>
+                        </span> @Model.Product.MainFunction1
+                    </div>
+                    <div class="col-lg-6 padding-20  " data-aos="fade-up" data-aos-duration="1400">
+                        <span class="color-primary font-i">
+                            <i class="color-orange fa-solid fa-angles-right"></i>
+                        </span> @Model.Product.MainFunction2
+
+                    </div>
+                    <div class="col-lg-6 padding-20  " data-aos="fade-up" data-aos-duration="1500">
+                        <span class="color-primary font-i">
+                            <i class=" color-orange fa-solid fa-angles-right"></i>
+                        </span> @Model.Product.MainFunction3
+                    </div>
+                    <div class="col-lg-6  padding-20  " data-aos="fade-up" data-aos-duration="1600">
+                        <span class="color-primary font-i">
+                            <i class=" color-orange fa-solid fa-angles-right"></i>
+                        </span> @Model.Product.MainFunction4
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="benefit-img width100 padding-60">
+                    <img src="/img/project/location/vinh-phuc/ba thien/DSC04658.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="field__item field-landing__item">
+    <div class="container">
+        <div class="row quickview">
+            <div data-aos="fade-up" data-aos-duration="2000" class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <h3 style="padding-left:20px"><localize>Summary</localize></h3>
+                <p class="padding-20 text-justify">@Model.Product.Summary</p>
+            </div>
+            <div data-aos="fade-down" data-aos-duration="2000" class="col-lg-6  col-md-6 col-sm-12 col-12 no-margin no-padding">
+                <h3 style="padding-left:20px"><localize>Accessibility</localize></h3>
+
+                <div class="width100 padding-20 box-shadow">
+                    <div class=" acces  width100  row no-margin no-padding">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-6 row aline-item no-margin padding-20">
+                            <div class="col-lg-5 aline-item">
+                                <p class="text-left"><i class="font-i-30 fa-solid fa-building-columns text-left"></i></p>
+                            </div>
+                            <div class="col-lg-7 no-padding">
+                                <b><localize>Hanoi Center</localize></b>
+                                <br>
+                                <span>@Model.Product.AccessibilityCenter</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-6 row aline-item no-margin padding-20">
+                            <div class="col-lg-5 aline-item">
+                                <p class="text-left"><i class="font-i-30 text-center fa-solid fa-plane-departure"></i></p>
+                            </div>
+                            <div class="col-lg-7 no-padding">
+                                <b>
+                                    <localize>Noi Bai Airport</localize>
+                                </b>
+                                <br>
+                                <span>@Model.Product.AccessibilityAirport</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-6 row aline-item no-margin padding-20">
+                            <div class="col-lg-5 aline-item">
+                                <p class="text-left">
+                                    <i class="font-i-30 text-center fa-solid fa-anchor"></i>
+                                </p>
+                            </div>
+                            <div class="col-lg-7 no-padding">
+                                <b>
+                                    <localize>Hai Phong port</localize>
+                                </b>
+                                <br>
+                                <span>@Model.Product.AccessibilityPort</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-6 row aline-item no-margin padding-20">
+                            <div class="col-lg-5 aline-item">
+                                <p class="text-left"><i class="font-i-30 text-center fa-solid fa-road"></i></p>
+                            </div>
+                            <div class="col-lg-7 no-padding">
+                                <b> <localize>Hanoi - Ha Long Expressway</localize> </b>
+                                <br>
+                                <span>@Model.Product.AccessibilityExpressway</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="field__item field-landing__item">
+    <div class="container">
+        <div class="row width100 infor-project">
+            <div data-aos="fade-down" data-aos-duration="2000" class="col-lg-6">
+                <p>
+                    <b class="font-i">
+                        <localize>Commerce</localize>
+                    </b>
+                </p>
+
+                @Html.Raw(@Model.Product.Commerce)
+            </div>
+            <div data-aos="fade-up" data-aos-duration="2000" class="col-lg-6">
+                <p>
+                    <b class="font-i">
+                        <localize> Technical</localize> 
+                    </b>
+                </p>
+                @Html.Raw(@Model.Product.Technical)
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="field__item field-landing__item">
+    <iframe data-aos="fade-up" data-aos-duration="1200" class="width100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3716.3184536516515!2d105.67281931461109!3d21.33793058583169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134e48fa1416341%3A0xdc77321c8a756801!2zS2h1IEPDtG5nIG5naGnhu4dwIELDoSBUaGnhu4duIDI!5e0!3m2!1svi!2s!4v1666260018189!5m2!1svi!2s"
+            height="650" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+

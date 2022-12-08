@@ -136,6 +136,14 @@ namespace CncIndustrial.BackendApi.Controllers
                 return BadRequest("Cannot find product");
             return Ok(image);
         }
+        [HttpGet("{productId}/images")]
+        public async Task<IActionResult> GetListImageProject(int productId)
+        {
+            var image = await _projectService.GetListImages(productId);
+            if (image == null)
+                return BadRequest("Cannot find product");
+            return Ok(image);
+        }
         [HttpDelete("{productId}/images/{imageId}")]
        // [Authorize]
         public async Task<IActionResult> RemoveImage(int imageId)

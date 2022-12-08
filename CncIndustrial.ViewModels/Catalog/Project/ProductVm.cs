@@ -27,7 +27,27 @@ namespace CncIndustrial.ViewModels.Catalog.Project
         public bool? IsFeatured { get; set; }
         public string Location { get; set; }
         public string TotalArea { get; set; }
-      
+        public string MainFunction1 { set; get; }
+
+        public string MainFunction2 { set; get; }
+
+        public string MainFunction3 { set; get; }
+
+        public string MainFunction4 { set; get; }
+
+        public string Summary { set; get; }
+
+        public string AccessibilityCenter { get; set; }
+
+        public string AccessibilityPort { get; set; }
+
+        public string AccessibilityAirport { get; set; }
+
+        public string AccessibilityExpressway { get; set; }
+
+        public string Commerce { get; set; }
+
+        public string Technical { get; set; }
 
         public string ThumbnailImage { get; set; }
 

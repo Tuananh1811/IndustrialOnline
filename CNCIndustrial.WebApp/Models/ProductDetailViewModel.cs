@@ -1,6 +1,7 @@
 ﻿using CncIndustrial.ViewModels.Catalog.Categories;
 using CncIndustrial.ViewModels.Catalog.ProductImages;
 using CncIndustrial.ViewModels.Catalog.Project;
+using CncIndustrial.ViewModels.Catalog.ProjectImages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,6 @@ namespace CNCIndustrial.WebApp.Models
 
         public List<ProductVm> RelatedProducts { get; set; }
 
-        public List<ProjectImageViewModel> ProductImages { get; set; }
+        public List<ImageVm> ProductImages { get; set; }
     }
 }

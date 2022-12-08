@@ -12,7 +12,7 @@ namespace CncIndustrial.ApiIntegration
     {
         Task<PagedResult<ImageVm>> GetPagingsImage(GetManageImagePagingRequest request);
 
-        Task<List<ProjectImageViewModel>> GetListImagesProject(int productId);
+        Task<List<ImageVm>> GetListImagesProject(int productId);
 
         Task<bool> AddImageProject(int projectId, ProjectImageCreateRequest request);
 
