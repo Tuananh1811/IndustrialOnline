@@ -1,4 +1,4 @@
-# ASP.NET Core 3.1 project from Tuan Anh
+# ASP.NET Core project from Tuan Anh
 ## Technologies
 - ASP.NET Core 3.1
 - Entity Framework Core 3.1
